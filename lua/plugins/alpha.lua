@@ -28,9 +28,9 @@ return {
         -- Dashboard 配置
         dashboard.section.header.val = vim.split(logo, "\n")
         dashboard.section.buttons.val = {
-            dashboard.button("e", "  新建文件", ":ene <BAR> startinsert <CR>"),
             dashboard.button("o", "  历史文件", ":lua require('telescope.builtin').oldfiles() <CR>"),
             dashboard.button("f", "󰈞  查找文件", ":lua require('telescope.builtin').find_files() <CR>"),
+            dashboard.button("e", "  新建文件", ":ene <BAR> startinsert <CR>"),
             dashboard.button("g", "  查找文本", ":lua require('telescope.builtin').live_grep() <CR>"),
             dashboard.button("c", "  配置文件", ":Telescope find_files cwd=" .. config_dir .. "<CR>"),
             dashboard.button("q", "󰅚  推出 NVIM", ":qa<CR>"),
