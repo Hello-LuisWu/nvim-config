@@ -16,7 +16,7 @@ opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 -- opt.clipboard = "unnamedplus"
 
 -- 编码设置
-opt.encoding = "utf-8"                 -- 设置 Neovim 内部编码
+-- opt.encoding = "utf-8"                 -- 设置 Neovim 内部编码, Neovim 0.9+ 已废弃。
 opt.fileencoding = "utf-8"             -- 自动检测文件编码的顺序
 opt.fileencodings = "utf-8,gbk,latin1" -- 自动检测文件编码的顺序
 opt.fileformats = "unix,dos,mac"       -- 文件格式支持，优先次序从左到右
@@ -44,7 +44,7 @@ opt.whichwrap = "b,s,<,>,[,],h,l" -- 左右键可以已到下一行或者上一�
 opt.showmatch = true              -- 匹配括号高亮
 opt.matchtime = 2                 -- 匹配括号高亮持续时间（十分之一秒）
 opt.pumheight = 10                -- 弹出菜单最多显示10行
-opt.cmdheight = 0                 -- 命令行高为1
+opt.cmdheight = 1                 -- 命令行高为1
 opt.showcmd = false               -- 显示输入的命令
 --[[ opt.list = true
 opt.lcs = "eol:↴" ]]
@@ -74,11 +74,7 @@ opt.showtabline = 2 -- 2 总是显示标签页，0 不显示，1 出现多个标
 -- ----------------------------
 -- 关于缩进
 -- Neovim Lua 配置中正确启用文件类型检测
-vim.cmd('filetype on')                             -- 启用基础检测
-vim.cmd('filetype plugin on')                      -- 启用插件支持
-vim.cmd('filetype indent on')                      -- 启用缩进规则
-vim.cmd("filetype plugin indent on")               -- 传统 Vimscript 方式
-vim.filetype.add({ extension = { ... } })          -- 启用文件类型检测, Neovim 0.10+ 的 Lua API
+-- vim.filetype.add({ extension = { ... } })          -- 启用文件类型检测, Neovim 0.10+ 的 Lua API
 opt.modifiable = true                              -- 确保缓冲区可修改
 opt.tabstop = 4                                    -- 一个 tab 占用 4 个空格
 opt.shiftwidth = 4                                 -- 缩进宽度为 4, 自动缩进时每级缩进的空格数
@@ -149,18 +145,16 @@ opt.updatetime = 300   -- 光标移动后 300ms 更新状态
 opt.timeoutlen = 500   -- 快捷键映射等待超时时间
 opt.lazyredraw = false -- 执行宏或未映射的快捷键时减少重绘（提升性能）,开启可能会导致插件报错
 opt.synmaxcol = 240    -- 语法高亮的最大列数，超过则跳过
-opt.filetype = "on"
 
 -- 启用代码折叠
 opt.foldenable = true                            -- 开启折叠
 opt.foldmethod = 'expr'                          -- 指定折叠方式
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- 基于表达式折叠
 -- opt.foldmethod = "marker"
-opt.foldcolumn = "1"                             -- 在编辑器左侧显示折叠标记的列, 0 为不显示
+opt.foldcolumn = "0"                             -- 1为在编辑器左侧显示折叠标记的列, 0 为不显示
 opt.foldlevel = 99                               -- 一次折叠的层级有多少
 opt.foldlevelstart = 99                          -- 打开文件时的默认折叠层级,
 -- opt.foldtext = "折叠区域"
-
 
 -- ----------------------------
 -- 其他杂项
@@ -170,12 +164,8 @@ vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- 光标形�
 opt.spell = false                                                  -- 禁止拼写支持
 opt.spelllang = { "en" }                                           -- 设置拼写检查语言
 
-
-
 opt.wildmode = "longest:full,full"   -- 命令行补全模式
 vim.g.markdown_recommended_style = 0 -- 禁用推荐的 Markdown 风格
-
-
 
 opt.timeout = true
 --opt.cscopequickfix = "s-,c-,d-,i-,t-,e-"
@@ -185,4 +175,10 @@ opt.timeout = true
 opt.path:append({ "**" })
 opt.wildignore:append({ "*/node_modules/*" })
 opt.formatoptions:append({ "r" })
-opt.formatoptions:append({ "r" })
+
+-- 边栏诊断图标配置
+local signs = { Error = "✘", Warn = "", Hint = "⚑", Info = "»" }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end

@@ -4,16 +4,16 @@ return {
         'kevinhwang91/promise-async'
     },
     config = function()
-        -- 配置
-        require('ufo').setup {
+        local ufo = require("ufo")
+        ufo.setup({
+            open_fold_hl_timeout = 150,
             provider_selector = function()
-                return { 'treesitter', 'indent' } -- 优先使用 Treesitter
+                return { 'treesitter', 'indent' } -- 使用 treesitter 进行折叠
             end
-        }
+        })
 
-        -- 快捷键
-        vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-        vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+        vim.keymap.set('n', 'zr', require('ufo').openAllFolds)
+        vim.keymap.set('n', 'zm', require('ufo').closeAllFolds)
     end
 
 }
