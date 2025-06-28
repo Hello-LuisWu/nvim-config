@@ -1,7 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     enable = false,
-    dependencies = { "p00f/nvim-ts-rainbow" }, -- 彩色括号
+    -- dependencies = { "p00f/nvim-ts-rainbow" }, -- 彩色括号
     event = { "BufReadPost", "BufNewFile" },
     config = function()
         require 'nvim-treesitter.configs'.setup({
@@ -65,30 +65,32 @@ return {
                     node_decremental = "trm",  -- 逐步减少当前选择的节点（退回上一个节点）
                 },
             },
-            rainbow = {
-                enable = true,        -- 启用
-                -- disable = { "jsx", "cpp" }, -- 禁用某些语言的彩虹括号
-                extended_mode = true, -- 在更多语言中启用
-                max_file_lines = nil, -- 不限文件行数
-                colors = {            -- 颜色配置
-                    "#cc241d",
-                    "#a89984",
-                    "#b16286",
-                    "#d79921",
-                    "#689d6a",
-                    "#d65d0e",
-                    "#458588",
-                }, --
-                termcolors = {
-                    "Red",
-                    "Green",
-                    "Yellow",
-                    "Blue",
-                    "Magenta",
-                    "Cyan",
-                    "White",
-                }, -- 终端颜色
-            },
+
+            -- rainbow = {
+            --     enable = true,        -- 启用
+            --     -- disable = { "jsx", "cpp" }, -- 禁用某些语言的彩虹括号
+            --     extended_mode = true, -- 在更多语言中启用
+            --     max_file_lines = nil, -- 不限文件行数
+            --     colors = {            -- 颜色配置
+            --         "#cc241d",
+            --         "#a89984",
+            --         "#b16286",
+            --         "#d79921",
+            --         "#689d6a",
+            --         "#d65d0e",
+            --         "#458588",
+            --     }, --
+            --     termcolors = {
+            --         "Red",
+            --         "Green",
+            --         "Yellow",
+            --         "Blue",
+            --         "Magenta",
+            --         "Cyan",
+            --         "White",
+            --     }, -- 终端颜色
+            -- },
+
             indent = {
                 enable = true
             }
