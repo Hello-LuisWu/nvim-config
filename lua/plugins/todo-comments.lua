@@ -1,6 +1,7 @@
 return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    -- event = "VeryLazy",
     keys = {
         {
             "<leader>ft",
@@ -8,52 +9,22 @@ return {
             desc = "Todo comments"
         },
     },
+    -- INFO:
     opts = {
         signs = true,      -- 是否在标记列显示图标（左侧边栏）
         sign_priority = 8, -- 标记的显示优先级（数字越大优先级越高）
 
         -- 定义被识别为待办事项注释的关键字配置
         keywords = {
-            FIX = {
-                icon = " ", -- 标记使用的图标（同时用于搜索结果）
-                color = "error", -- 颜色名称（指向下方 colors 表的键）或十六进制颜色值
-                alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- 映射到 FIX 的同义关键字列表
-                -- signs = false,            -- 是否单独为当前关键字配置显示标记（默认继承外层 signs 配置）
-            },
-            TODO = {
-                icon = "💁 ",
-                color = "info"
-            }, -- TODO 标签配置
-            HACK = {
-                icon = "🐣 ",
-                color = "warning"
-            }, -- HACK 标签配置
-            WARN = {
-                icon = " ",
-                color = "warning",
-                alt = { "WARNING", "XXX" } -- 警告类同义词
-            },
-            PERF = {
-                icon = "🔃 ",
-                alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } -- 性能优化类同义词（未指定颜色则使用 default）
-            },
-            NOTE = {
-                icon = "📓 ",
-                color = "hint",
-                alt = { "INFO" } -- 备注类同义词
-            },
-            TEST = {
-                icon = "🧪 ",
-                color = "test",
-                alt = { "TESTING", "PASSED", "FAILED" } -- 测试类同义词
-            },
-            ERROR = {
-                icon = "❎ ",
-                color = "error",
-                alt = { "ERR", "FAILED" } -- 错误类同义词（示例新增的 ERROR 标签）
-            },
+            FIX = { icon = " ", color = "error", alt = { "BUG", "FIXME", "FIXIT", "ISSUE" } },
+            TODO = { icon = " ", color = "info" },
+            -- INFO = { icon = " ", color = "info", alt = { "INFORMATION" } },
+            HACK = { icon = " ", color = "warning" },
+            WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+            PERF = { icon = " ", color = "hint", alt = { "OPTIMIZE", "PERFORMANCE", "OPTIMISE" } },
+            NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+            TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
         },
-
         -- 图形界面样式配置
         gui_style = {
             fg = "NONE", -- 前景色高亮样式（"NONE" 表示不设置特殊样式）
@@ -75,7 +46,7 @@ return {
             max_line_len = 400,              -- 忽略超过此长度的行（避免性能问题）
             exclude = {},                    -- 需要排除高亮的文件类型列表
         },
-
+        --NOTE
         -- 预定义颜色表（通过名称引用颜色配置）
         colors = {
             error = { "#DC2626" },   -- 错误类颜色（红色）

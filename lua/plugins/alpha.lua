@@ -1,12 +1,16 @@
+-- NOTE: 首页
 return {
     "goolord/alpha-nvim",
-    version = "bc5d57d",
+    -- version = "bc5d57d",
     event = "VimEnter",
     enabled = true,
     keys = {
         { "<leader>a", mode = "n", "<cmd>Alpha<CR>", desc = "主页" },
     },
-    dependencies = { "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope.nvim" }, -- 添加 telescope 依赖
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        -- "nvim-telescope/telescope.nvim"
+    }, -- 添加 telescope 依赖
     config = function()
         -- 获取 nvim 配置目录路径
         local config_dir = vim.fn.expand("~/.config/nvim")

@@ -1,6 +1,7 @@
+-- NOTE: buffer 标签页
 return {
     'akinsho/bufferline.nvim',
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
     keys = {
         { "<leader><tab>p", "<cmd>BufferLineTogglePin<cr>", desc = "固定/取消固定缓冲区" },
         { "<leader><tab>c", "<cmd>BufferLinePicqkClosekClose<cr>", desc = "选择并关闭缓冲区" },
@@ -17,8 +18,7 @@ return {
         { "<leader><tab>9", "<cmd>BufferLineGoToBuffer 9<cr>", desc = "切换到第九个缓冲区" },
         { "<leader><tab>$", "<cmd>BufferLineGoToBuffer -1<cr>", desc = "切换到最后一个缓冲区" },
     },
-    -- version = "*",
-    tag = "v4.9.1",
+    -- tag = "v4.9.1",
     -- enable = false,
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()

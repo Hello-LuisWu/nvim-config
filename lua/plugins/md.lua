@@ -7,7 +7,9 @@ return {
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" },
-        keys = { { "<leader>md", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
+        keys = {
+            { "<leader>md", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+        },
         config = function()
             vim.g.mkdp_auto_close = true
             vim.g.mkdp_open_to_the_world = false
@@ -17,7 +19,6 @@ return {
             vim.g.mkdp_echo_preview_url = true
             vim.g.mkdp_page_title = "${name}"
         end,
-
     },
     {
         "dkarter/bullets.vim",
@@ -30,9 +31,12 @@ return {
     {
         "img-paste-devs/img-paste.vim",
         ft = "markdown",
+        keys = {
+            { "<leader>md", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+        },
         config = function()
             vim.cmd([[
-        autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+        autocmd FileType markdown nmap <buffer><silent> <leader>mp :call mdip#MarkdownClipboardImage()<CR>
         " there are some defaults for image directory and image name, you can change them
         " let g:mdip_imgdir = 'img'
         " let g:mdip_imgname = 'image'
@@ -49,17 +53,36 @@ return {
         end,
     },
     {
-        'SCJangra/table-nvim',
-        ft = 'markdown',
-        opts = {},
+        "SCJangra/table-nvim",
+        ft = "markdown",
+        opts = {
+            padd_column_separators = true, -- Insert a space around column separators.
+            mappings = {           -- next and prev work in Normal and Insert mode. All other mappings work in Normal mode.
+                next = "<leader><TAB>", -- Go to next cell.
+                prev = "<leader><S-TAB>", -- Go to previous cell.
+                insert_row_up = "<A-k>", -- Insert a row above the current row.
+                insert_row_down = "<A-j>", -- Insert a row below the current row.
+                move_row_up = "<A-S-k>", -- Move the current row up.
+                move_row_down = "<A-S-j>", -- Move the current row down.
+                insert_column_left = "<A-h>", -- Insert a column to the left of current column.
+                insert_column_right = "<A-l>", -- Insert a column to the right of current column.
+                move_column_left = "<A-S-h>", -- Move the current column to the left.
+                move_column_right = "<A-S-l>", -- Move the current column to the right.
+                insert_table = "<A-t>", -- Insert a new table.
+                insert_table_alt = "<A-S-t>", -- Insert a new table that is not surrounded by pipes.
+                delete_column = "<A-d>", -- Delete the column under cursor.
+            },
+        },
     },
 
     {
         "richardbizik/nvim-toc",
         ft = { "markdown" },
+        keys = {
+            { "<leader>mt", ":TOC<CR>", desc = "add TOC"}
+        },
         opts = {
             toc_header = "文档目录",
         },
-
-    }
+    },
 }

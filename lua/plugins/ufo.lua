@@ -1,5 +1,6 @@
 return {
     'kevinhwang91/nvim-ufo',
+    event = "BufReadPost", -- 打开文件后加载
     dependencies = {
         'kevinhwang91/promise-async'
     },
@@ -12,8 +13,8 @@ return {
             end
         })
 
-        vim.keymap.set('n', 'zr', require('ufo').openAllFolds)
-        vim.keymap.set('n', 'zm', require('ufo').closeAllFolds)
+        vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+        vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
     end
 
 }

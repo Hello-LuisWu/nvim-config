@@ -1,7 +1,7 @@
 return {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    version = "*",                      -- Use for stability; omit to use `main` branch for the latest features
+    event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
     config = function()
         require("nvim-surround").setup({
             -- 配置插件的键映射
@@ -67,7 +67,7 @@ return {
                 ["B"] = "}",                                   -- 配置"B"代表"}"
                 ["r"] = "]",                                   -- 配置"r"代表"]"
                 ["q"] = { '"', "'", "`" },                     -- 配置"q"代表引号字符（双引号、单引号、反引号）
-                ["a"] = { "}", "]", ")", ">", '"', "'", "`" }, -- 配置"s"代表多个符号
+                ["a"] = { "}", "]", ")", ">", '"', "'", "`", "*" }, -- 配置"s"代表多个符号
             },
 
             -- 配置高亮

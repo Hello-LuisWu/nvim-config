@@ -1,12 +1,23 @@
 return {
     "folke/noice.nvim",
-    -- event = "VeryLazy", -- 延迟加载
     -- enabled = true,
-    enabled = false,
+    -- event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
+    event = "VeryLazy", -- 文件打开时加载
+    -- 按键映射
+    keys = {
+        { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end,                 mode = "c",                              desc = "Redirect Cmdline" },
+        { "<leader>snl", function() require("noice").cmd("last") end,                                   desc = "Noice Last Message" },
+        { "<leader>snh", function() require("noice").cmd("history") end,                                desc = "Noice History" },
+        { "<leader>sna", function() require("noice").cmd("all") end,                                    desc = "Noice All" },
+        { "<leader>snd", function() require("noice").cmd("dismiss") end,                                desc = "Dismiss All" },
+        { "<leader>snt", function() require("noice").cmd("pick") end,                                   desc = "Noice Picker (Telescope/FzfLua)" },
+        { "<c-f>",       function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,  silent = true,                           expr = true,              desc = "Scroll Forward",  mode = { "i", "n", "s" } },
+        { "<c-b>",       function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,                           expr = true,              desc = "Scroll Backward", mode = { "i", "n", "s" } },
+    },
     dependencies = {
-        "MunifTanjim/nui.nvim",         -- 必要依赖
-        "rcarriga/nvim-notify",         -- 通知系统增强
-        "nvim-telescope/telescope.nvim" -- 消息历史查看
+        "MunifTanjim/nui.nvim", -- 必要依赖
+        "rcarriga/nvim-notify", -- 通知系统增强
+        -- "nvim-telescope/telescope.nvim" -- 消息历史查看
     },
     opts = {
         -- 消息模块配置
@@ -56,10 +67,28 @@ return {
                 },
             },
             progress = {
-                enabled = true,                    -- 显示 LSP 进度
-                format = "lsp_progress",           -- 进度格式
-                format_done = "lsp_progress_done", -- 完成格式
-                throttle = 1000 / 30,              -- 更新频率 (ms)
+                -- enabled = true, -- 显示 LSP 进度
+                -- format = "lsp_progress",           -- 进度格式
+                -- format_done = "lsp_progress_done", -- 完成格式
+                -- throttle = 1000 / 30, -- 更新频率 (ms)
+
+                enabled = true,
+                -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
+                -- See the section on formatting for more details on how to customize.
+                --- @type NoiceFormat|string
+                format = "lsp_progress",
+                --- @type NoiceFormat|string
+                format_done = "lsp_progress_done",
+                throttle = 1000 / 30, -- frequency to update lsp progress message
+                -- view = "mini",
+
+            },
+            presets = {
+                bottom_search = true,         -- 搜索的时候显示在底部（更像传统vim）
+                command_palette = true,       -- :命令和补全显示在中间弹窗
+                long_message_to_split = true, -- 长消息直接放到split窗口
+                inc_rename = false,           -- 不使用inc-rename（也可以 true，如果你安装了）
+                lsp_doc_border = true,        -- LSP Hover 和 Signature 带边框
             },
         },
 
@@ -114,7 +143,7 @@ return {
                     col = "50%", -- 水平居中
                 },
                 size = {
-                    width = "60%", -- 宽度占比
+                    width = "50", -- 宽度占比
                     height = "auto",
                 },
                 border = {
@@ -130,18 +159,6 @@ return {
             },
         },
 
-        -- 按键映射
-        keys = {
-            { "<leader>sn",  "",                                                                            desc = "+noice" },
-            { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end,                 mode = "c",                              desc = "Redirect Cmdline" },
-            { "<leader>snl", function() require("noice").cmd("last") end,                                   desc = "Noice Last Message" },
-            { "<leader>snh", function() require("noice").cmd("history") end,                                desc = "Noice History" },
-            { "<leader>sna", function() require("noice").cmd("all") end,                                    desc = "Noice All" },
-            { "<leader>snd", function() require("noice").cmd("dismiss") end,                                desc = "Dismiss All" },
-            { "<leader>snt", function() require("noice").cmd("pick") end,                                   desc = "Noice Picker (Telescope/FzfLua)" },
-            { "<c-f>",       function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,  silent = true,                           expr = true,              desc = "Scroll Forward",  mode = { "i", "n", "s" } },
-            { "<c-b>",       function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,                           expr = true,              desc = "Scroll Backward", mode = { "i", "n", "s" } },
-        },
     },
     config = function(_, opts)
         -- 自定义 Telescope 扩展
@@ -151,7 +168,7 @@ return {
         vim.api.nvim_set_hl(0, "NoiceCompletionItemKindDefault", { fg = "#7EB3C9" })
 
         -- 禁用传统消息系统
-        vim.opt.cmdheight = 0        -- 命令行高度
+        vim.opt.cmdheight = 44       -- 命令行高度
         vim.opt.shortmess:append({ W = true, I = true, c = true })
         require("noice").setup(opts) -- 初始化配置
     end

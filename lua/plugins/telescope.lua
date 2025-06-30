@@ -12,27 +12,46 @@ return {
         { "<leader>fc", mode = { "n" }, function() require('telescope.builtin').colorscheme() end, desc = "FInd Colorscheme" },
     },
     config = function()
-        local function open_specific_folder()
-            require("telescope.builtin").find_files({
-                layout_strategy = 'flex',
-                layout_config = {
-                    flex = {
-                        flip_columns = 120, -- 切换方向的阈值
-                    },
-                    horizontal = {
-                        preview_width = 0.5, -- 预览窗口占比
-                    },
-                    vertical = {
-                        preview_height = 0.1, -- 预览窗口高度
+        require('telescope').setup({
+              defaults = {
+                -- 默认配置
+                prompt_prefix = "🔍 ", -- 搜索前缀图标
+                selection_caret = " ", -- 选择项前的符号
+                path_display = { "smart" }, -- 智能路径显示
+
+                -- 界面行为
+                mappings = {
+                    i = {
+                        ["<C-j>"] = require("telescope.actions").move_selection_next, -- 向下移动
+                        ["<C-k>"] = require("telescope.actions").move_selection_previous, -- 向上移动
+                        ["<C-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist, -- 发送到 quickfix
                     },
                 },
-                cwd = "~/projects", -- 替换为你的目标路径
-                hidden = true,      -- 是否显示隐藏文件
-                layout_config = {
-                    width = 0.9,    -- 窗口宽度（比例）
-                    height = 0.8,   -- 窗口高度
+            },
+
+            -- 内置功能配置
+            pickers = {
+                find_files = {
+                    theme = "dropdown", -- 下拉菜单样式
+                    previewer = true, -- 不显示预览
                 },
-            })
-        end
+                buffers = {
+                    sort_mru = true, -- 最近使用的缓冲区排序
+                    theme = "dropdown",
+                    previewer = false,
+                },
+            },
+
+            -- 扩展插件配置（可选）
+            extensions = {
+                -- fzf 模糊查找加速
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
+            },
+        })
     end
 }

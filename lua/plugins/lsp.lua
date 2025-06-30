@@ -12,13 +12,24 @@ return {
                 version = "^1.0.0"
             }
         },
-        event = { "BufReadPre", "BufNewFile" }, -- 在打开文件时加载
+        -- event = { "BufReadPre", "BufNewFile" }, -- 在打开文件时加载
         config = function()
+            -- 诊断信息的图标
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "✘",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.HINT] = "⚑",
+                        [vim.diagnostic.severity.INFO] = "»",
+                    },
+                },
+            })
             local lspconfig = require("lspconfig")
             local mason = require("mason")
             local masonLspconfig = require("mason-lspconfig")
 
-            -- 自动安装 LSP
+            --  LSP 安装状态图标
             mason.setup({
                 ui = {
                     icons = {
@@ -31,43 +42,59 @@ return {
             masonLspconfig.setup({
                 ensure_installed = {
                     "pyright",
+                    "rust_analyzer",
                     "lua_ls"
                 },                             -- 示例: 自动安装的 LSP
                 automatic_installation = true, -- 自动安装缺失的 LSP
-                -- 定义语言服务器的配置处理程序
-                handlers = {
-                    -- 通用处理函数，适用于所有列出的语言服务器
-                    function(server_name)
-                        -- 为每个服务器调用 lspconfig 的配置方法
-                        -- 使用空配置对象 {} 表示采用默认配置
-                        lspconfig[server_name].setup({})
-                    end,
+                automatic_enable = {
+                    -- 仅启用特定服务器
+                    -- "lua_ls",
+                    -- "vimls",
+
+                    -- 排除某些服务器
+                    exclude = {
+                        -- "rust_analyzer",
+                        -- "ts_ls"
+                    }
                 },
+                handlers = {
+                    -- 安装的lsp自动启用配置
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                }
+                -- 定义语言服务器的配置处理程序
             })
 
 
             -- 将 nvim-cmp（自动补全插件）的能力合并到 LSP 默认能力中
             -- 获取 Neovim LSP 配置的默认设置
             -- local lspconfig_defaults = lspconfig.util.default_config
-            local lspconfig_defaults = lspconfig.util.default_config
+            -- local lspconfig_defaults = lspconfig.util.default_config
 
             -- 使用深度合并方式扩展 LSP 能力配置
-            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-                'force',                                       -- 合并模式：强制覆盖相同字段
-                lspconfig_defaults.capabilities,               -- LSP 默认能力
-                require('cmp_nvim_lsp').default_capabilities() -- nvim-cmp 提供的增强能力
-            )
+            -- lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+            --     'force',                                       -- 合并模式：强制覆盖相同字段
+            --     lspconfig_defaults.capabilities,               -- LSP 默认能力
+            --     require('cmp_nvim_lsp').default_capabilities() -- nvim-cmp 提供的增强能力
+            -- )
 
             -- LSP 基础配置
             lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
                         diagnostics = {
-                            globals = { 'vim' } -- 声明 vim 为已知全局变量
+                            globals = {
+                                'vim',
+                                'opts',
+                                'group'
+                            } -- 声明 vim 为已知全局变量
                         },
                         workspace = {
                             -- 添加 Neovim 运行时路径
-                            library = vim.api.nvim_get_runtime_file("", true)
+                            library = {
+                                vim.api.nvim_get_runtime_file("", true)
+                            }
                         }
                     }
                 }
@@ -100,6 +127,13 @@ return {
                         { desc = "代码格式化", buffer = event.buf })
                     vim.keymap.set('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<cr>',
                         { desc = "代码操作", buffer = event.buf })
+                    vim.keymap.set('n', 'gwa', vim.lsp.buf.add_workspace_folder,
+                        { desc = "添加工作空间", buffer = event.buf })
+                    vim.keymap.set('n', 'gwr', vim.lsp.buf.remove_workspace_folder,
+                        { desc = "移除工作空间", buffer = event.buf })
+                    vim.keymap.set('n', 'gwl', function()
+                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    end, { desc = "列出工作空间", buffer = event.buf })
                 end,
             })
         end,

@@ -1,6 +1,18 @@
 -- 注释
 return {
     'numToStr/Comment.nvim',
+     keys = {
+        -- { "gcc", mode = "n", desc = "注释当前行" },              -- 普通模式，单行注释
+        -- { "gbc", mode = "n", desc = "注释当前块" },              -- 普通模式，块注释
+        { "<C-\\>", mode = "n", desc = "注释当前行" },              -- 普通模式，单行注释
+        { "<leader>\\", mode = "n", desc = "注释当前块" },              -- 普通模式，块注释
+        { "gc",  mode = { "n", "v" }, desc = "注释选中行/多行" }, -- 支持可视模式
+        { "gb",  mode = { "n", "v" }, desc = "块注释选中内容" },
+        { "<C-\\>",  mode = { "n", "v" }, desc = "注释选中行/多行" }, -- 支持可视模式
+        { "<leader>\\",  mode = { "n", "v" }, desc = "块注释选中内容" },
+
+
+    }, -- 快捷键懒加载
     config = function()
         local comment = require("Comment")
         -- 配置 comment.nvim
@@ -20,9 +32,9 @@ return {
                 block = "<leader>\\", -- NORMAL/VISUAL 模式：操作符模式块注释（默认：gb + 文本对象）
             },
             extra = {
-                above = "<leader>g\\", -- 在当前行上方插入注释并进入 INSERT 模式
-                below = "gco",         -- 在当前行下方插入注释并进入 INSERT 模式
-                eol = "gcA",           -- 在行尾插入注释并进入 INSERT 模式
+                above = "<leader>gk", -- 在当前行上方插入注释并进入 INSERT 模式
+                below = "<leader>gj",         -- 在当前行下方插入注释并进入 INSERT 模式
+                eol = "<leader>ga",           -- 在行尾插入注释并进入 INSERT 模式
             },
 
             -- 映射启用配置
