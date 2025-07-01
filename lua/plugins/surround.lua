@@ -1,7 +1,11 @@
 return {
     "kylechui/nvim-surround",
-    version = "*",                      -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",                          -- Use for stability; omit to use `main` branch for the latest features
     event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
+    keys = {
+        { "<leader>cd", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+    },
+
     config = function()
         require("nvim-surround").setup({
             -- 配置插件的键映射
@@ -26,6 +30,9 @@ return {
 
             -- 配置围绕的符号
             surrounds = {
+                -- ["("] = false,                      -- 禁用 ()
+                -- ["{"] = false,                      -- 禁用 {}
+                -- ["<"] = false,                      -- 禁用 <>
                 ["*"] = { add = { "*", "*" } },     -- 配置markdown 单星号围绕(斜体)
                 ["2"] = { add = { "**", "**" } },   -- 配置markdown 双星号围绕(粗体)
                 ["3"] = { add = { "***", "***" } }, -- 配置markdown 三星号围绕(写粗体)
@@ -40,6 +47,7 @@ return {
                 ["'"] = { add = { "'", "'" } },     -- 配置单引号围绕
                 ['"'] = { add = { '"', '"' } },     -- 配置双引号围绕
                 ["`"] = { add = { "`", "`" } },     -- 配置反引号围绕
+                ["~"] = { add = { "```", "```" } }, -- 配置反引号围绕
                 ["t"] = {                           -- 配置 HTML 标签围绕
                     add = function()
                         local config = require("nvim-surround.config")
@@ -62,17 +70,17 @@ return {
 
             -- 配置别名
             aliases = {
-                ["s"] = ">",                                   -- 配置"a"代表"("，用于别名
-                ["b"] = ")",                                   -- 配置"b"代表")"
-                ["B"] = "}",                                   -- 配置"B"代表"}"
-                ["r"] = "]",                                   -- 配置"r"代表"]"
-                ["q"] = { '"', "'", "`" },                     -- 配置"q"代表引号字符（双引号、单引号、反引号）
-                ["a"] = { "}", "]", ")", ">", '"', "'", "`", "*" }, -- 配置"s"代表多个符号
+                ["s"] = ">",                                        -- 配置"s"代表"("，用于别名
+                ["b"] = ")",                                        -- 配置"b"代表")"
+                ["B"] = "}",                                        -- 配置"B"代表"}"
+                ["r"] = "]",                                        -- 配置"r"代表"]"
+                ["q"] = { '"', "'", "`" },                          -- 配置"q"代表引号字符（双引号、单引号、反引号）
+                ["a"] = { "}", "]", ")", ">", '"', "'", "`", "*" }, -- 配置"a"代表多个符号
             },
 
             -- 配置高亮
             highlight = {
-                duration = 200, -- 配置高亮持续时间（毫秒）
+                duration = 1000, -- 配置高亮持续时间（毫秒）
             },
 
             -- 配置光标移动行为

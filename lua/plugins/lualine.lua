@@ -8,7 +8,7 @@ return {
     config = function()
         require("lualine").setup({
             options = {
-                theme = "auto", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                theme = "gruvbox", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
                 section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
@@ -44,7 +44,7 @@ return {
                     {
                         "filename",
                         path = 0, -- 文件名 (0=仅名称, 1=显示路径)
-                        icon = '', -- 文件图标
+                        icon = '', -- 文件图标
                         color = function()
                             if vim.bo.readonly then
                                 return { fg = '#ff0000', bg = '#222222', gui = 'bold' } -- 只读文件时，变红色加粗
@@ -109,13 +109,13 @@ return {
                     --     end
                     -- }, -- 进度 (行号/列号)
 
+                },
+                lualine_y = { -- 光标信息区块
                     {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
                         colored = true,   -- 颜色显示
                     },
-                },
-                lualine_y = { -- 光标信息区块
                     {
                         "fileformat", -- 文件格式
                         symbols = {
