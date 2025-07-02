@@ -57,16 +57,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Python 文件配置
-vim.api.nvim_create_autocmd("FileType", {
-    group = group,
-    pattern = "python",
-    callback = function()
-        vim.opt_local.shiftwidth = 4 -- 缩进 4 空格
-        vim.opt_local.tabstop = 4
-        vim.opt_local.textwidth = 88 -- PEP8 推荐行长度
-    end,
-})
 
 -- vim Options
 local abbreviations = {
@@ -128,11 +118,13 @@ local group = vim.api.nvim_create_augroup("MyAutoCmds", { clear = true })
 -- })
 
 
+-- Python 文件配置
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
     pattern = "python",
     callback = function()
-        vim.opt_local.shiftwidth = 4 -- Python 使用 4 空格缩进
+        vim.opt_local.shiftwidth = 4 -- 缩进 4 空格
         vim.opt_local.tabstop = 4
+        vim.opt_local.textwidth = 88 -- PEP8 推荐行长度
     end,
 })
