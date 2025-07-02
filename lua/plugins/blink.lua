@@ -6,13 +6,7 @@ return {
         "moyiz/blink-emoji.nvim",
         "mikavilpas/blink-ripgrep.nvim",
     },
-
-    -- use a release tag to download pre-built binaries
     version = '1.*',
-    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-    -- If you use nix, you can build from source using latest nightly rust with:
-    -- build = 'nix run .#build-plugin',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -43,51 +37,44 @@ return {
             -- Adjusts spacing to ensure icons are aligned
             nerd_font_variant = 'mono',
             kind_icons = {
-                Text = '󰉿',
-                Method = '󰊕',
-                Function = '󰊕',
-                Constructor = '󰒓',
+                Text = '󰉿 ',
+                Method = '󰊕 ',
+                Function = '󰊕 ',
+                Constructor = '󰒓 ',
 
-                Field = '󰜢',
-                Variable = '󰆦',
-                Property = '󰖷',
+                Field = '󰜢 ',
+                Variable = '󰆦 ',
+                Property = '󰖷 ',
 
-                Class = '󱡠',
-                Interface = '󱡠',
-                Struct = '󱡠',
-                Module = '󰅩',
+                Class = '󱡠 ',
+                Interface = '󱡠 ',
+                Struct = '󱡠 ',
+                Module = '󰅩 ',
 
-                Unit = '󰪚',
-                Value = '󰦨',
-                Enum = '󰦨',
-                EnumMember = '󰦨',
+                Unit = '󰪚 ',
+                Value = '󰦨 ',
+                Enum = '󰦨 ',
+                EnumMember = '󰦨 ',
 
-                Keyword = '󰻾',
-                Constant = '󰏿',
+                Keyword = '󰻾 ',
+                Constant = '󰏿 ',
 
-                Snippet = '󱄽',
-                Color = '󰏘',
-                File = '󰈔',
-                Reference = '󰬲',
-                Folder = '󰉋',
-                Event = '󱐋',
-                Operator = '󰪚',
-                TypeParameter = '󰬛',
+                Snippet = '󱄽 ',
+                Color = '󰏘 ',
+                File = '󰈔 ',
+                Reference = '󰬲 ',
+                Folder = '󰉋 ',
+                Event = '󱐋 ',
+                Operator = '󰪚 ',
+                TypeParameter = '󰬛 ',
             },
         },
-
-        -- (Default) Only show the documentation popup when manually triggered
-
-        -- Default list of enabled providers defined so that you can extend it
-        -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            -- Static list of providers to enable, or a function to dynamically enable/disable providers based on the context
             default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'ripgrep' },
             providers = {
                 ripgrep = {
                     module = "blink-ripgrep",
                     name = "Ripgrep",
-                    -- the options below are optional, some default values are shown
                     ---@module "blink-ripgrep"
                     ---@type blink-ripgrep.Options
                     opts = {
@@ -133,7 +120,6 @@ return {
                     },
                     should_show_items = function()
                         return vim.tbl_contains(
-                        -- Enable emoji completion only for git commits and markdown.
                         -- NOTE: emoji 支持的文件类型
                             { "gitcommit", "markdown", "lua" },
                             vim.o.filetype
@@ -141,61 +127,34 @@ return {
                     end,
                 }
             },
-            -- You may also define providers per filetype
             per_filetype = {
-                -- optionally inherit from the `default` sources
                 lua = { inherit_defaults = true, 'lsp', 'path' },
                 sql = { 'dadbod' },
             },
-
-            -- Function to use when transforming the items before they're returned for all providers
-            -- The default will lower the score for snippets to sort them lower in the list
             transform_items = function(_, items) return items end,
-
-            -- Minimum number of characters in the keyword to trigger all providers
-            -- May also be `function(ctx: blink.cmp.Context): number`
             min_keyword_length = 0,
         },
-
-        -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-        -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-        -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-        --
-        -- See the fuzzy documentation for more information
-        fuzzy = { implementation = "prefer_rust_with_warning" }
-    },
-    -- 指定文件类型启用/禁用
-    enabled = function()
-        return not vim.tbl_contains({
-            "lua",
-            -- "markdown"
-        }, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
-    end,
-    cmdline = {
-        enabled = true,
-        -- use 'inherit' to inherit mappings from top level `keymap` config
-        keymap = { preset = 'cmdline' },
-        sources = { 'buffer', 'cmdline' },
-
-        -- OR explicitly configure per cmd type
-        -- This ends up being equivalent to above since the sources disable themselves automatically
-        -- when not available. You may override their `enabled` functions via
-        -- `sources.providers.cmdline.override.enabled = function() return your_logic end`
-
-        -- sources = function()
-        --   local type = vim.fn.getcmdtype()
-        --   -- Search forward and backward
-        --   if type == '/' or type == '?' then return { 'buffer' } end
-        --   -- Commands
-        --   if type == ':' or type == '@' then return { 'cmdline', 'buffer' } end
-        --   return {}
-        -- end,
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        cmdline = {
+            enabled = true,
+            completion = {
+                auto_show = true,
+            },
+            keymap = {
+                -- 选择并接受预选择的第一个
+                -- ["<CR>"] = { "select_and_accept", "fallback" },
+            },
+            sources = { 'buffer', 'cmdline' },
+        },
         completion = {
+            keyword = { range = "full" },
+            -- 补全文档配置
             documentation = {
                 -- 显示补全文档
                 auto_show = true,
-                -- 延迟时间为0毫秒
+                -- 文档延迟显示时间为 0 毫秒
                 auto_show_delay_ms = 0,
+                -- 补全文档边框
                 window = { border = 'single' }
             },
             trigger = {
@@ -203,27 +162,52 @@ return {
                 show_on_keyword = true,
                 -- show_on_x_blocked_trigger_characters = {},
             },
-            -- 不预选第一个项目，选中后自动插入该项目文本
             list = {
                 selection = {
                     preselect = false,
-                    auto_insert = false
+                    auto_insert = true
                 }
             },
-            -- Whether to automatically show the window when new completion items are available
             menu = {
+                -- min_width = 30,
+                -- max_height = 10,
                 enabled = true,
-                auto_show = false,
+                auto_show = true,
+                -- 补全菜单边框
                 border = 'single',
                 draw = {
-                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-                    treesitter = { 'lsp' }
+                    -- 不全菜单风格,类似 cmp 的风格
+                    columns = {
+                        {
+                            "label",
+                            "label_description",
+                            gap = 1
+                        },
+                        {
+                            "kind_icon",
+                            "kind"
+                        }
+                    },
+                    treesitter = { 'lsp' },
                 }
             },
-            signature = { window = { border = 'single' } },
-            -- Displays a preview of the selected item on the current line
-            ghost_text = { enabled = true },
+            ghost_text = {
+                enabled = true,
+                show_with_menu = false,
+            },
+
         },
+        signature = {
+            window = { border = 'single' },
+            enabled = true,
+        },
+        -- 指定文件类型启用/禁用
+        enabled = function()
+            return not vim.tbl_contains({
+                -- "lua",
+                "markdown"
+            }, vim.bo.filetype)
+        end,
     },
     opts_extend = { "sources.default" }
 }
