@@ -12,7 +12,6 @@ return {
                 return { 'treesitter', 'indent' } -- 使用 treesitter 进行折叠
             end
         })
-
         vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
         vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
     end
