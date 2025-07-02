@@ -1,10 +1,9 @@
-
 -- md 禁用补全
 vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = '*.md',
-  callback = function()
-    vim.b.completion = false
-  end,
+    pattern = '*.md',
+    callback = function()
+        vim.b.completion = false
+    end,
 })
 
 
@@ -109,14 +108,13 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 local group = vim.api.nvim_create_augroup("MyAutoCmds", { clear = true })
 
 -- -- 保存时自动格式化（需安装 LSP 或格式化工具）
--- vim.api.nvim_create_autocmd("BufWritePre", {
---     group = group,
---     pattern = "*",
---     callback = function()
---         vim.lsp.buf.format({ async = false }) -- 同步格式化（需已配置 LSP）
---     end,
--- })
-
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = group,
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.format({ async = false })             -- 同步格式化（需已配置 LSP）
+    end,
+})
 
 -- Python 文件配置
 vim.api.nvim_create_autocmd("FileType", {

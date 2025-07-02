@@ -1,14 +1,8 @@
-# 文档目录
-1. [nvim-config](#nvim-config)
-   1. [必须软件](#必须软件)
-   2. [清除文件](#清除文件)
-   3. [克隆配置文件](#克隆配置文件)
-   
 # nvim-config
 
 ## 必须软件
 
-nvim插件所必须的
+nvim插件必须
 
 1. stylua
 2. ripgrep
