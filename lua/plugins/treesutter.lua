@@ -21,7 +21,7 @@ return {
                 "rust",
                 "markdown",
                 "markdown_inline"
-            }, -- 安装 Markdown 和内联 Markdown 支持
+            },                    -- 安装 Markdown 和内联 Markdown 支持
             -- 是否同步安装解析器（同步会阻塞 Neovim，等待安装完成）
             sync_install = false, -- 建议设置为 false，避免卡顿
 
@@ -57,15 +57,15 @@ return {
             },
 
             -- 增量选择(incremental selection)配置，编辑时通过快捷键进行语法树节点的逐步选择
-            -- incremental_selection = {
-            --     enable = true,                 --启用增量选择功能
-            --     keymaps = {
-            --         init_selection = "tnn",    -- 初始化选择（开始选择第一个节点）
-            --         node_incremental = "trn",  -- 逐步增量选择当前节点（向下选择更细的语法节点）
-            --         scope_incremental = "trc", -- 逐步增量选择当前范围（向上选择更大的语法块）
-            --         node_decremental = "trm",  -- 逐步减少当前选择的节点（退回上一个节点）
-            --     },
-            -- },
+            incremental_selection = {
+                enable = true,                 --启用增量选择功能
+                keymaps = {
+                    init_selection = "tnn",    -- 初始化选择（开始选择第一个节点）
+                    node_incremental = "trn",  -- 逐步增量选择当前节点（向下选择更细的语法节点）
+                    scope_incremental = "trc", -- 逐步增量选择当前范围（向上选择更大的语法块）
+                    node_decremental = "trm",  -- 逐步减少当前选择的节点（退回上一个节点）
+                },
+            },
 
             -- rainbow = {
             --     enable = true,        -- 启用

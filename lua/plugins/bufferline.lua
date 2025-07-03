@@ -4,7 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
     keys = {
         { "<leader><tab>p", "<cmd>BufferLineTogglePin<cr>", desc = "固定/取消固定缓冲区" },
-        { "<leader><tab>c", "<cmd>BufferLinePicqkClosekClose<cr>", desc = "选择并关闭缓冲区" },
+        { "<leader><tab>c", "<cmd>BufferLinePickClose<cr>", desc = "选择并关闭缓冲区" },
         { "<leader><tab>h", "<cmd>BufferLineCyclePrev<cr>", desc = "切换到上一个缓冲区" },
         { "<leader><tab>l", "<cmd>BufferLineCycleNext<cr>", desc = "切换到下一个缓冲区" },
         { "<leader><tab>1", "<cmd>BufferLineGoToBuffer 1<cr>", desc = "切换到第一个缓冲区" },
