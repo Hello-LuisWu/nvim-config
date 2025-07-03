@@ -13,7 +13,7 @@ return {
     },
     config = function()
         require("neo-tree").setup({
-            document_symbols = {
+            document_symbols          = {
                 follow_cursor = true, -- 自动定位光标所在符号
                 kinds = {
                     Class = { icon = "󰌗", hl = "Include" },
@@ -28,7 +28,7 @@ return {
                     ignore = { "pyright" }
                 }
             },
-            filesystem = {
+            filesystem                = {
                 -- "open_current",
                 -- "disabled",
                 hijack_netrw_behavior   = "open_default", -- 接管 netrw: open_default/open_current/disabled
@@ -45,13 +45,14 @@ return {
                     }
                 },
                 filtered_items          = {
-                    visible = false,        -- 默认不显示隐藏项
-                    hide_dotfiles = true,   -- 隐藏点文件
+                    visible = true,         -- 默认不显示隐藏项
+                    hide_dotfiles = false,  -- 隐藏点文件
                     hide_gitignored = true, -- 隐藏 Git 忽略文件
                     hide_hidden = true,     -- 隐藏系统隐藏文件
                     hide_by_name = {        -- 按名称隐藏
                         ".DS_Store",
                         "thumbs.db",
+                        ".git",
                         "node_modules",
                     },
                     hide_by_pattern = {
@@ -75,8 +76,10 @@ return {
 
             },
 
-            window = {
+            window                    = {
+                width = 25,                                                       -- 自定义宽度
                 mappings = {
+                    ["e"]       = "expand_all",                                   -- 按 e 展开所有目录bg
                     ["<space>"] = "noop",                                         -- 禁用
                     ["<cr>"]    = "open",                                         -- 回车打开文件或展开目录
                     ["S"]       = "open_split",                                   -- 水平分屏打开
@@ -96,8 +99,6 @@ return {
                     ["q"]       = "close_window",                                 -- 关闭 Neo-tree 面板
                 },
             },
-
-
             default_component_configs = {
                 git_status = {
                     symbols = {
@@ -147,15 +148,15 @@ return {
                 sources                       = {        -- table
                     {
                         source = "filesystem",           -- string
-                        display_name = " Files "         -- string | nil
+                        display_name = "Files"           -- string | nil
                     },
                     {
-                        source = "buffers",        -- string
-                        display_name = " Buffers " -- string | nil
+                        source = "buffers",     -- string
+                        display_name = "Buffer" -- string | nil
                     },
                     {
                         source = "git_status", -- string
-                        display_name = " Git " -- string | nil
+                        display_name = "Git"   -- string | nil
                     },
                 },
                 highlight_tab                 = "NeoTreeTabInactive", -- string
