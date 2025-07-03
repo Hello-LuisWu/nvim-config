@@ -7,9 +7,9 @@ return {
     },
     keys = { -- 快捷键触发加载
         -- { "<leader>e", "<cmd>Neotree toggle<cr>", mode = { "n", "v" }, desc = "Neotree: 打开文件树" },
-        { "<leader>e", "<cmd>Neotree toggle reveal<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前文件" },
-        { "<C-n>", "<cmd>Neotree toggle reveal float buffers<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前 Buffer" },
-        { "<C-m>", "<cmd>Neotree toggle reveal float git_status<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前文件 git status" },
+        { "<leader>e", "<cmd>Neotree toggle reveal source=filesystem<cr>", mode = { "n", "v" }, desc = "NeoTree: 定位当前文件" },
+        { "<C-e>", "<cmd>Neotree toggle reveal float buffers<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前 Buffer" },
+        { "<C-r>", "<cmd>Neotree toggle reveal float git_status<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前文件 git status" },
     },
     config = function()
         require("neo-tree").setup({

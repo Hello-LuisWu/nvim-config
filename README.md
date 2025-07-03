@@ -247,13 +247,13 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 | <A-d>           | n, i                | 删除当前列          | table-nvim 插件                  |
 | <leader>mt      | n                   | 添加文档目录（TOC） | nvim-toc 插件                    |
 
-### 🌲 Neotree
+### 📂 Neotree
 
 | 快捷键    | 模式    | 功能描述                         |
 | --------- | ------- | -------------------------------- |
 | <leader>e | n, i, v | NeoTree: 定位当前文件            |
-| <C-n>     | n, i, v | NeoTree: 定位当前 Buffer         |
-| <C-m>     | n, i, v | NeoTree: 定位当前文件 git status |
+| <C-e>     | n, i, v | NeoTree: 定位当前 Buffer         |
+| <C-r>     | n, i, v | NeoTree: 定位当前文件 git status |
 
 ### 🧩 环绕操作（nvim-surround）
 
