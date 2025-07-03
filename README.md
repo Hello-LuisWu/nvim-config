@@ -148,16 +148,16 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 
 ### ⚡ 补全与片段（blink.cmp）
 
-| 快捷键      | 模式           | 功能说明                                 | 行为组合                                           |
-| ----------- | -------------- | ---------------------------------------- | -------------------------------------------------- |
-| `<C-Space>` | Insert/Command | 显示补全、显示文档、隐藏文档             | `show`, `show_documentation`, `hide_documentation` |
-| `<CR>`      | Insert/Command | 接受选中项或执行回车原有操作（回车换行） | `accept`, `fallback`                               |
-| `<Tab>`     | Insert         | 选择下一个补全项（优先）或片段跳转前     | `select_next`, `snippet_forward`, `fallback`       |
-| `<S-Tab>`   | Insert         | 选择上一个补全项或片段跳转后             | `select_prev`, `snippet_backward`, `fallback`      |
-| `<C-b>`     | Insert         | 上滚补全文档                             | `scroll_documentation_up`, `fallback`              |
-| `<C-f>`     | Insert         | 下滚补全文档                             | `scroll_documentation_down`, `fallback`            |
-| `<C-e>`     | Insert         | 片段跳转优先，其次选择下一个补全项       | `snippet_forward`, `select_next`, `fallback`       |
-| `<C-u>`     | Insert         | 片段后退优先，其次选择上一个补全项       | `snippet_backward`, `select_prev`, `fallback`      |
+| 快捷键    | 模式           | 功能说明                                 | 行为组合                                           |
+| --------- | -------------- | ---------------------------------------- | -------------------------------------------------- |
+| `<C-\>`  | Insert/Command | 显示补全、显示文档、隐藏文档             | `show`, `show_documentation`, `hide_documentation` |
+| `<CR>`    | Insert/Command | 接受选中项或执行回车原有操作（回车换行） | `accept`, `fallback`                               |
+| `<Tab>`   | Insert         | 选择下一个补全项（优先）或片段跳转前     | `select_next`, `snippet_forward`, `fallback`       |
+| `<S-Tab>` | Insert         | 选择上一个补全项或片段跳转后             | `select_prev`, `snippet_backward`, `fallback`      |
+| `<C-b>`   | Insert         | 上滚补全文档                             | `scroll_documentation_up`, `fallback`              |
+| `<C-f>`   | Insert         | 下滚补全文档                             | `scroll_documentation_down`, `fallback`            |
+| `<C-e>`   | Insert         | 片段跳转优先，其次选择下一个补全项       | `snippet_forward`, `select_next`, `fallback`       |
+| `<C-u>`   | Insert         | 片段后退优先，其次选择上一个补全项       | `snippet_backward`, `select_prev`, `fallback`      |
 
 ### 📑 标签页管理（bufferline.nvim）
 
