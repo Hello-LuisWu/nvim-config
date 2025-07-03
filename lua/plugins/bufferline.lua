@@ -1,7 +1,10 @@
 -- NOTE: buffer 标签页
 return {
     'akinsho/bufferline.nvim',
-    event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
+    event = {
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
+    },
     keys = {
         { "<leader><tab>p", "<cmd>BufferLineTogglePin<cr>", desc = "固定/取消固定缓冲区" },
         { "<leader><tab>c", "<cmd>BufferLinePickClose<cr>", desc = "选择并关闭缓冲区" },

@@ -1,14 +1,12 @@
 return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    -- event = "VeryLazy",
-    keys = {
-        {
-            "<leader>ft",
-            "<cmd>TodoTelescope<cr>",
-            desc = "Todo comments"
-        },
+    event = {
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
     },
+    -- keys = {
+    -- },
     -- INFO:
     opts = {
         signs = true,      -- 是否在标记列显示图标（左侧边栏）

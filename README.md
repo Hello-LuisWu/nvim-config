@@ -247,6 +247,12 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 | <A-d>           | n, i                | 删除当前列          | table-nvim 插件                  |
 | <leader>mt      | n                   | 添加文档目录（TOC） | nvim-toc 插件                    |
 
+## 🚦 trouble
+
+| 快捷键       | 模式 | 功能描述   | 映射命令      |
+| ------------ | ---- | ---------- | ------------- |
+| `<leader>xt` | n    | 待办注释项 | `TodoTrouble` |
+
 ### 📂 Neotree
 
 | 快捷键    | 模式    | 功能描述                         |
@@ -273,20 +279,16 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 
 ### 🔭 文件搜索（telescope.nvim）
 
-| 快捷键       | 模式   | 功能说明             | 映射命令        |
-| ------------ | ------ | -------------------- | --------------- |
-| `<leader>ff` | Normal | 文件搜索             | `find_files()`  |
-| `<leader>fg` | Normal | 全局内容搜索（Grep） | `live_grep()`   |
-| `<leader>fo` | Normal | 最近打开的文件       | `oldfiles()`    |
-| `<leader>fb` | Normal | 打开缓冲区列表       | `buffers()`     |
-| `<leader>fh` | Normal | 搜索帮助文档         | `help_tags()`   |
-| `<leader>fc` | Normal | 主题颜色选择器       | `colorscheme()` |
+| 快捷键       | 模式   | 功能说明             | 映射命令         |
+| ------------ | ------ | -------------------- | ---------------- |
+| `<leader>ft` | Normal | 查找待办注释项       | `:TodoTelescope` |
+| `<leader>ff` | Normal | 文件搜索             | `find_files()`   |
+| `<leader>fg` | Normal | 全局内容搜索（Grep） | `live_grep()`    |
+| `<leader>fo` | Normal | 最近打开的文件       | `oldfiles()`     |
+| `<leader>fb` | Normal | 打开缓冲区列表       | `buffers()`      |
+| `<leader>fh` | Normal | 搜索帮助文档         | `help_tags()`    |
+| `<leader>fc` | Normal | 主题颜色选择器       | `colorscheme()`  |
 
-### 📝 待办注释（todo-comments.nvim）
-
-| 快捷键       | 模式   | 功能说明       | 映射命令         |
-| ------------ | ------ | -------------- | ---------------- |
-| `<leader>ft` | Normal | 查找待办注释项 | `:TodoTelescope` |
 
 ### 🖥️ 终端操作（toggleterm.nvim）
 

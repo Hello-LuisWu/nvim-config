@@ -2,32 +2,34 @@ return {
     {
         'echasnovski/mini.indentscope',
         version = '*',
-        event = { "BufReadPre", "BufNewFile" }, -- 在打开文件时加载
-        dependencies = {
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        -- event = { "BufReadPre", "BufNewFile" }, -- 在打开文件时加载
-        main = "ibl",
-        opts = {
-            -- 基础配置
-            scope = {
-                enabled = false, -- 启用作用域高亮
-                char = "▎", -- 作用域字符
-                show_start = true, -- 显示作用域开始线
-                show_end = false, -- 不显示作用域结束线
-                highlight = "Function", -- 作用域高亮
-                injected_languages = true, -- 检测注入语言
-            },
-            exclude = {
-                filetypes = {
-                    "help", "dashboard", "neo-tree", "Trouble", "lazy", "mason",
-                    "notify", "toggleterm", "lspinfo","txt"
-                },
-                buftypes = { "terminal", "nofile" },
-            },
-
+        event = {
+            "BufRead",   -- buffer读取之后,
+            "BufNewFile" -- 新建文件时
         },
-    },
+        dependencies = {
+            {
+                'lukas-reineke/indent-blankline.nvim',
+                main = "ibl",
+                opts = {
+                    -- 基础配置
+                    scope = {
+                        enabled = false, -- 启用作用域高亮
+                        char = "▎", -- 作用域字符
+                        show_start = true, -- 显示作用域开始线
+                        show_end = false, -- 不显示作用域结束线
+                        highlight = "Function", -- 作用域高亮
+                        injected_languages = true, -- 检测注入语言
+                    },
+                    exclude = {
+                        filetypes = {
+                            "help", "dashboard", "neo-tree", "Trouble", "lazy", "mason",
+                            "notify", "toggleterm", "lspinfo", "txt"
+                        },
+                        buftypes = { "terminal", "nofile" },
+                    },
+
+                },
+            },
         },
         opts = {
             symbol = '▎', -- 缩进线符号 (可尝试 "▏", "┆", "┊" 等)

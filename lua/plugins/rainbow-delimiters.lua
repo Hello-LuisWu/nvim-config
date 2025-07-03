@@ -1,6 +1,9 @@
 return {
     "HiPhish/rainbow-delimiters.nvim",
-    event = { "BufReadPre", "BufNewFile" },     -- 文件打开时加载
+    event = {
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
+    },
     config = function()
         require('rainbow-delimiters.setup').setup({
             strategy = {

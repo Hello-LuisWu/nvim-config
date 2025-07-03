@@ -1,7 +1,10 @@
 return {
     "kylechui/nvim-surround",
-    version = "*",                          -- Use for stability; omit to use `main` branch for the latest features
-    event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
+    version = "*",   -- Use for stability; omit to use `main` branch for the latest features
+    event = {
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
+    },
     keys = {
         { "<leader>cd", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
     },

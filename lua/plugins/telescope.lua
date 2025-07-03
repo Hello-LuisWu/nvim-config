@@ -2,8 +2,11 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
     -- or                              , branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+    },
     keys = {
+        { "<leader>ft", mode = { "n" }, "<cmd>TodoTelescope<cr>",                                  desc = "Todo comments" },
         { "<leader>ff", mode = { "n" }, function() require('telescope.builtin').find_files() end,  desc = "Find File" },
         { "<leader>fg", mode = { "n" }, function() require('telescope.builtin').live_grep() end,   desc = "Find Grep" },
         { "<leader>fo", mode = { "n" }, function() require('telescope.builtin').oldfiles() end,    desc = "Find Old File" },
@@ -13,7 +16,7 @@ return {
     },
     config = function()
         require('telescope').setup({
-              defaults = {
+            defaults = {
                 -- 默认配置
                 prompt_prefix = "🔍 ", -- 搜索前缀图标
                 selection_caret = " ", -- 选择项前的符号
@@ -22,9 +25,10 @@ return {
                 -- 界面行为
                 mappings = {
                     i = {
-                        ["<C-j>"] = require("telescope.actions").move_selection_next, -- 向下移动
+                        ["<C-j>"] = require("telescope.actions").move_selection_next,     -- 向下移动
                         ["<C-k>"] = require("telescope.actions").move_selection_previous, -- 向上移动
-                        ["<C-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist, -- 发送到 quickfix
+                        ["<C-q>"] = require("telescope.actions").send_selected_to_qflist +
+                            require("telescope.actions").open_qflist,                     -- 发送到 quickfix
                     },
                 },
             },
@@ -33,7 +37,7 @@ return {
             pickers = {
                 find_files = {
                     theme = "dropdown", -- 下拉菜单样式
-                    previewer = true, -- 不显示预览
+                    previewer = true,   -- 不显示预览
                 },
                 buffers = {
                     sort_mru = true, -- 最近使用的缓冲区排序

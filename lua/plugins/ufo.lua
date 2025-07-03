@@ -1,6 +1,9 @@
 return {
     'kevinhwang91/nvim-ufo',
-    event = "BufReadPost", -- 打开文件后加载
+    event = {
+        "BufRead",       -- buffer读取之后,
+        "BufNewFile"     -- 新建文件时
+    },
     dependencies = {
         'kevinhwang91/promise-async'
     },

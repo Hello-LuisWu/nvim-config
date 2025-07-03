@@ -1,6 +1,7 @@
 return {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
         "rafamadriz/friendly-snippets",
         "moyiz/blink-emoji.nvim",
@@ -155,11 +156,14 @@ return {
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
         cmdline = {
-            enabled = true,
+            enabled = true, -- 启用命令行补全（默认）
             completion = {
-                auto_show = true,
+                menu = {
+                    auto_show = false, -- 输入命令时不显示补全菜单，按 tab 才会出现
+                },
             },
             keymap = {
+                -- preset = '',
                 -- 选择并接受预选择的第一个
                 -- ["<CR>"] = { "select_and_accept", "fallback" },
             },

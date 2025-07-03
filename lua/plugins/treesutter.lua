@@ -2,7 +2,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     enable = false,
     -- dependencies = { "p00f/nvim-ts-rainbow" }, -- 彩色括号
-    event = { "BufReadPost", "BufNewFile" },
+    event = {
+        "BufRead",       -- buffer读取之后,
+        "BufNewFile"     -- 新建文件时
+    },
     config = function()
         require 'nvim-treesitter.configs'.setup({
             ensure_installed = {

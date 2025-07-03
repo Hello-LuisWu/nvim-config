@@ -1,9 +1,7 @@
 -- NOTE: 首页
 return {
     "goolord/alpha-nvim",
-    -- version = "bc5d57d",
     event = "VimEnter",
-    enabled = true,
     keys = {
         { "<leader>a", mode = "n", "<cmd>Alpha<CR>", desc = "主页" },
     },

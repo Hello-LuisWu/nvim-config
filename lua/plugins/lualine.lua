@@ -2,9 +2,11 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-    },                                  -- 图标依赖
-    -- event = { "BufReadPre", "BufNewFile" }, -- 在打开文件时加载
-    event = { "BufReadPre", "BufNewFile" }, -- 文件打开时加载
+    },                   -- 图标依赖
+    event = {
+        "BufRead",       -- buffer读取之后,
+        "BufNewFile"     -- 新建文件时
+    },
     config = function()
         require("lualine").setup({
             options = {
@@ -110,7 +112,7 @@ return {
                     -- }, -- 进度 (行号/列号)
 
                 },
-                lualine_y = { -- 光标信息区块
+                lualine_y = {             -- 光标信息区块
                     {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标

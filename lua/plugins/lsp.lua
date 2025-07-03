@@ -1,6 +1,10 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        event = {
+            "BufRead",   -- buffer读取之后,
+            "BufNewFile" -- 新建文件时
+        },
         dependencies = {
             {
 
