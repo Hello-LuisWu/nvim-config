@@ -73,6 +73,7 @@ return {
             default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'ripgrep' },
             providers = {
                 ripgrep = {
+                    score_offset = 4,
                     module = "blink-ripgrep",
                     name = "Ripgrep",
                     ---@module "blink-ripgrep"
@@ -124,6 +125,24 @@ return {
                             { "gitcommit", "markdown", "lua" },
                             vim.o.filetype
                         )
+                    end,
+                },
+                buffer = {
+                    score_offset = 2
+                },
+                path = {
+                    score_offset = 1
+                },
+                lsp = {
+                    score_offset = 5
+                },
+                cmdline = {
+                    module = 'blink.cmp.sources.cmdline',
+                    -- 禁用windows上的shell命令，因为它们会导致neovim挂起
+                    enabled = function()
+                        return vim.fn.has('win32') == 0
+                            or vim.fn.getcmdtype() ~= ':'
+                            or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
                     end,
                 }
             },
