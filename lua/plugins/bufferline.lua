@@ -9,7 +9,9 @@ return {
         { "<leader><tab>p", "<cmd>BufferLineTogglePin<cr>", desc = "固定/取消固定缓冲区" },
         { "<leader><tab>c", "<cmd>BufferLinePickClose<cr>", desc = "选择并关闭缓冲区" },
         { "<leader><tab>h", "<cmd>BufferLineCyclePrev<cr>", desc = "切换到上一个缓冲区" },
+        { "<leader><tab>H", "<cmd>BufferLineMovePrev<cr>", desc = "切换到上一个缓冲区" },
         { "<leader><tab>l", "<cmd>BufferLineCycleNext<cr>", desc = "切换到下一个缓冲区" },
+        { "<leader><tab>L", "<cmd>BufferLineMoveNext<cr>", desc = "切换到下一个缓冲区" },
         { "<leader><tab>1", "<cmd>BufferLineGoToBuffer 1<cr>", desc = "切换到第一个缓冲区" },
         { "<leader><tab>2", "<cmd>BufferLineGoToBuffer 2<cr>", desc = "切换到第二个缓冲区" },
         { "<leader><tab>3", "<cmd>BufferLineGoToBuffer 3<cr>", desc = "切换到第三个缓冲区" },
@@ -37,7 +39,12 @@ return {
                 -- 是否允许主题覆盖高亮组（设置为 true 可自定义主题）
                 themable = true,
 
-                -- 缓冲区编号显示方式（"none" | "ordinal" | "buffer_id" | "both" | 自定义函数）
+                -- 缓冲区编号显示方式:
+                -- "none"  不显示
+                -- "ordinal" 显示编号
+                -- "buffer_id"  显示 buffer id
+                -- "both"    显示 编号和buffer id
+                -- 自定义函数
                 numbers = "ordinal",
                 -- numbers = function(opts)
                 --     return string.format('%s·%s', opts.ordinal, opts.id)
@@ -94,15 +101,15 @@ return {
                 offsets = {
                     {
                         filetype = "neo-tree",
-                        text = "File Explorer", -- 自定义显示的文本
-                        text_align = "left",    -- 文本对齐方式
-                        separator = true,       -- 显示分隔线
+                        text = "文件浏览器", -- 自定义显示的文本
+                        text_align = "left", -- 文本对齐方式
+                        separator = true, -- 显示分隔线
                     }
                 },
 
                 -- 图标显示控制
                 color_icons = true,             -- 是否彩色显示文件类型图标
-                show_buffer_icons = true,       -- 显示缓冲区图标
+                show_buffer_icons = false,      -- 显示缓冲区类型图标
                 show_buffer_close_icons = true, -- 显示缓冲区关闭按钮
                 show_close_icon = true,         -- 显示右侧关闭按钮
 

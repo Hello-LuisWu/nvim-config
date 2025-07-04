@@ -167,6 +167,8 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 | `<leader><tab>c` | Normal | 选择并关闭缓冲区     | `:BufferLinePickClose<CR>`     |
 | `<leader><tab>h` | Normal | 上一个缓冲区         | `:BufferLineCyclePrev<CR>`     |
 | `<leader><tab>l` | Normal | 下一个缓冲区         | `:BufferLineCycleNext<CR>`     |
+| `<leader><tab>H` | Normal | 向左移动tab          | `:BufferLineMovePrev<CR>`      |
+| `<leader><tab>L` | Normal | 向右移动tab          | `:BufferLineMoveNext<CR>`      |
 | `<leader><tab>1` | Normal | 切换到第 1 个缓冲区  | `:BufferLineGoToBuffer 1<CR>`  |
 | `<leader><tab>2` | Normal | 切换到第 2 个缓冲区  | `:BufferLineGoToBuffer 2<CR>`  |
 | `<leader><tab>3` | Normal | 切换到第 3 个缓冲区  | `:BufferLineGoToBuffer 3<CR>`  |

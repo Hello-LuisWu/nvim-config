@@ -45,7 +45,7 @@ opt.showmatch = true              -- 匹配括号高亮
 opt.matchtime = 2                 -- 匹配括号高亮持续时间（十分之一秒）
 opt.pumheight = 10                -- 弹出菜单最多显示10行
 opt.cmdheight = 1                 -- 命令行高为1
-opt.showcmd = false               -- 显示输入的命令
+opt.showcmd = true                -- 显示输入的命令
 --[[ opt.list = true
 opt.lcs = "eol:↴" ]]
 opt.fillchars = {
@@ -164,8 +164,8 @@ vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- 光标形�
 opt.spell = false                                                  -- 禁止拼写支持
 opt.spelllang = { "en" }                                           -- 设置拼写检查语言
 
-opt.wildmode = "longest:full,full"   -- 命令行补全模式
-vim.g.markdown_recommended_style = 0 -- 禁用推荐的 Markdown 风格
+opt.wildmode = "longest:full,full"                                 -- 命令行补全模式
+vim.g.markdown_recommended_style = 0                               -- 禁用推荐的 Markdown 风格
 
 opt.timeout = true
 --opt.cscopequickfix = "s-,c-,d-,i-,t-,e-"

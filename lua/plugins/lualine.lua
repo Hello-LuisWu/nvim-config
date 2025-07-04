@@ -2,10 +2,10 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-    },                   -- 图标依赖
+    },               -- 图标依赖
     event = {
-        "BufRead",       -- buffer读取之后,
-        "BufNewFile"     -- 新建文件时
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
     },
     config = function()
         require("lualine").setup({
@@ -14,7 +14,7 @@ return {
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
                 section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
-                    "alpha", -- 启动界面
+                    -- "alpha", -- 启动界面
                     "neo-tree", -- 文件树
                     "toggleterm", -- 终端
                 },
@@ -46,7 +46,7 @@ return {
                     {
                         "filename",
                         path = 0, -- 文件名 (0=仅名称, 1=显示路径)
-                        icon = '', -- 文件图标
+                        -- icon = '', -- 文件图标
                         color = function()
                             if vim.bo.readonly then
                                 return { fg = '#ff0000', bg = '#222222', gui = 'bold' } -- 只读文件时，变红色加粗
@@ -117,6 +117,8 @@ return {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
                         colored = true,   -- 颜色显示
+                        -- separator = { left = "" }, -- 左侧分隔符
+
                     },
                     {
                         "fileformat", -- 文件格式
@@ -132,19 +134,24 @@ return {
                         fmt = string.upper, -- 显示大写 (UTF-8 → UTF-8)
                     },
                 },
-                lualine_z = {      -- 时间区块
+                lualine_z = { -- 时间区块
                     {
+                        -- icon = "⏰", -- 编码图标
+                        -- icon = "⏱️", -- 编码图标
+                        icon = "🕛", -- 编码图标
                         function() -- 自定义时间函数
                             -- 中文星期映射表
-                            local weekday_map = { "天", "一", "二", "三", "四", "五", "六" }
+                            local weekday_map = { "日", "一", "二", "三", "四", "五", "六" }
                             local time = os.date("*t")
                             return string.format(
-                                "%02d/%02d 星期%s %02d:%02d", -- 格式: 月日星期 时间
+                                "%d-%d-%d %02d:%02d 周%s", -- 格式: 月日星期 时间
+                                -- "星期%s·%02d:%02d", -- 格式: 月日星期 时间
+                                time.year,
                                 time.month,
                                 time.day,
-                                weekday_map[time.wday],
                                 time.hour,
-                                time.min
+                                time.min,
+                                weekday_map[time.wday]
                             )
                         end,
                         --icon = "", -- 时钟图标

@@ -15,30 +15,41 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Setup lazy.nvim
 require("lazy").setup({
-    -- highlight-start
-    config = function()
-        vim.cmd('colorscheme rose-pine')
-    end,
+    {
+        import = "config"
+    },
+    ui = {
+        title = "Luis Plugins",
+        border = "none",
+        icons = {
+            cmd = "⌘",
+            config = "🛠",
+            event = "📅",
+            ft = "📂",
+            init = "⚙",
+            keys = "🗝",
+            plugin = "🔌",
+            runtime = "💻",
+            require = "🌙",
+            source = "📄",
+            start = "🚀",
+            task = "📌",
+            lazy = "💤 ",
+        },
+    },
     spec = {
         -- import your plugins
         { import = "plugins" },
     },
-    -- highlight-end
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
+    -- 安装插件时使用的配色方案
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
     checker = {
         enabled = false,
     },
+    --  检测插件配置文件是否有改动 的功能, 有改动就自动加载
     change_detection = {
         enabled = false, -- 禁用插件变化检测
     },
