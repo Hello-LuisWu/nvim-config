@@ -1,7 +1,7 @@
 return {
     "NvChad/nvim-colorizer.lua",
     keys = {
-        { "<leader>oc", mode = { "n", "x", "o" }, "<cmd>ColorizerToggle<CR>", desc = "Colorizer Toggle" },
+        { "<leader>oc", mode = { "n" }, "<cmd>ColorizerToggle<CR>", desc = "Colorizer Toggle" },
     },
     opts = {
         filetypes = {

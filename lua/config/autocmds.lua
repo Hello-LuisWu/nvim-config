@@ -6,7 +6,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end,
 })
 
-
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
     local path = vim.fn.expand("%")
@@ -112,7 +111,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     group = group,
     pattern = "*",
     callback = function()
-        vim.lsp.buf.format({ async = false })             -- 同步格式化（需已配置 LSP）
+        vim.lsp.buf.format({ async = false }) -- 同步格式化（需已配置 LSP）
     end,
 })
 

@@ -14,6 +14,8 @@ map("n", "<BS>", ":set hlsearch!<CR>", opt)
 map("n", "<leader>0", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
 map("v", "p", "P", opt)
 
+map({ "n", "x" }, "<leader>j", "J", { desc = "向下融合", noremap = true, silent = true })
+
 map({ "n", "v" }, "gF", "gg=G", { desc = "自动缩进", noremap = true, silent = true })
 
 map({ "n", "v" }, "<leader>ss", "<cmd>set spell!<CR>", { desc = "开启/关闭拼写", noremap = true, silent = true })
@@ -153,19 +155,20 @@ vim.api.nvim_create_autocmd("FileType", {
         local map = vim.keymap.set
         local opt = { noremap = true, silent = true }
 
-        map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", { desc = '清除标记', noremap = true, silent = true }) -- jkej
+        map("i", "\\\\", "<ESC>/<++><CR>:nohls<CR>c4l", { desc = '清除标记', noremap = true, silent = true }) -- jkej
 
         map("i", "<C-CR>", "<Esc>0yf o<Esc>p0<C-a>$a", opt) -- 斜体
         -- map("i", "---", "<Enter>---<Enter><br/><Enter><Enter>", opt) -- 分割线
-        map("i", "BB", "**** <++><Esc>F*hi", opt) -- 加粗
-        map("i", "DD", "****** <++><Esc>F*hhi", opt) -- 加粗并斜体
+        map("i", "BB", "**** <++><Esc>6hi", opt) -- 加粗
+        map("i", "DD", "****** <++><Esc>7hi", opt) -- 加粗并斜体
         map("i", "II", "** <++><Esc>F*i", opt) -- 斜体
-        map("i", "SS", "~~~~ <++><esc>F~hi", opt) -- 删除线
+        map("i", "SS", "~~~~ <++><esc>6hi", opt) -- 删除线
         map("i", "UU", "<u></u> <++><Esc>2F<i", opt) -- 下划线
         map( -- 展开列表
+        -- ******
             "i",
             "LS",
-            "<details><Enter><summary></summary><Enter><++><Enter></details><Esc>2k$F<i",
+            "<details><Enter><summary></summary><Enter><++><Enter></details><Enter><Enter><++><Esc>4k$F<i",
             opt
         )
         -- 格式块
@@ -178,7 +181,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- 添加图片
         map("i", "PP", "![](<++>) <++><Esc>F[a", opt)
         -- 添加链接
-        map("i", "PPP", "[](<++>) <++><Esc>F[a", opt)
+        map("i", "AA", "[](<++>) <++><Esc>F[a", opt)
 
         -- 2-4级标题
         map("i", "@@", "##<Space>", opt)

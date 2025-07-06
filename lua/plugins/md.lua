@@ -8,7 +8,7 @@ return {
         end,
         ft = { "markdown" },
         keys = {
-            { "<leader>md", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+            { "<leader>md", mode = "n", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
         },
         config = function()
             vim.g.mkdp_auto_close = true
@@ -55,8 +55,8 @@ return {
         opts = {
             padd_column_separators = true,     -- Insert a space around column separators.
             mappings = {                       -- next and prev work in Normal and Insert mode. All other mappings work in Normal mode.
-                next = "<leader><TAB>",        -- Go to next cell.
-                prev = "<leader><S-TAB>",      -- Go to previous cell.
+                next = "<TAB>",                -- Go to next cell.
+                prev = "<S-TAB>",              -- Go to previous cell.
                 insert_row_up = "<A-k>",       -- Insert a row above the current row.
                 insert_row_down = "<A-j>",     -- Insert a row below the current row.
                 move_row_up = "<A-S-k>",       -- Move the current row up.
@@ -76,7 +76,7 @@ return {
         "richardbizik/nvim-toc",
         ft = { "markdown" },
         keys = {
-            { "<leader>mt", ":TOC<CR>", desc = "add TOC" }
+            { "<leader>mt", mode = "n", ":TOC<CR>", desc = "add TOC" }
         },
         opts = {
             toc_header = "文档目录",

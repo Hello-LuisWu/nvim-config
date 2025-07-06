@@ -29,15 +29,8 @@ return {
 
             --[[ 触发器配置 ]] --
             triggers = {
-                { "<auto>", mode = "nixsotc" }, -- 自动检测所有模式
-                -- 补充触发器
-                { "g",      mode = "n" }, -- 普通模式的g键
-                { "z",      mode = "n" }, -- 普通模式的z键
-                { "y",      mode = "n" }, -- 普通模式的y键
-                { "d",      mode = "n" }, -- 普通模式的d键
-                { "c",      mode = "n" }, -- 普通模式的c键
+                { "<auto>", mode = "nixsotc" },
             },
-
             -- 视觉模式延迟触发配置
             defer = function(ctx)
                 return ctx.mode == "V" or ctx.mode == "<C-V>" -- 行选择和块选择模式延迟触发
