@@ -59,6 +59,8 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 
 ## 🗃️ Files Structure
 
+nvim home directory file tree
+
 ```
 📂 .
 ├──  init.lua
@@ -99,8 +101,6 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 └──  README.md
 ```
 
-After cloning, the first time you launch Neovim, it will automatically install plugins and build dependencies. Please wait patiently for the installation to complete.
-
 ## 🚀 Launch and Initial Setup
 
 First run:
@@ -116,7 +116,7 @@ During initialization, [Lazy.nvim](https://github.com/folke/lazy.nvim) will auto
 
 If errors occur, please manually install missing dependencies according to the prompts.
 
-> 中文使用说明：👉 [README-CN](https://www.github.com/Hello-LuisWu/nvim-config/README-CN.md)
+> 中文使用说明：👉 [README-CN](https://github.com/Hello-LuisWu/nvim-config/blob/main/README-CN.md)  
 >  You can view all key mappings here: 👉 [keymaps](https://github.com/Hello-LuisWu/nvim-config/blob/main/maps.md) 
 
 Welcome to submit [issue](https://github.com/Hello-LuisWu/nvim-config/issues) or contact the author for configuration optimization: [Luis Wu](https://www.github.com/Hello-LuisWu/nvim-config) 

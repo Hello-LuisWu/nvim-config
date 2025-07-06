@@ -62,6 +62,8 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 
 ## 🗃️ Files
 
+nvim 主目录文件树
+
 ```
 📂 .
 ├──  init.lua
@@ -101,8 +103,6 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 ├──  maps.md
 └──  README.md
 ```
-
-克隆完成后首次启动 Neovim 会自动安装插件和构建依赖，建议耐心等待安装完成。
 
 ## 🚀 启动与首次初始化
 
