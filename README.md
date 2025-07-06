@@ -1,68 +1,65 @@
-# 🧠 nvim-config 使用说明
+# 🧠 nvim-config User Guide
 
 ![start](img/nvim-start.png)
-> 欢迎页面
+> Welcome screen
 
 ---
 
 ![edit](img/edit.png)
-> 编辑界面
+> Editing interface
 
 ---
 
- ![todo](img/todo.png)
-> 待办事项
+![todo](img/todo.png)
+> Todo list
 
 ---
 
-> **高性能·模块化·开箱即用**: 适用于开发者的 Neovim 配置，支持 LSP、自动补全、代码格式化、语法高亮、美化 UI 等功能。
-
-
+> **High Performance · Modular · Out-of-the-box**: Neovim configuration for developers, supporting LSP, auto-completion, code formatting, syntax highlighting, UI beautification, and more.
 
 ---
 
-## 🧰 必须软件（外部依赖）
+## 🧰 Required Software (External Dependencies)
 
-以下是使用本配置前需要在系统中安装的软件：
+The following software must be installed in your system before using this configuration:
 
-| 工具名称            | 作用说明                                    |
-| ------------------- | ------------------------------------------- |
-| 🧹 **stylua**       | Lua 代码格式化工具，自动格式化 Lua 插件代码 |
-| 🔍 **ripgrep (rg)** | 快速文本搜索工具，Telescope 模糊搜索依赖    |
-| 🗜️ **gcc**          | 编译 C 插件时使用（如 Treesitter）          |
+| Tool Name           | Description                                              |
+| ------------------- | -------------------------------------------------------- |
+| 🧹 **stylua**       | Lua code formatter, auto-formats Lua plugin code         |
+| 🔍 **ripgrep (rg)** | Fast text search tool, Telescope fuzzy search dependency |
+| 🗜️ **gcc**          | Used for compiling C plugins (e.g., Treesitter)          |
 
-### 🧪 可选推荐依赖：
+### 🧪 Recommended Optional Dependencies:
 
-| 工具名称                   | 用途                                              |
-| -------------------------- | ------------------------------------------------- |
-| 🐍 **Python 3** + `pynvim` | 支持 Python 插件（如一些 LSP 工具）               |
-| 🧵 **Node.js** + `npm`     | 安装 LSP/格式化工具（如 tsserver、prettier）      |
-| 🛠 **make**                | 某些插件需要构建步骤（如 `telescope-fzf-native`） |
+| Tool Name                  | Purpose                                                           |
+| -------------------------- | ----------------------------------------------------------------- |
+| 🐍 **Python 3** + `pynvim` | Supports Python plugins (e.g., some LSP tools)                    |
+| 🧵 **Node.js** + `npm`     | Install LSP/formatters (e.g., tsserver, prettier)                 |
+| 🛠 **make**                | Required for building some plugins (e.g., `telescope-fzf-native`) |
 
-## 🧹 清除旧配置（重装建议）
+## 🧹 Clean Old Config (Reinstallation Recommendation)
 
-如需重新安装配置，先清除旧版本相关目录：
-
+To reinstall the configuration, first delete the old version directories:
 ```sh
 rm -rf ~/.config/nvim/ ~/.local/share/nvim/ ~/.local/state/nvim/ ~/.cache/nvim/
 ```
 
-这将删除：
+This will delete:
 
-- `~/.config/nvim/`：主配置文件夹
-- `~/.local/share/nvim/`：插件安装目录
-- `~/.local/state/nvim/`：状态信息
-- `~/.cache/nvim/`：缓存目录
+- `~/.config/nvim/`: Main configuration folder
+- `~/.local/share/nvim/`: Plugin installation directory
+- `~/.local/state/nvim/`: State information
+- `~/.cache/nvim/`: Cache directory
 
-## ⛓️‍💥 克隆配置文件
+## ⛓️‍💥 Clone Configuration Files
 
 ```sh
 git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nvim
 ```
 
-## 🗃️ Files
+## 🗃️ Files Structure
 
-```sh
+```
 📂 .
 ├──  init.lua
 ├──  lazy-lock.json
@@ -102,20 +99,24 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 └──  README.md
 ```
 
-克隆完成后首次启动 Neovim 会自动安装插件和构建依赖，建议耐心等待安装完成。
+After cloning, the first time you launch Neovim, it will automatically install plugins and build dependencies. Please wait patiently for the installation to complete.
 
-## 🚀 启动与首次初始化
+## 🚀 Launch and Initial Setup
 
-第一次运行：
+First run:
 
 ```sh
 nvim
 ```
-初始化过程中，Lazy.nvim 会自动：
-- 同步并安装所有插件
-- 设置基础配置
-- 构建所需模块（如 [Treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter) 、高性能搜索器等）
 
-如果报错，请根据提示手动安装缺失依赖，或参考下方常见问题。
+During initialization, [Lazy.nvim](https://github.com/folke/lazy.nvim) will automatically:
+- Sync and install all plugins
+- Set up basic configurations
+- Build required modules (e.g., [Treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter), high-performance searchers, etc.)
 
-欢迎提交 issue 或联系作者优化配置：[Luis Wu](https://www.github.com/Hello-LuisWu/nvim-config) 
+If errors occur, please manually install missing dependencies according to the prompts.
+
+> 中文使用说明：👉 [README-CN](https://www.github.com/Hello-LuisWu/nvim-config/README-CN.md)
+>  You can view all key mappings here: 👉 [keymaps](https://github.com/Hello-LuisWu/nvim-config/blob/main/maps.md) 
+
+Welcome to submit [issue](https://github.com/Hello-LuisWu/nvim-config/issues) or contact the author for configuration optimization: [Luis Wu](https://www.github.com/Hello-LuisWu/nvim-config) 
