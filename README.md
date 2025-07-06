@@ -1,6 +1,19 @@
 # 🧠 nvim-config 使用说明
 
 ![start](img/nvim-start.png)
+> 欢迎页面
+
+---
+
+![edit](img/edit.png)
+> 编辑界面
+
+---
+
+ ![todo](img/todo.png)
+> 待办事项
+
+---
 
 > **高性能·模块化·开箱即用**: 适用于开发者的 Neovim 配置，支持 LSP、自动补全、代码格式化、语法高亮、美化 UI 等功能。
 
