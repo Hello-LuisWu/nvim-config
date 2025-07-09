@@ -64,7 +64,6 @@ nvim home directory file tree
 ```
 📂 .
 ├──  init.lua
-├──  lazy-lock.json
 ├── 📂 lua
 │   ├──  cmp.lua
 │   ├──  config

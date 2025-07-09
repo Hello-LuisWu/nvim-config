@@ -44,8 +44,8 @@ opt.whichwrap = "b,s,<,>,[,],h,l" -- 左右键可以已到下一行或者上一�
 opt.showmatch = true              -- 匹配括号高亮
 opt.matchtime = 2                 -- 匹配括号高亮持续时间（十分之一秒）
 opt.pumheight = 10                -- 弹出菜单最多显示10行
-opt.cmdheight = 1                 -- 命令行高为1
-opt.showcmd = true                -- 显示输入的命令
+opt.cmdheight = 0                 -- 命令行高为1
+opt.showcmd = false               -- 显示输入的命令
 --[[ opt.list = true
 opt.lcs = "eol:↴" ]]
 opt.fillchars = {
@@ -65,8 +65,8 @@ opt.fillchars = {
     diff = "⣿", -- `diff` 模式下的填充字符
     stlnc = " ", -- 非当前窗口状态栏填充
 }
-opt.laststatus = 2 -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
-opt.showtabline = 2 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
+opt.laststatus = 0 -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
+opt.showtabline = 0 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
 -- opt.tabpagemax = 9   -- 最多可以打开 9 个标签页，默认10个
 
 -- ----------------------------
