@@ -1,2 +1,5 @@
 .DS_Store
 lazy-lock.json
+lua/.DS_Store
+lua/plugins/.DS_Store
+lua/config/.DS_Store

@@ -62,7 +62,7 @@ map({ "i", "n", "v" }, "<Right>", "<Nop>", opt)
 map({ "i", "n", "v" }, "<Up>", "<Nop>", opt)
 map({ "i", "n", "v" }, "<Down>", "<Nop>", opt)
 -- map("i", "<Esc>", "<Nop>", opt)
-map({ "n", "v" }, "q:", "<Nop>", opt)
+-- map({ "n", "v" }, "q:", "<Nop>", opt)
 
 map("n", "j", "gj", opt)
 map("n", "k", "gk", opt)

@@ -74,7 +74,7 @@ return {
             default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'ripgrep' },
             providers = {
                 ripgrep = {
-                    score_offset = 4,
+                    score_offset = 1,
                     module = "blink-ripgrep",
                     name = "Ripgrep",
                     ---@module "blink-ripgrep"
@@ -132,10 +132,10 @@ return {
                     score_offset = 2
                 },
                 path = {
-                    score_offset = 1
+                    score_offset = 5
                 },
                 lsp = {
-                    score_offset = 5
+                    score_offset = 4
                 },
                 cmdline = {
                     module = 'blink.cmp.sources.cmdline',

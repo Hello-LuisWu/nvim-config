@@ -107,13 +107,13 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 local group = vim.api.nvim_create_augroup("MyAutoCmds", { clear = true })
 
 -- -- 保存时自动格式化（需安装 LSP 或格式化工具）
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = group,
-    pattern = "*",
-    callback = function()
-        vim.lsp.buf.format({ async = false }) -- 同步格式化（需已配置 LSP）
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     group = group,
+--     pattern = "*",
+--     callback = function()
+--         vim.lsp.buf.format({ async = false }) -- 同步格式化（需已配置 LSP）
+--     end,
+-- })
 
 -- 5. 保存 Vim 配置文件后自动重新加载
 vim.api.nvim_create_autocmd("BufWritePost", {

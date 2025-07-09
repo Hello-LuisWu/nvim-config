@@ -7,7 +7,7 @@ return {
     },
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "nvim-telescope/telescope.nvim"
+        -- "nvim-telescope/telescope.nvim"
     }, -- 添加 telescope 依赖
     config = function()
         -- 获取 Lazy.nvim 启动时间
