@@ -34,7 +34,19 @@ return {
             dashboard.button("f", "󰈞  查找文件", ":lua require('telescope.builtin').find_files() <CR>"),
             dashboard.button("e", "  新建文件", ":ene <BAR> startinsert <CR>"),
             dashboard.button("g", "  查找文本", ":lua require('telescope.builtin').live_grep() <CR>"),
-            dashboard.button("c", "  配置文件", ":Telescope find_files cwd=" .. config_dir .. "<CR>"),
+            dashboard.button("c", "  配置文件",
+                function()
+                    require("telescope.builtin").find_files({
+                        prompt_title = "🔧 Neovim 配置文件",
+                        cwd = vim.fn.expand("~/.config/nvim"),
+                        find_command = {
+                            "fd", "--type", "f", "--hidden", "--strip-cwd-prefix",
+                            "--exclude", ".git",
+                            "--exclude", "img",
+                            "--exclude", ".DS_Store",
+                        },
+                    })
+                end),
             dashboard.button("q", "󰅚  推出 NVIM", ":qa<CR>"),
         }
 

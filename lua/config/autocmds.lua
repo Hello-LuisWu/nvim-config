@@ -115,6 +115,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+-- 5. 保存 Vim 配置文件后自动重新加载
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = { "init.lua", "*/lua/**/*.lua" },
+    command = "source %",
+})
+
 -- Python 文件配置
 vim.api.nvim_create_autocmd("FileType", {
     group = group,

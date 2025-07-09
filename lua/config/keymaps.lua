@@ -54,6 +54,8 @@ map("v", "<", "<gv", opt)
 map("v", ">", ">gv", opt)
 map("v", "<S-tab>", "<gv", opt)
 map("v", "<tab>", ">gv", opt)
+map("v", "<C-h>", "<gv", opt)
+map("v", "<C-l>", ">gv", opt)
 
 map({ "i", "n", "v" }, "<Left>", "<Nop>", opt)
 map({ "i", "n", "v" }, "<Right>", "<Nop>", opt)

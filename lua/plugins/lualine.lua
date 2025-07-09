@@ -64,7 +64,7 @@ return {
                         -- sources = { "nvim_diagnostic" }, -- 诊断源
                         sections = { "error", "warn", "info", "hint" }, -- 显示类型
                         symbols = {
-                            error = "✘  ", -- 错误 (Nerd Font 图标)
+                            error = "✘ ", -- 错误 (Nerd Font 图标)
                             warn = "⚠ ", -- 警告
                             info = "» ", -- 信息
                             hint = "⚑ ", -- 提示
@@ -138,25 +138,56 @@ return {
                     {
                         -- icon = "⏰", -- 编码图标
                         -- icon = "⏱️", -- 编码图标
-                        icon = "🕛", -- 编码图标
-                        function() -- 自定义时间函数
+                        -- icon = "🕛", -- 编码图标
+                        function()
                             -- 中文星期映射表
                             local weekday_map = { "日", "一", "二", "三", "四", "五", "六" }
+
+                            -- 时钟 Emoji 表（0~23 点）
+                            local clock_emoji = {
+                                -- 整点（0-11）
+                                "🕛", "🕐", "🕑", "🕒", "🕓", "🕔",
+                                "🕕", "🕖", "🕗", "🕘", "🕙", "🕚",
+                                -- 半点（0.5-11.5）
+                                "🕧", "🕜", "🕝", "🕞", "🕟", "🕠",
+                                "🕡", "🕢", "🕣", "🕤", "🕥", "🕦"
+                            }
+
+                            -- 十二时辰映射表
+                            local shichen_map = {
+                                "子", "丑", "寅", "卯", "辰", "巳",
+                                "午", "未", "申", "酉", "戌", "亥"
+                            }
+
                             local time = os.date("*t")
+                            local hour = time.hour
+
+                            local min = time.min
+
+                            -- 计算时辰
+                            local shichen_index = math.floor((hour + 1) % 24 / 2) + 1
+                            local shichen = shichen_map[shichen_index]
+
+
+                            -- 判断整点 or 半点
+                            local is_half = min >= 30 and 1 or 0
+                            -- 计算 emoji 索引：0点开始，整点在前（0~11），半点加上12
+                            local emoji_index = ((hour % 12) + (is_half * 12)) + 1
+                            local emoji = clock_emoji[emoji_index]
+
                             return string.format(
-                                "%d-%d-%d %02d:%02d 周%s", -- 格式: 月日星期 时间
-                                -- "星期%s·%02d:%02d", -- 格式: 月日星期 时间
+                                "%d-%d-%d %s %s时 周%s",
                                 time.year,
                                 time.month,
                                 time.day,
-                                time.hour,
-                                time.min,
+                                emoji,
+                                shichen,
                                 weekday_map[time.wday]
                             )
-                        end,
+                        end
                         --icon = "", -- 时钟图标
                         -- separator = { left = "" }, -- 左侧分隔符
-                        -- color = { fg = "#7EB3C9", bg = "#1E1E2E" }, -- 颜色配置
+                        -- color = { gui = "italic" }, -- 颜色配置
                     }
                 }
             },

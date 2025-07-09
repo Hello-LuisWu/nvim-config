@@ -15,7 +15,8 @@ return {
         { "<leader>fc", mode = { "n" }, function() require('telescope.builtin').colorscheme() end, desc = "FInd Colorscheme" },
     },
     config = function()
-        require('telescope').setup({
+        local tls = require("telescope")
+        tls.setup({
             defaults = {
                 -- 默认配置
                 prompt_prefix = "🔍 ", -- 搜索前缀图标
