@@ -1,18 +1,17 @@
 return {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
     -- or                              , branch = '0.1.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
     },
     keys = {
-        { "<leader>ft", mode = { "n" }, "<cmd>TodoTelescope<cr>",                                  desc = "Todo comments" },
-        { "<leader>ff", mode = { "n" }, function() require('telescope.builtin').find_files() end,  desc = "Find File" },
-        { "<leader>fg", mode = { "n" }, function() require('telescope.builtin').live_grep() end,   desc = "Find Grep" },
-        { "<leader>fo", mode = { "n" }, function() require('telescope.builtin').oldfiles() end,    desc = "Find Old File" },
-        { "<leader>fb", mode = { "n" }, function() require('telescope.builtin').buffers() end,     desc = "Find Buffers" },
-        { "<leader>fh", mode = { "n" }, function() require('telescope.builtin').help_tags() end,   desc = "FInd Help File" },
-        { "<leader>fc", mode = { "n" }, function() require('telescope.builtin').colorscheme() end, desc = "FInd Colorscheme" },
+        { "<leader>ft", mode = { "n" }, "<cmd>TodoTelescope<cr>", desc = "待办注释" },
+        { "<leader>ff", mode = { "n" }, function() require('telescope.builtin').find_files() end, desc = "查找文件" },
+        { "<leader>fg", mode = { "n" }, function() require('telescope.builtin').live_grep() end, desc = "内容搜索" },
+        { "<leader>fo", mode = { "n" }, function() require('telescope.builtin').oldfiles() end, desc = "最近打开" },
+        { "<leader>fb", mode = { "n" }, function() require('telescope.builtin').buffers() end, desc = "打开缓冲区" },
+        { "<leader>fh", mode = { "n" }, function() require('telescope.builtin').help_tags() end, desc = "帮助文档" },
+        { "<leader>fc", mode = { "n" }, function() require('telescope.builtin').colorscheme() end, desc = "颜色主题" },
     },
     config = function()
         local tls = require("telescope")
@@ -24,11 +23,11 @@ return {
                     prompt_position = "top", -- 默认在顶部
 
                     horizontal = {
-                        preview_width = 0.55, -- 横向模式下预览窗宽度占比
+                        preview_width = 0.55,    -- 横向模式下预览窗宽度占比
                         prompt_position = "top", -- 横向下搜索框位置
                     },
                     vertical = {
-                        preview_height = 0.45, -- 纵向模式下预览窗高度占比
+                        preview_height = 0.45,   -- 纵向模式下预览窗高度占比
                         prompt_position = "top", -- 纵向下搜索框位置
                     },
                 },
