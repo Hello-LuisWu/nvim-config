@@ -7,11 +7,9 @@ return {
     },
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        -- "nvim-telescope/telescope.nvim"
+        "nvim-telescope/telescope.nvim"
     }, -- 添加 telescope 依赖
     config = function()
-        -- 获取 nvim 配置目录路径
-        local config_dir = vim.fn.expand("~/.config/nvim")
         -- 获取 Lazy.nvim 启动时间
         local lazy_stats = require("lazy").stats()
         local alpha = require("alpha")
