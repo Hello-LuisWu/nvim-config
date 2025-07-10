@@ -28,24 +28,35 @@ return {
         -- Dashboard 配置
         dashboard.section.header.val = vim.split(logo, "\n")
         dashboard.section.buttons.val = {
-            dashboard.button("o", "  历史文件", ":lua require('telescope.builtin').oldfiles() <CR>"),
-            dashboard.button("f", "󰈞  查找文件", ":lua require('telescope.builtin').find_files() <CR>"),
-            dashboard.button("e", "  新建文件", ":ene <BAR> startinsert <CR>"),
-            dashboard.button("g", "  查找文本", ":lua require('telescope.builtin').live_grep() <CR>"),
-            dashboard.button("c", "  配置文件",
-                function()
-                    require("telescope.builtin").find_files({
-                        prompt_title = "🔧 Neovim 配置文件",
-                        cwd = vim.fn.expand("~/.config/nvim"),
-                        find_command = {
-                            "fd", "--type", "f", "--hidden", "--strip-cwd-prefix",
-                            "--exclude", ".git",
-                            "--exclude", "img",
-                            "--exclude", ".DS_Store",
-                        },
-                    })
-                end),
-            dashboard.button("q", "󰅚  推出 NVIM", ":qa<CR>"),
+            dashboard.button("e", "文件浏览器", ":lua Snacks.explorer()<CR>"),
+            dashboard.button("f", "智能查找文件", ":lua Snacks.picker.smart()<CR>"),
+            dashboard.button("r", "最近文件", ":lua Snacks.picker.recent()<CR>"),
+            dashboard.button("e", "新建文件", ":ene <BAR> startinsert <CR>"),
+            dashboard.button("g", "全局搜索 (Grep)", ":lua Snacks.picker.grep()<CR>"),
+            dashboard.button("c", "配置文件浏览",":lua Snacks.picker.files({ cwd = vim.fn.expand('~/.config/nvim'), hidden = true, follow = true })<CR>"),
+            dashboard.button("n", "通知历史", ":lua Snacks.picker.notifications()<CR>"),
+            dashboard.button("q", "退出", ":qa<CR>"),
+
+            -- telescope config
+            -- dashboard.button("o", "  历史文件", ":lua require('telescope.builtin').oldfiles() <CR>"),
+            -- dashboard.button("f", "󰈞  查找文件", ":lua require('telescope.builtin').find_files() <CR>"),
+            -- dashboard.button("e", "  新建文件", ":ene <BAR> startinsert <CR>"),
+            -- dashboard.button("g", "  查找文本", ":lua require('telescope.builtin').live_grep() <CR>"),
+            -- dashboard.button("c", "  配置文件",
+            --     function()
+            --         require("telescope.builtin").find_files({
+            --             prompt_title = "🔧 Neovim 配置文件",
+            --             cwd = vim.fn.expand("~/.config/nvim"),
+            --             find_command = {
+            --                 "fd", "--type", "f", "--hidden", "--strip-cwd-prefix",
+            --                 "--exclude", ".git",
+            --                 "--exclude", "img",
+            --                 "--exclude", ".DS_Store",
+            --             },
+            --         })
+            --     end),
+            -- dashboard.button("q", "󰅚  推出 NVIM", ":qa<CR>"),
+
         }
 
         -- 高级配置

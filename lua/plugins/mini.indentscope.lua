@@ -2,6 +2,7 @@ return {
     {
         'echasnovski/mini.indentscope',
         version = '*',
+        enabled = false,
         event = {
             "BufRead",   -- buffer读取之后,
             "BufNewFile" -- 新建文件时

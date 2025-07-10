@@ -165,7 +165,7 @@ return {
             keymap = {
                 -- preset = '',
                 -- 选择并接受预选择的第一个
-                -- ["<CR>"] = { "select_and_accept", "fallback" },
+                ["<CR>"] = { "select_and_accept", "fallback" },
             },
             sources = { 'buffer', 'cmdline' },
         },

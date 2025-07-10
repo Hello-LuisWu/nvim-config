@@ -91,7 +91,8 @@ return {
                             globals = {
                                 'vim',
                                 'opts',
-                                'group'
+                                'group',
+                                'Snacks'
                             } -- 声明 vim 为已知全局变量
                         },
                         workspace = {

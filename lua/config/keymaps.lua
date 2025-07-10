@@ -18,13 +18,13 @@ map({ "n", "x" }, "<leader>j", "J", { desc = "向下融合", noremap = true, sil
 
 map({ "n", "v" }, "gF", "gg=G", { desc = "自动缩进", noremap = true, silent = true })
 
-map({ "n", "v" }, "<leader>ss", "<cmd>set spell!<CR>", { desc = "开启/关闭拼写", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>sj", "]s", { desc = "下一个拼写错误", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>sk", "[s", { desc = "上一个拼写错误", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>sa", "zg", { desc = "将单词添加到词典", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>sc", "zw", { desc = "将单词移出词典", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>su", "zu", { desc = "撤销 zg/zw", noremap = true, silent = true })
-map({ "n", "v" }, "<leader>su", "<cmd>spellr<CR>", { desc = "替换错误单词（自动使用第一个建议）", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>ss", "<cmd>set spell!<CR>", { desc = "开启/关闭拼写", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>sj", "]s", { desc = "下一个拼写错误", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>sk", "[s", { desc = "上一个拼写错误", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>sa", "zg", { desc = "将单词添加到词典", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>sc", "zw", { desc = "将单词移出词典", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>su", "zu", { desc = "撤销 zg/zw", noremap = true, silent = true })
+-- map({ "n", "v" }, "<leader>su", "<cmd>spellr<CR>", { desc = "替换错误单词（自动使用第一个建议）", noremap = true, silent = true })
 
 map("n", "W", "5w", opt)
 map("n", "B", "5b", opt)

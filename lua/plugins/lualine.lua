@@ -28,24 +28,25 @@ return {
             --[[ 活动窗口状态栏 ]] --
             sections = {
                 -- 左侧区块 (从右到左)
-                lualine_a = {                     -- 模式显示区块
+                lualine_a = { -- 模式显示区块
                     {
-                        "mode",                   -- 显示当前模式 (NORMAL/INSERT/VISUAL)
+                        "mode",
                         -- fmt = function(str) return " " .. str end, -- 添加图标前缀
                         color = { gui = "bold" }, -- 文字加粗
+                        icon = "",
                         --           separator = { right = "" }, -- 右侧分隔符
                     }
                 },
-                lualine_b = { -- 版本控制区块
+                lualine_b = {
                     {
-                        "branch", -- Git 分支显示
-                        icon = "", -- 分支图标
+                        "branch",
+                        icon = "",
                     },
                 },
-                lualine_c = { -- 中央信息区块
+                lualine_c = {
                     {
                         "filename",
-                        path = 0, -- 文件名 (0=仅名称, 1=显示路径)
+                        path = 1, -- 文件名 (0=仅名称, 1=显示路径)
                         -- icon = '', -- 文件图标
                         color = function()
                             if vim.bo.readonly then
@@ -54,8 +55,10 @@ return {
                         end,
                         -- icon = "",
                         symbols = {
-                            modified = '●', -- 文件未保存时显示
-                            readonly = '' -- 只读文件标识
+                            modified = '📝', -- 文件未保存时显示
+                            -- modified = '●', -- 文件未保存时显示
+                            readonly = '🔏' -- 只读文件标识
+                            -- readonly = '' -- 只读文件标识
                         }
                     },
                     {
@@ -176,8 +179,8 @@ return {
                             local emoji = clock_emoji[emoji_index]
 
                             return string.format(
-                                "%d-%d-%d %s %s时 周%s",
-                                time.year,
+                                "%d/%d %s %s时 周%s",
+                                -- time.year,
                                 time.month,
                                 time.day,
                                 emoji,
