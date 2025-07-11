@@ -54,43 +54,48 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 
 nvim home directory file tree
 
-```
-📂 .
-├──  init.lua
-├── 📂 lua
-│   ├──  cmp.lua
-│   ├──  config
-│   │   ├──  autocmds.lua
-│   │   ├──  hi.lua
-│   │   ├──  keymaps.lua
-│   │   ├──  lazy.lua
-│   │   └──  options.lua
-│   └── 📂 plugins
-│       ├──  alpha.lua
-│       ├──  autopairs.lua
-│       ├──  blink.lua
-│       ├──  bufferline.lua
-│       ├──  colorizer.lua
-│       ├──  comment.lua
-│       ├──  conform.lua
-│       ├──  flash.lua
-│       ├──  lsp.lua
-│       ├──  lualine.lua
-│       ├──  md.lua
-│       ├──  mini.indentscope.lua
-│       ├──  neotree.lua
-│       ├──  rainbow-delimiters.lua
-│       ├──  surround.lua
-│       ├──  telescope.lua
-│       ├──  todo-comments.lua
-│       ├──  toggleterm.lua
-│       ├──  treesitter.lua
-│       ├──  trouble.lua
-│       ├──  ufo.lua
-│       ├──  ui.lua
-│       └──  which-key.lua
-├──  maps.md
-└──  README.md
+```sh
+.
+├── init.lua
+├── lazy-lock.json
+├── lua
+│   ├── cmp.lua
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── folding.lua
+│   │   ├── hi.luaa
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   └── plugins
+│       ├── alpha.lua
+│       ├── autopairs.lua
+│       ├── blink.lua
+│       ├── bufferline.lua
+│       ├── colorizer.lua
+│       ├── comment.lua
+│       ├── conform.lua
+│       ├── flash.lua
+│       ├── gemini.lua
+│       ├── lsp.lua
+│       ├── lualine.lua
+│       ├── md.lua
+│       ├── mini.indentscope.lua
+│       ├── neotree.lua
+│       ├── rainbow-delimiters.lua
+│       ├── snacks.lua
+│       ├── surround.lua
+│       ├── todo-comments.lua
+│       ├── toggleterm.lua
+│       ├── treesitter.lua
+│       ├── trouble.lua
+│       ├── ufo.lua
+│       ├── ui.lua
+│       └── which-key.lua
+├── maps.md
+├── README-CN.md
+├── README.md
+└── stylua.toml
 ```
 
 ## 🚀 Launch and Initial Setup
