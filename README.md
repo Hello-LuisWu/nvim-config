@@ -27,7 +27,7 @@ The following software must be installed in your system before using this config
 | 🐍 **Python 3** + `pynvim` | Supports Python plugins (e.g., some LSP tools)                    |
 | 🧵 **Node.js** + `npm`     | Install LSP/formatters (e.g., tsserver, prettier)                 |
 | 🛠 **make**                | Required for building some plugins (e.g., `telescope-fzf-native`) |
-| G **Nerd Font**|[Nerd Font](https://www.nerdfonts.com/#home) is a programming font with built-in icons, used to enhance terminal and editor UI.|
+| 🌀 **Nerd Font**|[Nerd Font](https://www.nerdfonts.com/#home) is a programming font with built-in icons, used to enhance terminal and editor UI.|
 
 
 ## 🧹 Clean Old Config (Reinstallation Recommendation)
