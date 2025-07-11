@@ -189,16 +189,42 @@
 | cs       | n    | 更改环绕       |
 | cS       | n    | 跨行更改环绕   |
 
-## 🔭 telescope.nvim
-| 快捷键       | 模式 | 功能说明   | 映射命令                                     |
-| ------------ | ---- | ---------- | -------------------------------------------- |
-| `<leader>ft` | n    | TODO注释   | `:TodoTelescope<CR>`                         |
-| `<leader>ff` | n    | 查找文件   | `require('telescope.builtin').find_files()`  |
-| `<leader>fg` | n    | 全局搜索   | `require('telescope.builtin').live_grep()`   |
-| `<leader>fo` | n    | 历史文件   | `require('telescope.builtin').oldfiles()`    |
-| `<leader>fb` | n    | 缓冲区列表 | `require('telescope.builtin').buffers()`     |
-| `<leader>fh` | n    | 帮助标签   | `require('telescope.builtin').help_tags()`   |
-| `<leader>fc` | n    | 主题切换   | `require('telescope.builtin').colorscheme()` |
+## 🧩 Snacks 快捷键总览
+
+| 快捷键        | 模式 | 功能说明             | 映射命令                                       |
+|---------------|------|----------------------|------------------------------------------------|
+| `<leader>cR`  | n    | 重命名文件           | `Snacks.rename.rename_file()`                 |
+| `<leader>gB`  | n/v  | Git 浏览器           | `Snacks.gitbrowse()`                          |
+| `<leader>fd`  | n    | 命令历史             | `Snacks.picker.command_history()`             |
+| `<leader>fh`  | n    | 帮助文档             | `Snacks.picker.help()`                        |
+| `<leader>fi`  | n    | 图标列表             | `Snacks.picker.icons()`                       |
+| `<leader>fj`  | n    | 跳转历史             | `Snacks.picker.jumps()`                       |
+| `<leader>fk`  | n    | 按键映射             | `Snacks.picker.keymaps()`                     |
+| `<leader>fl`  | n    | 位置列表             | `Snacks.picker.loclist()`                     |
+| `<leader>fH`  | n    | 高亮组               | `Snacks.picker.highlights()`                  |
+| `<leader>fn`  | n    | 通知历史             | `Snacks.picker.notifications()`               |
+| `<leader>fa`  | n    | 自动命令             | `Snacks.picker.autocmds()`                    |
+| `<leader>fp`  | n    | 寄存器               | `Snacks.picker.registers()`                   |
+| `<leader>ff`  | n    | 查找文件             | `Snacks.picker.files()`                       |
+| `<leader>fb`  | n    | 缓冲区               | `Snacks.picker.buffers()`                     |
+| `<leader>fg`  | n    | 查找 Git 文件        | `Snacks.picker.git_files()`                   |
+| `<leader>fr`  | n    | 最近打开             | `Snacks.picker.recent()`                      |
+| `<leader>e`   | n    | 文件浏览器           | `Snacks.explorer()`                           |
+| `<leader>ft`  | n    | 终端                 | `Snacks.terminal()`                           |
+| `<leader>fz`  | n    | 专注模式             | `Snacks.zen()`                                |
+| `<leader>fc`  | n    | 主题切换             | `Snacks.picker.colorschemes()`                |
+| `<leader>sb`  | n    | 当前缓冲区行           | `Snacks.picker.lines()`            |
+| `<leader>sB`  | n    | 在所有缓冲区中搜索     | `Snacks.picker.grep_buffers()`     |
+| `<leader>sg`  | n    | 全局搜索               | `Snacks.picker.grep()`             |
+| `<leader>sw`  | n/x  | 搜索选中文本或光标词   | `Snacks.picker.grep_word()`        |
+| `<leader>gg`  | n    | 打开 lazygit           | `Snacks.lazygit()`                   |
+| `<leader>gb`  | n    | Git 分支               | `Snacks.picker.git_branches()`       |
+| `<leader>gl`  | n    | Git 提交日志           | `Snacks.picker.git_log()`            |
+| `<leader>gL`  | n    | 当前行提交历史         | `Snacks.picker.git_log_line()`       |
+| `<leader>gs`  | n    | Git 状态               | `Snacks.picker.git_status()`         |
+| `<leader>gS`  | n    | Git 暂存区             | `Snacks.picker.git_stash()`          |
+| `<leader>gd`  | n    | Git 差异               | `Snacks.picker.git_diff()`           |
+| `<leader>gh`  | n    | 当前文件历史           | `Snacks.picker.git_log_file()`       |
 
 ## 💻 toggleterm.nvim
 | 快捷键  | 模式 | 功能说明 | 映射命令          |
