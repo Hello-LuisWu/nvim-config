@@ -46,7 +46,7 @@ return {
                 lualine_c = {
                     {
                         "filename",
-                        path = 1, -- 文件名 (0=仅名称, 1=显示路径)
+                        path = 0, -- 文件名 (0=仅名称, 1=显示路径)
                         -- icon = '', -- 文件图标
                         color = function()
                             if vim.bo.readonly then

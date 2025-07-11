@@ -117,7 +117,7 @@ return {
                 -- 侧边栏偏移配置（如 nvimtree）
                 offsets = {
                     {
-                        filetype = "neo-tree",
+                        filetype = "snacks_picker_list",
                         text = " File Explorer", -- 自定义显示的文本
                         text_align = "left",     -- 文本对齐方式
                         separator = true,        -- 显示分隔线

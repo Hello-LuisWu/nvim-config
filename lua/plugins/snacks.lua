@@ -20,7 +20,7 @@ return {
         { "<leader>fj", function() Snacks.picker.jumps() end, desc = "跳转历史" },
         { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "按键映射" },
         { "<leader>fl", function() Snacks.picker.loclist() end, desc = "位置列表" },
-        -- { "<leader>fH", function() Snacks.picker.highlights() end, desc = "高亮组" },
+        { "<leader>fH", function() Snacks.picker.highlights() end, desc = "高亮组" },
         { "<leader>fn", function() Snacks.picker.notifications() end, desc = "通知历史" },
         { "<leader>fa", function() Snacks.picker.autocmds() end, desc = "自动命令" },
         { "<leader>fp", function() Snacks.picker.registers() end, desc = "寄存器" },
@@ -29,9 +29,9 @@ return {
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "缓冲区" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "查找 Git 文件" },
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "最近打开" },
-        { "<leader>n", function() Snacks.explorer() end, desc = "文件浏览器" },
-        { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
+        { "<leader>e", function() Snacks.explorer() end, desc = "文件浏览器" },
         { "<leader>ft", function() Snacks.terminal() end, desc = "终端" },
+        { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
         { "<leader>fc", function() Snacks.picker.colorschemes() end, desc = "主题切换" },
 
         -- 🔎 Grep 搜索
@@ -79,7 +79,7 @@ return {
                     },
                 })
             end,
-        }
+        },
     },
     ---@type snacks.Config
     opts = {
@@ -87,18 +87,55 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         bigfile = { enabled = true },
-        dashboard = { enabled = true },
-        explorer = {
-            enabled = true,
-            width = 20,
+        dashboard = {
+            width = 60,
+            row = nil,                                                                   -- dashboard position. nil for center
+            col = nil,                                                                   -- dashboard position. nil for center
+            pane_gap = 4,                                                                -- empty columns between vertical panes
+            autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", -- autokey sequence
+            preset = {
+                -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
+                ---@type fun(cmd:string, opts:table)|nil
+                pick = nil,
+                -- Used by the `keys` section to show keymaps.
+                -- Set your custom keymaps here.
+                -- When using a function, the `items` argument are the default keymaps.
+                ---@type snacks.dashboard.Item[]
+                keys = {
+                    { icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
+                    { icon = " ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
+                    { icon = " ", key = "g", desc = "全局搜索文本", action = ":lua Snacks.dashboard.pick('live_grep')" },
+                    { icon = " ", key = "r", desc = "最近打开文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                    { icon = " ", key = "c", desc = "配置文件", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                    { icon = " ", key = "s", desc = "恢复上次会话", section = "session" },
+                    { icon = "󰒲 ", key = "L", desc = "插件管理 (Lazy)", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+                    { icon = " ", key = "q", desc = "退出 Neovim", action = ":qa" },
+                },
+                -- Used by the `header` section
+                header = [[
+██╗     ██╗   ██╗██╗███████╗    ███████╗██████╗ ██╗████████╗ ██████╗ ██████╗
+██║     ██║   ██║██║██╔════╝    ██╔════╝██╔══██╗██║╚══██╔══╝██╔═══██╗██╔══██╗
+██║     ██║   ██║██║███████╗    █████╗  ██║  ██║██║   ██║   ██║   ██║██████╔╝
+██║     ██║   ██║██║╚════██║    ██╔══╝  ██║  ██║██║   ██║   ██║   ██║██╔══██╗
+███████╗╚██████╔╝██║███████║    ███████╗██████╔╝██║   ██║   ╚██████╔╝██║  ██║
+╚══════╝ ╚═════╝ ╚═╝╚══════╝    ╚══════╝╚═════╝ ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝]]
+            },
+            sections = {
+                { section = "header" },
+                { section = "keys", gap = 1 },
+                { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
+                { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+                { section = "startup" },
+            },
         },
+        explorer = { enabled = false },
         indent = {
             indent = { enabled = true },
             scope = {
                 enabled = true, -- enable highlighting the current scope
                 priority = 200,
                 char = "│",
-                underline = false, -- 是否使用下划线标记作用域起始行
+                underline = false,   -- 是否使用下划线标记作用域起始行
                 only_current = true, -- 是否仅在当前窗口中显示
                 hl = {
                     "SnacksIndent1",
@@ -127,7 +164,8 @@ return {
 
         -- ✅ Explorer 详细配置（按照 snacks.nvim 文档）
         picker = {
-            win = { input = { keys = { ['<Esc>'] = { 'close', mode = { 'n', 'i' } } } } },
+            enabled = false,
+            win = { input = { keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
             sources = {
                 explorer = {
                     finder = "explorer",            -- 使用 explorer finder
@@ -161,9 +199,7 @@ return {
                         fuzzy = false,
                     },
                     -- 注册初始化函数
-                    config = function(opts)
-                        return require("snacks.picker.source.explorer").setup(opts)
-                    end,
+                    config = function(opts) return require("snacks.picker.source.explorer").setup(opts) end,
                     -- 键位绑定（在文件浏览器内可用）
                     win = {
                         list = {
@@ -208,11 +244,11 @@ return {
         scope = { enabled = true },
         scroll = { enabled = false }, -- 平滑滚动
         statuscolumn = {              -- 状态列美化 (行号+诊断+折叠)
-            -- enabled = true,
-            left = { 'mark', 'git' },
-            right = { 'sign', 'fold' },
+            enabled = true,
+            left = { "mark", "git" },
+            right = { "sign", "fold" },
             folds = { open = true, git_hl = true },
-            git = { patterns = { 'GitSign', 'MiniDiffSign' } },
+            git = { patterns = { "GitSign", "MiniDiffSign" } },
         },
         words = { enabled = false },
     },

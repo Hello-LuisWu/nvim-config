@@ -65,6 +65,7 @@ opt.fillchars = {
     diff = "⣿", -- `diff` 模式下的填充字符
     stlnc = " ", -- 非当前窗口状态栏填充
 }
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.laststatus = 0 -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
 opt.showtabline = 0 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
 -- opt.tabpagemax = 9   -- 最多可以打开 9 个标签页，默认10个

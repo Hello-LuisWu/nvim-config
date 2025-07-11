@@ -1,5 +1,7 @@
 # 🧠 nvim-config User Guide
 
+## Interface
+
 ![start](img/nvim-start.png)
 > Welcome screen
 

@@ -1,6 +1,7 @@
 -- NOTE: 首页
 return {
     "goolord/alpha-nvim",
+    enabled = false,
     event = "VimEnter",
     keys = {
         { "<leader>a", mode = "n", "<cmd>Alpha<CR>", desc = "主页" },
@@ -28,9 +29,8 @@ return {
         -- Dashboard 配置
         dashboard.section.header.val = vim.split(logo, "\n")
         dashboard.section.buttons.val = {
-            dashboard.button("e", "文件浏览器", ":lua Snacks.explorer()<CR>"),
-            dashboard.button("f", "智能查找文件", ":lua Snacks.picker.smart()<CR>"),
             dashboard.button("r", "最近文件", ":lua Snacks.picker.recent()<CR>"),
+            dashboard.button("f", "智能查找文件", ":lua Snacks.picker.smart()<CR>"),
             dashboard.button("e", "新建文件", ":ene <BAR> startinsert <CR>"),
             dashboard.button("g", "全局搜索 (Grep)", ":lua Snacks.picker.grep()<CR>"),
             dashboard.button("c", "配置文件浏览",":lua Snacks.picker.files({ cwd = vim.fn.expand('~/.config/nvim'), hidden = true, follow = true })<CR>"),

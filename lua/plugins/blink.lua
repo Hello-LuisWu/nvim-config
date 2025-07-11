@@ -228,7 +228,7 @@ return {
         enabled = function()
             return not vim.tbl_contains({
                 -- "lua",
-                "markdown"
+                -- "markdown"
             }, vim.bo.filetype)
         end,
     },

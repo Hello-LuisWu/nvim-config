@@ -1,5 +1,6 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
     dependencies = { -- 依赖插件
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",

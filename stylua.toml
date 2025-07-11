@@ -1,7 +1,7 @@
 # stylua.toml
 
 indent_type = "Spaces"     # 使用空格缩进
-indent_width = 4           # 缩进宽度为 2
+indent_width = 2           # 缩进宽度为 2
 column_width = 100         # 每行最大列宽
 line_endings = "Unix"      # 换行风格（Unix）
 quote_style = "AutoPreferDouble"

@@ -1,7 +1,7 @@
 return {
     "folke/flash.nvim",
     event = "VeryLazy",
-    enabled = false,
+    -- enabled = false,
     -- vscode = true,
     keys = {
         -- { "<CR>",  mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
