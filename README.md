@@ -2,18 +2,7 @@
 
 ## Interface
 
-![start](img/nvim-start.png)
-> Welcome screen
-
----
-
-![edit](img/edit.png)
-> Editing interface
-
----
-
-![todo](img/todo.png)
-> Todo list
+![start](img/star.gif)
 
 ---
 

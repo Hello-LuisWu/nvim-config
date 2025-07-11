@@ -1,6 +1,9 @@
 return {
     "folke/which-key.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    keys = {
+        {"<leader>"}
+    },
     dependencies = {
         'nvim-tree/nvim-web-devicons',
         'echasnovski/mini.icons',

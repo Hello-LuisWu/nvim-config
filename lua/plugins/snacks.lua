@@ -2,7 +2,8 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     -- enabled = false,
-    lazy = false,
+    event = "VeryLazy",
+    -- lazy = false,
     keys = {
 
         { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "重命名文件" },
@@ -33,6 +34,8 @@ return {
         { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
         { "<leader>fc", function() Snacks.picker.colorschemes() end, desc = "主题切换" },
 
+
+
         -- 🔎 Grep 搜索
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "当前缓冲区行" },
         {
@@ -42,6 +45,7 @@ return {
         },
         { "<leader>sg", function() Snacks.picker.grep() end, desc = "全局搜索" },
         {
+            "<leader>sw",
             "<leader>sw",
             function() Snacks.picker.grep_word() end,
             desc = "搜索选中文本或光标词",
@@ -102,54 +106,42 @@ return {
                 -- When using a function, the `items` argument are the default keymaps.
                 ---@type snacks.dashboard.Item[]
                 keys = {
-                    { icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
-                    { icon = " ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
-                    { icon = " ", key = "g", desc = "全局搜索文本", action = ":lua Snacks.dashboard.pick('live_grep')" },
-                    { icon = " ", key = "r", desc = "最近打开文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                    { icon = " ", key = "c", desc = "配置文件", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-                    { icon = " ", key = "s", desc = "恢复上次会话", section = "session" },
-                    { icon = "󰒲 ", key = "L", desc = "插件管理 (Lazy)", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-                    { icon = " ", key = "q", desc = "退出 Neovim", action = ":qa" },
+                    { icon = "🕘 ", key = "r", desc = "历史文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                    { icon = "🔍 ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
+                    { icon = "📄 ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
+                    { icon = "🔖 ", key = "g", desc = "全局搜索文本", action = ":lua Snacks.dashboard.pick('live_grep')" },
+                    { icon = "🔨 ", key = "c", desc = "配置文件", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                    { icon = "📦 ", key = "L", desc = "插件管理 (Lazy)", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+                    { icon = "🚪 ", key = "q", desc = "退出 Neovim", action = ":qa" },
                 },
                 -- Used by the `header` section
                 header = [[
-██╗     ██╗   ██╗██╗███████╗    ███████╗██████╗ ██╗████████╗ ██████╗ ██████╗
-██║     ██║   ██║██║██╔════╝    ██╔════╝██╔══██╗██║╚══██╔══╝██╔═══██╗██╔══██╗
-██║     ██║   ██║██║███████╗    █████╗  ██║  ██║██║   ██║   ██║   ██║██████╔╝
-██║     ██║   ██║██║╚════██║    ██╔══╝  ██║  ██║██║   ██║   ██║   ██║██╔══██╗
-███████╗╚██████╔╝██║███████║    ███████╗██████╔╝██║   ██║   ╚██████╔╝██║  ██║
-╚══════╝ ╚═════╝ ╚═╝╚══════╝    ╚══════╝╚═════╝ ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝]]
+██╗     ██╗   ██╗██╗███████╗    ███████╗██████╗ ██╗████████╗
+██║     ██║   ██║██║██╔════╝    ██╔════╝██╔══██╗██║╚══██╔══╝
+██║     ██║   ██║██║███████╗    █████╗  ██║  ██║██║   ██║   
+██║     ██║   ██║██║╚════██║    ██╔══╝  ██║  ██║██║   ██║   
+███████╗╚██████╔╝██║███████║    ███████╗██████╔╝██║   ██║   
+╚════╝ ╚═════╝ ╚═╝╚══════╝    ╚══════╝╚═════╝ ╚═╝   ╚═╝]]
             },
-            -- item field formatters
             formats = {
-                icon = function(item)
-                    if item.file and item.icon == "file" or item.icon == "directory" then
-                        return M.icon(item.file, item.icon)
-                    end
-                    return { item.icon, width = 2, hl = "icon" }
-                end,
-                footer = { "%s", align = "center" },
-                header = { "%s", align = "center" },
-                file = function(item, ctx)
-                    local fname = vim.fn.fnamemodify(item.file, ":~")
-                    fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
-                    if #fname > ctx.width then
-                        local dir = vim.fn.fnamemodify(fname, ":h")
-                        local file = vim.fn.fnamemodify(fname, ":t")
-                        if dir and file then
-                            file = file:sub(-(ctx.width - #dir - 2))
-                            fname = dir .. "/…" .. file
-                        end
-                    end
-                    local dir, file = fname:match("^(.*)/(.+)$")
-                    return dir and { { dir .. "/", hl = "dir" }, { file, hl = "file" } } or { { fname, hl = "file" } }
+                key = function(item)
+                    return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
                 end,
             },
             sections = {
+                -- { section = "terminal", cmd = "cmatrix", hl = "header", padding = 1, indent = -45, width = 150, height = 10 },
                 { section = "header" },
-                { section = "keys", gap = 1 },
-                { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
-                { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+                { icon = " ", section = "keys", indent = 0, padding = 1, gap = 1 },
+                { icon = "📄", title = "Sessions", pane = 2, padding = 0 },
+                { section = "recent_files", pane = 2, indent = 0, padding = 1, gap = 0 },
+                { icon = "📨", title = "Sessions", pane = 2, padding = 0 },
+                { section = "projects", pane = 2, padding = 1 },
+                {
+                    pane = 2,
+                    section = "terminal",
+                    cmd = "cmatrix",
+                    padding = 1
+                },
                 { section = "startup" },
             },
         },
@@ -159,7 +151,7 @@ return {
             scope = {
                 enabled = true, -- enable highlighting the current scope
                 priority = 200,
-                char = "│",
+                char = "┊",
                 underline = false,   -- 是否使用下划线标记作用域起始行
                 only_current = true, -- 是否仅在当前窗口中显示
                 hl = {

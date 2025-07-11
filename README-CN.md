@@ -1,17 +1,8 @@
 # 🧠 nvim-config 使用说明
 
-![start](img/nvim-start.png)
-> 欢迎页面
+## 界面
 
----
-
-![edit](img/edit.png)
-> 编辑界面
-
----
-
- ![todo](img/todo.png)
-> 待办事项
+![start](img/star.gif)
 
 ---
 

@@ -26,6 +26,9 @@ return {
         })
         vim.cmd.colorscheme('gruvbox')
     end
+
+
+
     -- 'AlexvZyl/nordic.nvim',
     -- priority = 1000,
     -- config = function()
