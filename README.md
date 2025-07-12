@@ -4,9 +4,11 @@
 
 ![start](img/star.gif)
 
+![edit](img/edit.png)
+
 ---
 
-> **High Performance · Modular · Out-of-the-box**: Neovim configuration for developers, supporting LSP, auto-completion, code formatting, syntax highlighting, UI beautification, and more.
+**High Performance · Modular · Out-of-the-box**: Neovim configuration for developers, supporting LSP, auto-completion, code formatting, syntax highlighting, UI beautification, and more.
 
 ---
 

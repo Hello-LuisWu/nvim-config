@@ -5,14 +5,7 @@ return {
     event = "VeryLazy",
     -- lazy = false,
     keys = {
-
         { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "重命名文件" },
-        {
-            "<leader>gB",
-            function() Snacks.gitbrowse() end,
-            desc = "Git 浏览器",
-            mode = { "n", "v" },
-        },
         { "<leader>fd", function() Snacks.picker.command_history() end, desc = "命令历史" },
         { "<leader>fh", function() Snacks.picker.help() end, desc = "帮助文档" },
 
@@ -53,6 +46,7 @@ return {
         },
 
         -- 🧬 Git 工具
+        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git 浏览器", mode = { "n", "v" }, },
         { "<leader>gg", function() Snacks.lazygit() end, desc = "打开 lazygit" },
         { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git 分支" },
         { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git 提交日志" },
@@ -110,18 +104,37 @@ return {
                     { icon = "🔍 ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
                     { icon = "📄 ", key = "n", desc = "新建文件", action = ":ene | startinsert" },
                     { icon = "🔖 ", key = "g", desc = "全局搜索文本", action = ":lua Snacks.dashboard.pick('live_grep')" },
-                    { icon = "🔨 ", key = "c", desc = "配置文件", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                    {
+                        icon = "🔨 ",
+                        key = "c",
+                        desc = "配置文件",
+                        action = function()
+                            Snacks.picker.files({
+                                cwd = vim.fn.expand("~/.config/nvim"),     -- 📂 设置工作目录为 Neovim 配置目录
+                                hidden = true,                             -- 👁️ 显示隐藏文件
+                                follow = true,                             -- 🔗 跟随软链接
+                                show_untracked = true,                     -- 📦 显示未被 Git 跟踪的文件
+                            })
+                        end,
+                    },
+                    -- { icon = "🔨 ", key = "c", desc = "配置文件", action = ":lua Snacks.picker.files({ cwd = vim.fn.expand('~/.config/nvim'), hidden = true, follow = true })" },
                     { icon = "📦 ", key = "L", desc = "插件管理 (Lazy)", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
                     { icon = "🚪 ", key = "q", desc = "退出 Neovim", action = ":qa" },
                 },
                 -- Used by the `header` section
                 header = [[
-██╗     ██╗   ██╗██╗███████╗    ███████╗██████╗ ██╗████████╗
-██║     ██║   ██║██║██╔════╝    ██╔════╝██╔══██╗██║╚══██╔══╝
-██║     ██║   ██║██║███████╗    █████╗  ██║  ██║██║   ██║   
-██║     ██║   ██║██║╚════██║    ██╔══╝  ██║  ██║██║   ██║   
-███████╗╚██████╔╝██║███████║    ███████╗██████╔╝██║   ██║   
-╚════╝ ╚═════╝ ╚═╝╚══════╝    ╚══════╝╚═════╝ ╚═╝   ╚═╝]]
+      ___         ___                           ___     
+     /\__\       /\__\            ___          /\  \    
+    /:/  /      /:/  /           /\  \        /::\  \   
+   /:/  /      /:/  /            \:\  \      /:/\ \  \  
+  /:/  /      /:/  /  ___        /::\__\    _\:\~\ \  \ 
+ /:/__/      /:/__/  /\__\    __/:/\/__/   /\ \:\ \ \__\
+ \:\  \      \:\  \ /:/  /   /\/:/  /      \:\ \:\ \/__/
+  \:\  \      \:\  /:/  /    \::/__/        \:\ \:\__\  
+   \:\  \      \:\/:/  /      \:\__\         \:\/:/  /  
+    \:\__\      \::/  /        \/__/          \::/  /   
+     \/__/       \/__/                         \/__/    
+]]
             },
             formats = {
                 key = function(item)
@@ -139,7 +152,7 @@ return {
                 {
                     pane = 2,
                     section = "terminal",
-                    cmd = "cmatrix",
+                    cmd = "sl && cmatrix -C green",
                     padding = 1
                 },
                 { section = "startup" },

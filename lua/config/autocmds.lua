@@ -91,12 +91,24 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
-        if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.fn.setpos(".", vim.fn.getpos("'\""))
-            vim.cmd("silent! foldopen")
-        end
+        vim.schedule(function()
+            local last_pos = vim.fn.line("'\"")
+            if last_pos > 0 and last_pos <= vim.fn.line("$") then
+                vim.fn.setpos(".", vim.fn.getpos("'\""))
+                vim.cmd("silent! foldopen")
+            end
+        end)
     end,
 })
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--     pattern = "*",
+--     callback = function()
+--         if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
+--             vim.fn.setpos(".", vim.fn.getpos("'\""))
+--             vim.cmd("silent! foldopen")
+--         end
+--     end,
+-- })
 
 -- 离开插入模式 时关闭粘贴模式
 vim.api.nvim_create_autocmd("InsertLeave", {
