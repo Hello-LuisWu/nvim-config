@@ -65,24 +65,27 @@
 | U            | n     | 重做                   | `<C-r>`                                                      |
 
 ## 📝 Markdown
-| 快捷键       | 模式 | 功能说明   | 映射命令                                                                                       |
-| ------------ | ---- | ---------- | ---------------------------------------------------------------------------------------------- |
-| `\\\\`       | i    | 清除标记   | `<ESC>/<++><CR>:nohls<CR>c4l`                                                                  |
-| `<C-CR>`     | i    | 插入斜体   | `<Esc>0yf o<Esc>p0<C-a>$a`                                                                     |
-| BB           | i    | 加粗文本   | `**** <++><Esc>6hi`                                                                            |
-| DD           | i    | 加粗斜体   | `****** <++><Esc>7hi`                                                                          |
-| II           | i    | 斜体文本   | `** <++><Esc>F*i`                                                                              |
-| SS           | i    | 删除线     | `~~~~ <++><esc>6hi`                                                                            |
-| UU           | i    | 下划线     | `<u></u> <++><Esc>2F<i`                                                                        |
-| LS           | i    | 可折叠列表 | `<details><Enter><summary></summary><Enter><++><Enter></details><Enter><Enter><++><Esc>4k$F<i` |
-| `~~`         | i    | 代码块     | `~~~<Enter><Enter>~~~<Enter><++><Esc>2kA`                                                      |
-| PP           | i    | 插入图片   | `![](<++>) <++><Esc>F[a`                                                                       |
-| AA           | i    | 插入链接   | `[](<++>) <++><Esc>F[a`                                                                        |
-| @@           | i    | 二级标题   | `##<Space>`                                                                                    |
-| `##`         | i    | 三级标题   | `##<Space>`                                                                                   |
-| `$$`         | i    | 四级标题   | `###<Space>`                                                                                  |
-| `<leader>mp` | n    | 粘贴图片   | `:call mdip#MarkdownClipboardImage()<CR>`                                                      |
-| `<leader>mt` | n    | 生成目录   | `:TOC<CR>`                                                                                     |
+| 快捷键       | 模式 | 功能说明            | 映射命令                                                                                       |
+|--------------|------|---------------------|------------------------------------------------------------------------------------------------|
+| `\\\\`       | i    | 清除标记            | `<ESC>/<++><CR>:nohls<CR>c4l`                                                                  |
+| `<C-CR>`     | i    | 插入斜体            | `<Esc>0yf o<Esc>p0<C-a>$a`                                                                     |
+| BB           | i    | 加粗文本            | `**** <++><Esc>6hi`                                                                            |
+| DD           | i    | 加粗斜体            | `****** <++><Esc>7hi`                                                                          |
+| II           | i    | 斜体文本            | `** <++><Esc>F*i`                                                                              |
+| SS           | i    | 删除线              | `~~~~ <++><esc>6hi`                                                                            |
+| UU           | i    | 下划线              | `<u></u> <++><Esc>2F<i`                                                                        |
+| LS           | i    | 可折叠列表          | `<details><Enter><summary></summary><Enter><++><Enter></details><Enter><Enter><++><Esc>4k$F<i` |
+| `~~`         | i    | 代码块              | `~~~<Enter><Enter>~~~<Enter><++><Esc>2kA`                                                      |
+| PP           | i    | 插入图片            | `![](<++>) <++><Esc>F[a`                                                                       |
+| AA           | i    | 插入链接            | `[](<++>) <++><Esc>F[a`                                                                        |
+| @@           | i    | 二级标题            | `##<Space>`                                                                                    |
+| `##`         | i    | 三级标题            | `##<Space>`                                                                                    |
+| `$$`         | i    | 四级标题            | `###<Space>`                                                                                   |
+| `<leader>mp` | n    | 粘贴图片            | `:call mdip#MarkdownClipboardImage()<CR>`                                                      |
+| `<leader>mb` | n    | 生成目录            | `:TOC<CR>`                                                                                     |
+| `<leader>mt` | n    | 表格模式            | `:Mtm<CR>`                                                                                     |
+| `<leader>md` | n    | `md` 在浏览器中预览 | `:MarkdownPreviewToggle<CR>`                                                                   |
+| `<leader>mD` | n    | `md` 在nvim中预览   | `<cmd>RenderMarkdown toggle<CR>`                                                               |
 
 ## 🏠 Alpha-nvim
 | 快捷键      | 模式 | 功能说明 | 映射命令     |
@@ -256,11 +259,3 @@
 | zR     | n    | 展开所有折叠 | `require('ufo').openAllFolds()`  |
 | zM     | n    | 关闭所有折叠 | `require('ufo').closeAllFolds()` |
 
-
-
-
-
-|jrjgb  |jtjgjaee |
-|-------|---------|
-|jkjtdgj|jtgjdbnj |
-|jdfgjb|gjhbn |
