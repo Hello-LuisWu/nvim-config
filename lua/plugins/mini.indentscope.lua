@@ -2,7 +2,7 @@ return {
     {
         'echasnovski/mini.indentscope',
         version = '*',
-        enabled = false,
+        -- enabled = false,
         event = {
             "BufRead",   -- buffer读取之后,
             "BufNewFile" -- 新建文件时
@@ -82,7 +82,7 @@ return {
         },
         config = function(_, opts)
             -- 配置颜色（确保与主题兼容）
-            vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#167369" })
+            vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#dad553" })
 
             require("mini.indentscope").setup(opts)
 

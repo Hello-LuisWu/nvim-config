@@ -1,3 +1,24 @@
+-- 禁用 mini.indentscope 的文件类型列表
+local disable_ft = {
+  "help",
+  "dashboard",
+  "neo-tree",
+  "Trouble",
+  "lazy",
+  "mason",
+  "notify",
+  "toggleterm",
+  "lspinfo",
+  "txt",
+}
+-- 创建自动命令，在指定文件类型中禁用 mini.indentscope
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = disable_ft,
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end,
+})
+
 -- md 禁用补全
 vim.api.nvim_create_autocmd('BufEnter', {
     pattern = '*.md',

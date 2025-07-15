@@ -227,8 +227,6 @@ return {
         -- 指定文件类型启用/禁用
         enabled = function()
             return not vim.tbl_contains({
-                -- "lua",
-                -- "markdown"
             }, vim.bo.filetype)
         end,
     },
