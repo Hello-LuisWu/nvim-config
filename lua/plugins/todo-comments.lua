@@ -7,7 +7,7 @@ return {
     },
     -- keys = {
     -- },
-    -- INFO:
+
     opts = {
         signs = true,      -- 是否在标记列显示图标（左侧边栏）
         sign_priority = 8, -- 标记的显示优先级（数字越大优先级越高）
@@ -15,13 +15,15 @@ return {
         -- 定义被识别为待办事项注释的关键字配置
         keywords = {
             FIX = { icon = " ", color = "error", alt = { "BUG", "FIXME", "FIXIT", "ISSUE" } },
-            TODO = { icon = " ", color = "info" },
+            ERRO = { icon = "✘ ", color = "error", alt = { "错误" } },
+            TODO = { icon = " ", color = "info", alt = { "待办" } },
             -- INFO = { icon = " ", color = "info", alt = { "INFORMATION" } },
+            HINT = { icon = "⚑ ", color = "hint", alt = { "提示" } },
             HACK = { icon = " ", color = "warning" },
-            WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+            WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "警告" } },
             PERF = { icon = " ", color = "hint", alt = { "OPTIMIZE", "PERFORMANCE", "OPTIMISE" } },
-            NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-            TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+            NOTE = { icon = " ", color = "hint", alt = { "INFO", "信息" } },
+            TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED", "测试" } },
         },
         -- 图形界面样式配置
         gui_style = {

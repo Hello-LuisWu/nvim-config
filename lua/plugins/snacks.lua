@@ -1,3 +1,10 @@
+-- ------------------------------------------------------------------------------
+-- Author   : Luis Wu
+-- Editor   : Neovim
+-- Date     : 2025-07-22 10:41
+-- Position : /Users/luis/.config/nvim/lua/plugins/snacks.lua
+-- System   : Darwin 24.3.0
+-- ------------------------------------------------------------------------------
 return {
     "folke/snacks.nvim",
     priority = 1000,
@@ -26,6 +33,18 @@ return {
         { "<leader>ft", function() Snacks.terminal() end, desc = "终端" },
         { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
         { "<leader>fc", function() Snacks.picker.colorschemes() end, desc = "主题切换" },
+        {
+            "<leader>fC",
+            function()
+                Snacks.picker.files({
+                    cwd = vim.fn.expand("~/.config/nvim"), -- 📂 设置工作目录为 Neovim 配置目录
+                    hidden = true,                         -- 👁️ 显示隐藏文件
+                    follow = true,                         -- 🔗 跟随软链接
+                    show_untracked = true,                 -- 📦 显示未被 Git 跟踪的文件
+                })
+            end,
+            desc = "配置文件",
+        },
 
         -- 🔎 Grep 搜索
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "当前缓冲区行" },
@@ -53,11 +72,7 @@ return {
         { "<leader>gg", function() Snacks.lazygit() end, desc = "打开 lazygit" },
         { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git 分支" },
         { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git 提交日志" },
-        {
-            "<leader>gL",
-            function() Snacks.picker.git_log_line() end,
-            desc = "当前行提交历史",
-        },
+        { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "当前行提交历史" },
         { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git 状态" },
         { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git 暂存区" },
         { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git 差异" },
@@ -150,17 +165,16 @@ return {
                 },
                 -- Used by the `header` section
                 header = [[
-      ___          ___                             ___
-     /\__\        /\__\             ___           /\  \
-    /:/  /       /:/  /            /\  \         /::\  \
-   /:/  /       /:/  /             \:\  \       /:/\ \  \
-  /:/  /       /:/  /  ___         /::\__\     _\:\~\ \  \
- /:/__/       /:/__/  /\__\     __/:/\/__/    /\ \:\ \ \__\
- \:\  \       \:\  \ /:/  /    /\/:/  /       \:\ \:\ \/__/
-  \:\  \       \:\  /:/  /     \::/__/         \:\ \:\__\
-   \:\  \       \:\/:/  /       \:\__\          \:\/:/  /
-    \:\__\       \::/  /         \/__/           \::/  /
-     \/__/        \/__/                           \/__/
+░██                 ░██
+░██
+░██       ░██    ░██░██ ░███████
+░██       ░██    ░██░██░██
+░██       ░██    ░██░██ ░███████
+░██       ░██   ░███░██       ░██
+░██████████░█████░██░██ ░███████
+
+
+
 ]],
             },
             formats = {
@@ -204,22 +218,22 @@ return {
             indent = {
                 priority = 1,
                 enabled = true, -- enable indent guides
-                char = "╎",
-                -- char = "▎",
+                -- char = "╎",
+                char = "▎",
                 only_scope = false,   -- only show indent guides of the scope
                 only_current = false, -- only show indent guides in the current window
                 hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
                 -- can be a list of hl groups to cycle through
-                -- hl = {
-                --     "SnacksIndent1",
-                --     "SnacksIndent2",
-                --     "SnacksIndent3",
-                --     "SnacksIndent4",
-                --     "SnacksIndent5",
-                --     "SnacksIndent6",
-                --     "SnacksIndent7",
-                --     "SnacksIndent8",
-                -- },
+                hl = {
+                    "SnacksIndent1",
+                    "SnacksIndent2",
+                    "SnacksIndent3",
+                    "SnacksIndent4",
+                    "SnacksIndent5",
+                    "SnacksIndent6",
+                    "SnacksIndent7",
+                    "SnacksIndent8",
+                },
             },
             -- animate scopes. Enabled by default for Neovim >= 0.10
             -- Works on older versions but has to trigger redraws during animation.
@@ -241,42 +255,12 @@ return {
             },
             ---@class snacks.indent.Scope.Config: snacks.scope.Config
             scope = {
-                enabled = true, -- enable highlighting the current scope
+                enabled = false, -- enable highlighting the current scope
                 priority = 200,
                 char = "▎",
                 underline = false,    -- underline the start of the scope
                 only_current = false, -- only show scope in the current window
                 hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
-            },
-            chunk = {
-                -- when enabled, scopes will be rendered as chunks, except for the
-                -- top-level scope which will be rendered as a scope.
-                enabled = true,
-                -- only show chunk scopes in the current window
-                only_current = false,
-                priority = 600,
-                -- hl = "SnacksIndentChunk", ---@type string|string[] hl group for chunk scopes
-                hl = {
-                    "SnacksIndent1",
-                    "SnacksIndent2",
-                    "SnacksIndent3",
-                    "SnacksIndent4",
-                    "SnacksIndent5",
-                    "SnacksIndent6",
-                    "SnacksIndent7",
-                    "SnacksIndent8",
-                },
-
-                char = {
-                    -- corner_top = "┌",
-                    -- corner_bottom = "└",
-                    corner_top = "╭",
-                    corner_bottom = "╰",
-                    horizontal = "─",
-                    vertical = "│",
-                    arrow = "─",
-                    -- arrow = ">",
-                },
             },
             -- filter for buffers to enable indent guides
             filter = function(buf)
@@ -372,6 +356,7 @@ return {
         scroll = { enabled = false }, -- 平滑滚动
         statuscolumn = {              -- 状态列美化 (行号+诊断+折叠)
             enabled = true,
+            -- left = { "", "" },
             left = { "mark", "git" },
             right = { "sign", "fold" },
             folds = { open = true, git_hl = true },
@@ -467,3 +452,8 @@ return {
     --     })
     -- end
 }
+-- WARN: jjsfg
+-- NOTE: jsfg
+-- INFO: jbhjgfjfsjlkdf
+
+-- EROOR:

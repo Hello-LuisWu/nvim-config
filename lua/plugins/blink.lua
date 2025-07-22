@@ -5,7 +5,7 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "moyiz/blink-emoji.nvim",
-        "mikavilpas/blink-ripgrep.nvim",
+        -- "mikavilpas/blink-ripgrep.nvim",
     },
     version = '1.*',
     ---@module 'blink.cmp'
@@ -71,44 +71,46 @@ return {
             },
         },
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'ripgrep' },
+            default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji',
+                -- 'ripgrep'
+            },
             providers = {
-                ripgrep = {
-                    score_offset = 1,
-                    module = "blink-ripgrep",
-                    name = "Ripgrep",
-                    ---@module "blink-ripgrep"
-                    ---@type blink-ripgrep.Options
-                    opts = {
-                        prefix_min_len = 3,
-                        context_size = 5,
-                        max_filesize = "1M",
-                        project_root_marker = ".git",
-                        project_root_fallback = true,
-                        search_casing = "--ignore-case",
-                        additional_rg_options = {},
-                        fallback_to_regex_highlighting = true,
-                        ignore_paths = {},
-                        additional_paths = {},
-                        toggles = {
-                        },
-                        future_features = {
-                            backend = {
-                                use = "ripgrep",
-                                customize_icon_highlight = true,
-                            },
-                        },
-                        debug = false,
-                    },
-                    transform_items = function(_, items)
-                        for _, item in ipairs(items) do
-                            item.labelDetails = {
-                                description = "(rg)",
-                            }
-                        end
-                        return items
-                    end,
-                },
+                -- ripgrep = {
+                --     score_offset = 1,
+                --     module = "blink-ripgrep",
+                --     name = "Ripgrep",
+                --     ---@module "blink-ripgrep"
+                --     ---@type blink-ripgrep.Options
+                --     opts = {
+                --         prefix_min_len = 3,
+                --         context_size = 5,
+                --         max_filesize = "1M",
+                --         project_root_marker = ".git",
+                --         project_root_fallback = true,
+                --         search_casing = "--ignore-case",
+                --         additional_rg_options = {},
+                --         fallback_to_regex_highlighting = true,
+                --         ignore_paths = {},
+                --         additional_paths = {},
+                --         toggles = {
+                --         },
+                --         future_features = {
+                --             backend = {
+                --                 use = "ripgrep",
+                --                 customize_icon_highlight = true,
+                --             },
+                --         },
+                --         debug = false,
+                --     },
+                --     transform_items = function(_, items)
+                --         for _, item in ipairs(items) do
+                --             item.labelDetails = {
+                --                 description = "(rg)",
+                --             }
+                --         end
+                --         return items
+                --     end,
+                -- },
                 emoji = {
                     module = "blink-emoji",
                     name = "Emoji",
