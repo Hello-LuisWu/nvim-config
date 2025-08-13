@@ -13,8 +13,8 @@ return {
                 theme = "seoul256", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
                 -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
-                -- section_separators = { left = "", right = "" }, -- 区块分隔符 
-                section_separators = { left = "", right = "" }, -- 区块分隔符 
+                section_separators = { left = "", right = "" }, -- 区块分隔符 
+                -- section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
                     -- "alpha", -- 启动界面
                     "neo-tree", -- 文件树
@@ -122,7 +122,7 @@ return {
                     {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
-                        colored = true,   -- 颜色显示
+                        colored = false,   -- 颜色显示
                         -- separator = { left = "" }, -- 左侧分隔符
 
                     },
@@ -142,7 +142,7 @@ return {
                 },
                 lualine_y = { -- 光标信息区块
                     {
-                        "%l/%L",
+                        "%l/%L %p%%",
                     },
                 },
                 lualine_z = { -- 时间区块
@@ -209,5 +209,7 @@ return {
             extensions = { "neo-tree", "toggleterm", "lazy" } -- 支持插件集成
 
         })
+        local hl = vim.api.nvim_set_hl
+        hl(0, "lualine_b_normal", {bg = "none", fg = "#56b6c2" })
     end
 }

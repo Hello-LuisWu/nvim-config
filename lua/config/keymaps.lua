@@ -4,6 +4,9 @@ local map = vim.keymap.set
 local opt = { noremap = true, silent = true }
 local optsf = { noremap = true, silent = false }
 
+map("n", "<leader>uf",":set fileformat=unix<CR>")
+map("n", "<leader>uF",":set fileencoding=utf-8<CR>")
+
 -- 基础键位
 map("i", "jj", "<C-[>", opt)
 map("i", "<C-k>", "<C-[>O")
