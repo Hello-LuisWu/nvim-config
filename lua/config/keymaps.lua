@@ -1,18 +1,19 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 local map = vim.keymap.set
 local opt = { noremap = true, silent = true }
-local optv = { noremap = true, silent = false }
+local optsf = { noremap = true, silent = false }
 
 -- 基础键位
 map("i", "jj", "<C-[>", opt)
-map("n", "<Tab>", ":", optv)
-map("n", "<S-Tab>", "/", optv)
+map("i", "<C-k>", "<C-[>O")
+map("i", "<C-j>", "<C-[>o")
+map("n", "<Tab>", ":", optsf)
+map("n", "<S-Tab>", "/", optsf)
 
 map("n", "<BS>", ":set hlsearch!<CR>", opt)
 -- map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", opt)
-map("n", "<leader>0", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
-map("v", "p", "P", opt)
+map("n", "<leader><CR>", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
 
 map({ "n", "x" }, "<leader>j", "J", { desc = "向下融合", noremap = true, silent = true })
 
@@ -32,8 +33,8 @@ map("n", "B", "5b", opt)
 -- 普通模式,可视模式和等待操作模式下,行的首尾 & 页面的首尾跳转
 map({ "n", "o", "v" }, "L", "$", opt)
 map({ "n", "o", "v" }, "H", "0", opt)
-map({ "n", "o", "v" }, "J", "G", opt)
-map({ "n", "o", "v" }, "K", "gg", opt)
+map({ "n", "o", "v" }, "J", "5j", opt)
+map({ "n", "o", "v" }, "K", "5k", opt)
 
 -- Buffer 管理
 map("n", "<leader>bl>", ":bnext<CR>", { desc = "下一个 Buffer", noremap = true, silent = true }) -- 下一个 Buffer
@@ -45,6 +46,7 @@ map("n", "<C-f>", "<C-f>zz", opt) -- 向下翻页并居中
 map("n", "<C-b>", "<C-b>zz", opt) -- 向上翻页并居中
 map("n", "n", "nzzzv", opt)       -- 搜索结果时光标居中
 map("n", "N", "Nzzzv", opt)
+map("n", "g,", "g,zz", { desc = "跳转变更位置并居中" })
 
 map({ "v", "x" }, "<C-j>", ":m '>+1<CR>gv=gv", opt)
 map({ "v", "x" }, "<C-k>", ":m '<-2<CR>gv=gv", opt)
@@ -57,10 +59,10 @@ map("v", "<tab>", ">gv", opt)
 map("v", "<C-h>", "<gv", opt)
 map("v", "<C-l>", ">gv", opt)
 
-map({ "i", "n", "v" }, "<Left>", "<Nop>", opt)
-map({ "i", "n", "v" }, "<Right>", "<Nop>", opt)
-map({ "i", "n", "v" }, "<Up>", "<Nop>", opt)
-map({ "i", "n", "v" }, "<Down>", "<Nop>", opt)
+-- map({ "i", "n", "v" }, "<Left>", "<Nop>", opt)
+-- map({ "i", "n", "v" }, "<Right>", "<Nop>", opt)
+-- map({ "i", "n", "v" }, "<Up>", "<Nop>", opt)
+-- map({ "i", "n", "v" }, "<Down>", "<Nop>", opt)
 -- map("i", "<Esc>", "<Nop>", opt)
 -- map({ "n", "v" }, "q:", "<Nop>", opt)
 
@@ -73,11 +75,11 @@ map({ "i" }, "<C-d>", "<C-[>yypA", opt)
 map({ "n" }, "<C-d>", "<C-[>yyp", { desc = "再制", noremap = true, silent = true })
 
 -- 在 normal 模式配置快捷键
-map('n', '<Leader>ha', ":%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>",
-    { desc = "全局替换当前单词（带确认）", noremap = true, silent = true }) -- \%V 用于匹配可视选区
+map('n', '<Leader>ha', ":%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>", { desc = "全局替换当前单词（带确认）", noremap = true, silent = true }) -- \%V 用于匹配可视选区
 map('n', '<Leader>hj', ':%s/<C-r><C-w>/', { desc = "全局替换当前单词（所有行）", noremap = true, silent = true })
 map('n', '<Leader>hJ', ':%s//gc<left><left><left>', { desc = "手输全局替换（带确认）", noremap = true, silent = true }) --
 map('n', '<Leader>hh', ':s/<C-r><C-w>//<left>', { desc = "替换当前单词（仅所选）", noremap = true, silent = true }) --
+
 
 -- 在 visual 模式配置快捷键
 map('v', '<Leader>hh', '"hy:%s/<C-r>h//g<left><left>', { desc = "全局替换全部选中文本", noremap = true, silent = true }) --
@@ -88,8 +90,7 @@ map('v', '<Leader>hH', '"hy:%s/<C-r>h//gc<left><left><left>',
 -- map('n', '<Leader>hj', ':%s/\\%V', { desc = "带确认的逐项替换" , noremap = true, silent = true }) -- \%V 用于匹配可视选区
 
 -- --
-map('n', '<Leader>hw', [[:let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<CR>]],
-    { desc = "查找高亮当前单词", noremap = true, silent = true })
+map('n', '<Leader>hw', [[:let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<CR>]], { desc = "查找高亮当前单词", noremap = true, silent = true })
 
 -- 13. 透明背景切换（适配你的高亮配置）
 map("n", "<leader>tt", ":lua ToggleTransparency()<CR>", opt)

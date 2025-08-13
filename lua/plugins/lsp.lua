@@ -71,12 +71,12 @@ return {
             })
 
 
-            -- 将 nvim-cmp（自动补全插件）的能力合并到 LSP 默认能力中
-            -- 获取 Neovim LSP 配置的默认设置
-            -- local lspconfig_defaults = lspconfig.util.default_config
+            -- -- 将 nvim-cmp（自动补全插件）的能力合并到 LSP 默认能力中
+            -- -- 获取 Neovim LSP 配置的默认设置
+            -- -- local lspconfig_defaults = lspconfig.util.default_config
             -- local lspconfig_defaults = lspconfig.util.default_config
 
-            -- 使用深度合并方式扩展 LSP 能力配置
+            -- -- 使用深度合并方式扩展 LSP 能力配置
             -- lspconfig_defaults.capabilities = vim.tbl_deep_extend(
             --     'force',                                       -- 合并模式：强制覆盖相同字段
             --     lspconfig_defaults.capabilities,               -- LSP 默认能力
@@ -143,77 +143,4 @@ return {
             })
         end,
     },
-    -- {
-    --     'VonHeikemen/lsp-zero.nvim',
-    --     branch = 'v4.x',
-    --     config = function()
-    --         local lsp_zero = require('lsp-zero')
-    --
-    --         lsp_zero.on_attach(function(client, bufnr)
-    --             lsp_zero.default_keymaps({ buffer = bufnr })
-    --             lsp_zero.highlight_symbol(client, bufnr)
-    --             lsp_zero.buffer_autoformat()
-    --         end)
-    --
-    --         lsp_zero.ui({
-    --             float_border = 'rounded',
-    --             sign_text = {
-    --                 error = '✘',
-    --                 warn = '▲',
-    --                 hint = '⚑',
-    --                 info = '»',
-    --             },
-    --         })
-    --         lsp_zero.omnifunc.setup({
-    --             trigger = '<C-Space>',
-    --             tabcomplete = true,
-    --             use_fallback = true,
-    --             update_on_delete = true,
-    --             -- You need Neovim v0.10 to use vim.snippet.expand
-    --             expand_snippet = vim.snippet.expand
-    --         })
-    --
-    --         lsp_zero.new_client({
-    --             cmd = { 'intelephense', '--stdio' },
-    --             filetypes = { 'php' },
-    --             root_dir = function(bufnr)
-    --                 return vim.fs.root(bufnr, { 'composer.json' })
-    --             end,
-    --         })
-    --
-    --         -- 自动格式化配置（保存时自动格式化）
-    --         lsp_zero.format_on_save({
-    --             servers = {
-    --                 ['lua_ls'] = { 'lua' },     -- Lua 使用 lua_ls 格式化
-    --                 ['pyright'] = { 'python' }, -- Python 使用 pyright 格式化
-    --             }
-    --         })
-    --         -- 创建新的 LSP 客户端配置
-    --         lsp_zero.new_client({
-    --             -- 指定语言服务器的启动命令
-    --             cmd = { 'lua-language-server' }, -- 需要确保该命令在系统 PATH 环境变量中
-    --
-    --             -- 指定处理的文件类型
-    --             filetypes = { 'lua' }, -- 仅针对 Lua 文件启用此语言服务器
-    --
-    --             -- 客户端初始化时的回调函数
-    --             on_init = function(client)
-    --                 -- 配置 Neovim 特有的 Lua 运行时设置
-    --                 -- 此函数会为 Lua 语言服务器添加 Neovim 的 API 支持
-    --                 lsp_zero.nvim_lua_settings(client, {})
-    --             end,
-    --
-    --             -- 定义如何确定项目根目录（用于 LSP 的 workspace 配置）
-    --             root_dir = function(bufnr)
-    --                 -- 使用 Neovim v0.10+ 的 vim.fs.root 方法查找项目根目录
-    --                 -- 查找标准包含以下任意文件的目录：
-    --                 -- 1. .git 文件夹（版本控制目录）
-    --                 -- 2. .luarc.json 或 .luarc.jsonc（Lua 配置文件）
-    --                 -- 注意：建议在 Neovim 配置的根目录包含 .git 文件夹以提高检测准确性
-    --
-    --                 return vim.fs.root(bufnr, { '.git', '.luarc.json', '.luarc.jsonc' })
-    --             end,
-    --         })
-    --     end
-    -- }
 }

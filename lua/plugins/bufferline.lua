@@ -62,7 +62,7 @@ return {
                 -- "buffer_id"  显示 buffer id
                 -- "both"    显示 编号和buffer id
                 -- 自定义函数
-                numbers = "ordinal",
+                numbers = "none",
                 -- numbers = function(opts)
                 --     return string.format('%s·%s', opts.ordinal, opts.id)
                 -- end,
@@ -81,7 +81,8 @@ return {
 
                 -- 指示器样式（图标样式或下划线）
                 indicator = {
-                    icon = '▎', -- 图标样式时的符号
+                    -- icon = '$', -- 图标样式时的符号
+                    -- icon = '▎', -- 图标样式时的符号
                     style = 'icon' -- 可选 'icon' | 'underline' | 'none'
                 },
 
@@ -108,11 +109,11 @@ return {
                 diagnostics = false,
                 diagnostics_update_in_insert = false, -- 插入模式更新诊断（仅 coc）
                 diagnostics_update_on_event = true,   -- use nvim's diagnostic handler
-                diagnostics_indicator = function(count, level)
-                    -- local icon = level:match("error") and " " or " "
-                    -- return icon .. count
-                    return "(" .. count .. ")"
-                end,
+                -- diagnostics_indicator = function(count, level)
+                --     -- local icon = level:match("error") and " " or " "
+                --     -- return icon .. count
+                --     return "(" .. count .. ")"
+                -- end,
 
                 -- 侧边栏偏移配置（如 nvimtree）
                 offsets = {
@@ -152,7 +153,7 @@ return {
                 },
 
                 -- 分隔符样式（支持预设或自定义字符）
-                separator_style = "slope", -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
+                separator_style = {"",""}, -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
 
                 -- 强制等宽标签（禁用去重）
                 enforce_regular_tabs = true,

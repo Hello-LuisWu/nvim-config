@@ -1,6 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    enable = false,
+    -- enabled = true,
     -- dependencies = { "p00f/nvim-ts-rainbow" }, -- 彩色括号
     event = {
         "BufRead",       -- buffer读取之后,

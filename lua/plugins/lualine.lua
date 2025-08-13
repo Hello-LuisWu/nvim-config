@@ -10,8 +10,10 @@ return {
     config = function()
         require("lualine").setup({
             options = {
-                theme = "gruvbox", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                theme = "seoul256", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
+                -- section_separators = { left = "", right = "" }, -- 区块分隔符 
                 section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
                     -- "alpha", -- 启动界面
@@ -33,7 +35,7 @@ return {
                         "mode",
                         -- fmt = function(str) return " " .. str end, -- 添加图标前缀
                         color = { gui = "bold" }, -- 文字加粗
-                        icon = "",
+                        icon = " ",
                         --           separator = { right = "" }, -- 右侧分隔符
                     }
                 },
@@ -57,8 +59,11 @@ return {
                         symbols = {
                             modified = '📝', -- 文件未保存时显示
                             -- modified = '●', -- 文件未保存时显示
-                            readonly = '🔏' -- 只读文件标识
-                            -- readonly = '' -- 只读文件标识
+                            readonly = '🔏', -- 只读文件标识
+                            -- readonly = ',' -- 只读文件标识
+
+                            alternate_file = '#', -- Text to show to identify the alternate file
+                            directory = '', -- Text to show when the buffer is a directory
                         }
                     },
                     {
@@ -78,8 +83,8 @@ return {
                             info = "#7EB3C9", -- 蓝色
                             hint = "#98be65", -- 绿色
                         },
-                        -- colored = true, -- 启用颜色编码
-                        update_in_insert = false, -- 插入模式不更新
+                        colored = true, -- 启用颜色编码
+                        -- update_in_insert = false,     -- 插入模式不更新
                         color = function()
                             local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
                             if errors > 0 then
@@ -94,15 +99,15 @@ return {
 
                 -- 右侧区块 (从左到右)
                 lualine_x = { -- 文件信息区块
-                    {
-                        "diff", -- Git 变更状态
-                        symbols = {
-                            added = " ", -- 新增文件
-                            modified = " ", -- 修改文件
-                            removed = " ", -- 删除文件
-                        },
-                        colored = true, -- 启用颜色显示
-                    },
+                    -- {
+                    -- "diff", -- Git 变更状态
+                    -- symbols = {
+                    --     added = " ", -- 新增文件
+                    --     modified = " ", -- 修改文件
+                    --     removed = " ", -- 删除文件
+                    -- },
+                    -- colored = false, -- 启用颜色显示
+                    -- },
                     -- {
                     --     function()
                     --         local current_line = vim.fn.line(".")
@@ -114,8 +119,6 @@ return {
                     --     end
                     -- }, -- 进度 (行号/列号)
 
-                },
-                lualine_y = {             -- 光标信息区块
                     {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
@@ -137,11 +140,13 @@ return {
                         fmt = string.upper, -- 显示大写 (UTF-8 → UTF-8)
                     },
                 },
+                lualine_y = { -- 光标信息区块
+                    {
+                        "%l/%L",
+                    },
+                },
                 lualine_z = { -- 时间区块
                     {
-                        -- icon = "⏰", -- 编码图标
-                        -- icon = "⏱️", -- 编码图标
-                        -- icon = "🕛", -- 编码图标
                         function()
                             -- 中文星期映射表
                             local weekday_map = { "日", "一", "二", "三", "四", "五", "六" }
@@ -187,9 +192,8 @@ return {
                                 shichen,
                                 weekday_map[time.wday]
                             )
-                        end
-                        --icon = "", -- 时钟图标
-                        -- separator = { left = "" }, -- 左侧分隔符
+                        end,
+                        -- separator = { left = "" }, -- 左侧分隔符
                         -- color = { gui = "italic" }, -- 颜色配置
                     }
                 }
@@ -203,7 +207,7 @@ return {
 
             --[[ 扩展配置 ]] --
             extensions = { "neo-tree", "toggleterm", "lazy" } -- 支持插件集成
+
         })
     end
-    --[[ 全局配置选项 ]] --
 }

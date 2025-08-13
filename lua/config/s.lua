@@ -1,7 +1,7 @@
 -- ------------------------------------------------------------------------------
 -- Author   : Luis Wu
 -- Editor   : Neovim
--- Date     : 2025-07-23 12:16
+-- Date     : 2025-07-25 06:33
 -- Position : /Users/luis/.config/nvim/lua/config/s.lua
 -- System   : Darwin 24.3.0
 -- ------------------------------------------------------------------------------
@@ -55,7 +55,6 @@ local function update_signature_date()
     end
     vim.notify("⚠ 未找到 Date 行", vim.log.levels.WARN)
 end
-        -- ⌨️ 快捷键（推荐使用 <leader>si / <leader>sd）
-        vim.keymap.set("n", "<leader>si", insert_signature, { desc = "插入签名信息" })
-        vim.keymap.set("n", "<leader>sd", update_signature_date, { desc = "更新签名日期" })
-
+-- ⌨️ 快捷键（推荐使用 <leader>si / <leader>sd）
+vim.keymap.set("n", "<leader>si", insert_signature, { desc = "插入签名信息" })
+vim.keymap.set("n", "<leader>sd", update_signature_date, { desc = "更新签名日期" })

@@ -66,7 +66,7 @@ opt.fillchars = {
     stlnc = " ", -- 非当前窗口状态栏填充
 }
 -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.laststatus = 0 -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
+opt.laststatus = 0  -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
 opt.showtabline = 0 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
 -- opt.tabpagemax = 9   -- 最多可以打开 9 个标签页，默认10个
 
@@ -136,7 +136,9 @@ opt.autowrite = true -- 在切换缓冲区或执行某些命令时自动保存
 opt.splitbelow = true    -- 新的水平分屏窗口在下方打开
 opt.splitright = true    -- 新的垂直分屏窗口在右侧打开
 opt.splitkeep = "screen" -- 保持屏幕不动
-opt.winblend = 0         -- 窗口透明度
+-- 设置浮动窗口混合效果 (增强透明感)
+opt.winblend = 88        -- 窗口透明度, 0-100值越高越透明
+opt.pumblend = 55        -- 补全菜单混合度
 opt.equalalways = false  -- 不自动调整窗口大小相等（若需启用设为 true）
 
 -- ----------------------------
@@ -160,17 +162,17 @@ opt.foldlevelstart = 99                          -- 打开文件时的默认折�
 -- ----------------------------
 -- 其他杂项
 -- ----------------------------
-vim.opt.shell = "/bin/zsh"                                         -- 设置 Neovim 使用的 shell (比如 terminal 所使用的shell)
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- 光标形状（终端需支持）
-opt.spell = false                                                  -- 禁止拼写支持
-opt.spelllang = { "en" }                                           -- 设置拼写检查语言
+opt.shell = "/bin/zsh"                                         -- 设置 Neovim 使用的 shell (比如 terminal 所使用的shell)
+opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- 光标形状（终端需支持）
+opt.spell = false                                              -- 禁止拼写支持
+opt.spelllang = { "en" }                                       -- 设置拼写检查语言
 
-opt.wildmode = "longest:full,full"                                 -- 命令行补全模式
-vim.g.markdown_recommended_style = 0                               -- 禁用推荐的 Markdown 风格
+opt.wildmode = "longest:full,full"                             -- 命令行补全模式
+vim.g.markdown_recommended_style = 0                           -- 禁用推荐的 Markdown 风格
 
 opt.timeout = true
---opt.cscopequickfix = "s-,c-,d-,i-,t-,e-"
--- opt.background = "dark"
+-- opt.cscopequickfix = "s-,c-,d-,i-,t-,e-"
+opt.background = "dark"
 
 -- 查找文件向下搜索到子文件夹
 opt.path:append({ "**" })

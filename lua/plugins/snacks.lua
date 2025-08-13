@@ -1,7 +1,7 @@
 -- ------------------------------------------------------------------------------
 -- Author   : Luis Wu
 -- Editor   : Neovim
--- Date     : 2025-07-22 10:41
+-- Date     : 2025-08-02 16:37
 -- Position : /Users/luis/.config/nvim/lua/plugins/snacks.lua
 -- System   : Darwin 24.3.0
 -- ------------------------------------------------------------------------------
@@ -33,14 +33,12 @@ return {
         { "<leader>ft", function() Snacks.terminal() end, desc = "终端" },
         { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
         { "<leader>fc", function() Snacks.picker.colorschemes() end, desc = "主题切换" },
-        {
-            "<leader>fC",
-            function()
+        { "<leader>fC", function()
                 Snacks.picker.files({
                     cwd = vim.fn.expand("~/.config/nvim"), -- 📂 设置工作目录为 Neovim 配置目录
-                    hidden = true,                         -- 👁️ 显示隐藏文件
-                    follow = true,                         -- 🔗 跟随软链接
-                    show_untracked = true,                 -- 📦 显示未被 Git 跟踪的文件
+                    hidden = true,               -- 👁️ 显示隐藏文件
+                    follow = true,               -- 🔗 跟随软链接
+                    show_untracked = true,       -- 📦 显示未被 Git 跟踪的文件
                 })
             end,
             desc = "配置文件",
@@ -108,9 +106,9 @@ return {
         -- 起始页
         dashboard = {
             width = 60,
-            row = nil,                                                                   -- dashboard position. nil for center
-            col = nil,                                                                   -- dashboard position. nil for center
-            pane_gap = 4,                                                                -- empty columns between vertical panes
+            row = nil,                                                             -- dashboard position. nil for center
+            col = nil,                                                             -- dashboard position. nil for center
+            pane_gap = 4,                                                          -- empty columns between vertical panes
             autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", -- autokey sequence
             preset = {
                 -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
@@ -147,9 +145,9 @@ return {
                         action = function()
                             Snacks.picker.files({
                                 cwd = vim.fn.expand("~/.config/nvim"), -- 📂 设置工作目录为 Neovim 配置目录
-                                hidden = true,                         -- 👁️ 显示隐藏文件
-                                follow = true,                         -- 🔗 跟随软链接
-                                show_untracked = true,                 -- 📦 显示未被 Git 跟踪的文件
+                                hidden = true,         -- 👁️ 显示隐藏文件
+                                follow = true,         -- 🔗 跟随软链接
+                                show_untracked = true, -- 📦 显示未被 Git 跟踪的文件
                             })
                         end,
                     },
@@ -165,16 +163,12 @@ return {
                 },
                 -- Used by the `header` section
                 header = [[
-░██                 ░██
-░██
-░██       ░██    ░██░██ ░███████
-░██       ░██    ░██░██░██
-░██       ░██    ░██░██ ░███████
-░██       ░██   ░███░██       ░██
-░██████████░█████░██░██ ░███████
-
-
-
+██╗     ██╗   ██╗██╗███████╗  ██╗  ██████╗      ██╗██╗     
+██║     ██║   ██║██║██╔════╝  ██║  ██╔══██╗     ██║██║     
+██║     ██║   ██║██║███████╗  ██║  ██║  ██║     ██║██║     
+██║     ██║   ██║██║╚════██║  ██║  ██║  ██║██   ██║██║     
+███████╗╚██████╔╝██║███████║  ██║  ██████╔╝╚█████╔╝███████╗
+╚══════╝ ╚═════╝ ╚═╝╚══════╝  ╚═╝  ╚═════╝  ╚════╝ ╚══════╝
 ]],
             },
             formats = {
@@ -215,25 +209,25 @@ return {
         ---@class snacks.indent.Config
         ---@field enabled? boolean
         indent = {
+            enabled = false,
             indent = {
                 priority = 1,
-                enabled = true, -- enable indent guides
-                -- char = "╎",
+                enabled = false, -- enable indent guides
                 char = "▎",
-                only_scope = false,   -- only show indent guides of the scope
+                only_scope = false, -- only show indent guides of the scope
                 only_current = false, -- only show indent guides in the current window
                 hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
                 -- can be a list of hl groups to cycle through
-                hl = {
-                    "SnacksIndent1",
-                    "SnacksIndent2",
-                    "SnacksIndent3",
-                    "SnacksIndent4",
-                    "SnacksIndent5",
-                    "SnacksIndent6",
-                    "SnacksIndent7",
-                    "SnacksIndent8",
-                },
+                -- hl = {
+                --     "SnacksIndent1",
+                --     "SnacksIndent2",
+                --     "SnacksIndent3",
+                --     "SnacksIndent4",
+                --     "SnacksIndent5",
+                --     "SnacksIndent6",
+                --     "SnacksIndent7",
+                --     "SnacksIndent8",
+                -- },
             },
             -- animate scopes. Enabled by default for Neovim >= 0.10
             -- Works on older versions but has to trigger redraws during animation.
@@ -249,25 +243,43 @@ return {
                 style = "out",
                 easing = "linear",
                 duration = {
-                    step = 20,   -- ms per step
+                    step = 20, -- ms per step
                     total = 500, -- maximum duration
                 },
             },
             ---@class snacks.indent.Scope.Config: snacks.scope.Config
             scope = {
-                enabled = false, -- enable highlighting the current scope
+                enabled = true, -- enable highlighting the current scope
                 priority = 200,
                 char = "▎",
-                underline = false,    -- underline the start of the scope
+                underline = false, -- underline the start of the scope
                 only_current = false, -- only show scope in the current window
                 hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
             },
+            chunk = {
+                -- when enabled, scopes will be rendered as chunks, except for the
+                -- top-level scope which will be rendered as a scope.
+                enabled = false,
+                -- only show chunk scopes in the current window
+                only_current = false,
+                priority = 200,
+                hl = "SnacksIndentChunk", ---@type string|string[] hl group for chunk scopes
+                char = {
+                    corner_top = "┌",
+                    corner_bottom = "└",
+                    -- corner_top = "╭",
+                    -- corner_bottom = "╰",
+                    horizontal = "─",
+                    vertical = "│",
+                    arrow = ">",
+                },
+            },
             -- filter for buffers to enable indent guides
-            filter = function(buf)
-                return vim.g.snacks_indent ~= false
-                    and vim.b[buf].snacks_indent ~= false
-                    and vim.bo[buf].buftype == ""
-            end,
+            -- filter = function(buf)
+            --     return vim.g.snacks_indent ~= false
+            --         and vim.b[buf].snacks_indent ~= false
+            --         and vim.bo[buf].buftype == ""
+            -- end,
         },
 
         input = { enabled = true },
@@ -279,31 +291,31 @@ return {
             win = { input = { keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
             sources = {
                 explorer = {
-                    finder = "explorer",            -- 使用 explorer finder
+                    finder = "explorer",  -- 使用 explorer finder
                     sort = { fields = { "sort" } }, -- 排序字段
-                    supports_live = true,           -- 支持实时更新
-                    tree = true,                    -- 以树结构展示
-                    watch = true,                   -- 监听文件变更
-                    diagnostics = false,            -- 显示诊断信息（LSP）
-                    diagnostics_open = false,       -- 打开目录时是否递归显示诊断
-                    git_status = false,             -- 显示 Git 状态
-                    git_status_open = false,        -- 打开目录时是否递归显示 Git 状态
-                    git_untracked = true,           -- 显示 Git 未跟踪文件
-                    follow_file = true,             -- 自动跟随当前 buffer 所在文件
-                    focus = "list",                 -- 默认焦点在列表区
-                    auto_close = false,             -- 是否自动关闭
-                    jump = { close = false },       -- 跳转后不自动关闭
+                    supports_live = true, -- 支持实时更新
+                    tree = true,          -- 以树结构展示
+                    watch = true,         -- 监听文件变更
+                    diagnostics = false,  -- 显示诊断信息（LSP）
+                    diagnostics_open = false, -- 打开目录时是否递归显示诊断
+                    git_status = false,   -- 显示 Git 状态
+                    git_status_open = false, -- 打开目录时是否递归显示 Git 状态
+                    git_untracked = true, -- 显示 Git 未跟踪文件
+                    follow_file = true,   -- 自动跟随当前 buffer 所在文件
+                    focus = "list",       -- 默认焦点在列表区
+                    auto_close = false,   -- 是否自动关闭
+                    jump = { close = false }, -- 跳转后不自动关闭
                     layout = {
-                        preset = "sidebar",         -- 使用边栏布局
-                        preview = false,            -- 禁用预览窗口（防止占位）
+                        preset = "sidebar", -- 使用边栏布局
+                        preview = false,  -- 禁用预览窗口（防止占位）
                         layout = {
-                            position = "left",      -- 可以改为 "right" 显示在右侧
-                            width = 26,             -- 🧱 设置宽度为 40 列
+                            position = "left", -- 可以改为 "right" 显示在右侧
+                            width = 26,   -- 🧱 设置宽度为 40 列
                         },
                     },
                     formatters = {
                         file = { filename_only = true }, -- 文件名只显示名称不带路径
-                        severity = { pos = "right" },    -- 诊断等级显示在右边
+                        severity = { pos = "right" }, -- 诊断等级显示在右边
                     },
                     matcher = {
                         sort_empty = false,
@@ -315,30 +327,30 @@ return {
                     win = {
                         list = {
                             keys = {
-                                ["<BS>"] = "explorer_up",                         -- 上级目录
-                                ["l"] = "confirm",                                -- 打开文件或目录
-                                ["h"] = "explorer_close",                         -- 关闭目录
-                                ["a"] = "explorer_add",                           -- 添加新文件
-                                ["d"] = "explorer_del",                           -- 删除文件
-                                ["r"] = "explorer_rename",                        -- 重命名
-                                ["c"] = "explorer_copy",                          -- 拷贝
-                                ["m"] = "explorer_move",                          -- 移动
-                                ["o"] = "explorer_open",                          -- 用系统应用打开
-                                ["P"] = "toggle_preview",                         -- 切换预览
+                                ["<BS>"] = "explorer_up",         -- 上级目录
+                                ["l"] = "confirm",                -- 打开文件或目录
+                                ["h"] = "explorer_close",         -- 关闭目录
+                                ["a"] = "explorer_add",           -- 添加新文件
+                                ["d"] = "explorer_del",           -- 删除文件
+                                ["r"] = "explorer_rename",        -- 重命名
+                                ["c"] = "explorer_copy",          -- 拷贝
+                                ["m"] = "explorer_move",          -- 移动
+                                ["o"] = "explorer_open",          -- 用系统应用打开
+                                ["P"] = "toggle_preview",         -- 切换预览
                                 ["y"] = { "explorer_yank", mode = { "n", "x" } }, -- 复制路径
-                                ["p"] = "explorer_paste",                         -- 粘贴
-                                ["u"] = "explorer_update",                        -- 刷新
-                                ["<c-c>"] = "tcd",                                -- 设置当前目录为 cwd
-                                ["<leader>/"] = "picker_grep",                    -- 全局搜索
-                                ["<c-t>"] = "terminal",                           -- 打开终端
-                                ["."] = "explorer_focus",                         -- 聚焦资源树
-                                ["I"] = "toggle_ignored",                         -- 显示/隐藏 ignored 文件
-                                ["H"] = "toggle_hidden",                          -- 显示/隐藏隐藏文件
-                                ["Z"] = "explorer_close_all",                     -- 关闭所有目录
+                                ["p"] = "explorer_paste",         -- 粘贴
+                                ["u"] = "explorer_update",        -- 刷新
+                                ["<c-c>"] = "tcd",                -- 设置当前目录为 cwd
+                                ["<leader>/"] = "picker_grep",    -- 全局搜索
+                                ["<c-t>"] = "terminal",           -- 打开终端
+                                ["."] = "explorer_focus",         -- 聚焦资源树
+                                ["I"] = "toggle_ignored",         -- 显示/隐藏 ignored 文件
+                                ["H"] = "toggle_hidden",          -- 显示/隐藏隐藏文件
+                                ["Z"] = "explorer_close_all",     -- 关闭所有目录
                                 ["]g"] = "explorer_git_next",
-                                ["[g"] = "explorer_git_prev",                     -- Git 跳转
+                                ["[g"] = "explorer_git_prev",     -- Git 跳转
                                 ["]d"] = "explorer_diagnostic_next",
-                                ["[d"] = "explorer_diagnostic_prev",              -- 诊断跳转
+                                ["[d"] = "explorer_diagnostic_prev", -- 诊断跳转
                                 ["]w"] = "explorer_warn_next",
                                 ["[w"] = "explorer_warn_prev",
                                 ["]e"] = "explorer_error_next",
@@ -354,7 +366,7 @@ return {
         quickfile = { enabled = true },
         -- scope = { enabled = true },
         scroll = { enabled = false }, -- 平滑滚动
-        statuscolumn = {              -- 状态列美化 (行号+诊断+折叠)
+        statuscolumn = {          -- 状态列美化 (行号+诊断+折叠)
             enabled = true,
             -- left = { "", "" },
             left = { "mark", "git" },
@@ -452,8 +464,3 @@ return {
     --     })
     -- end
 }
--- WARN: jjsfg
--- NOTE: jsfg
--- INFO: jbhjgfjfsjlkdf
-
--- EROOR:
