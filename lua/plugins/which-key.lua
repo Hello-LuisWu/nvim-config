@@ -10,7 +10,7 @@ return {
         local wk = require("which-key")
         wk.setup({
             -- 布局预设："classic"经典/"modern"现代/"helix"螺旋
-            preset = "modern",
+            preset = "helix",
             -- 延迟显示时间（单位ms），可以是函数动态计算
             delay = function(ctx)
                 return ctx.plugin and 0 or 0 -- 插件映射立即显示，其他延迟0ms
@@ -44,8 +44,7 @@ return {
                     enabled = true, -- 拼写建议（z=）
                     suggestions = 20, -- 最多显示建议数
                 },
-                presets = { -- 内置预设帮助
-                    operators = true, -- 操作符帮助（例如：d, y 等）
+                presets = { -- 内置预设帮助 operators = true, -- 操作符帮助（例如：d, y 等）
                     motions = true, -- 移动帮助（例如：w, b, j 等）
                     text_objects = true, -- 文本对象帮助
                     windows = true, -- 窗口管理帮助（例如：<C-w> 系列）
@@ -56,16 +55,18 @@ return {
             },
 
             win = {
-                no_overlap = false,   -- 禁止弹出窗口与光标重叠
+                no_overlap = false, -- 禁止弹出窗口与光标重叠 width = 80,
+                width = 80,
+                height = { min = 4, max = 25 },
                 padding = { 1, 1 },   -- 设置弹出窗口的内边距（上/下，左/右）
-                title = "which key",  -- 显示窗口标题
+                title = " 快捷键列表 ",  -- 显示窗口标题
                 title_pos = "center", -- 标题位置
                 zindex = 1000,        -- 设置窗口的 z-index
 
                 bo = {
                 },
                 wo = {
-                    winblend = 20, -- 弹窗背景0-100的不透明度，
+                    winblend = 0, -- 弹窗背景0-100的不透明度，
                 },
             },
             layout = {
@@ -78,8 +79,7 @@ return {
             },
             --[[ 排序规则 ]] --
             sort = { "local", "order", "group", "alphanum", "mod" }, -- 排序映射方式，按本地、顺序、组、字母数字、修饰符等排序
-            -- 动态扩展配置（<=2个子项时自动展开）
-            -- expand = 0,
+            -- 动态扩展配置（<=2个子项时自动展开） expand = 0,
             -- 键描述格式化规则
             replace = { -- 替换映射中的特殊字符（例如：将 `<Space>` 替换为 "SPC"）
                 key = {
@@ -101,9 +101,8 @@ return {
             icons = {
                 breadcrumb = "»", -- 路径分隔符
                 -- separator = "➜", -- 键描述分隔符
-                separator = " ",  -- 键描述分隔符
-                group = "+",      -- 组前缀符号
-                ellipsis = "…",
+                separator = "",  -- 键描述分隔符
+                group = " + ",      -- 组前缀符号 ellipsis = "…",
                 mappings = true,  -- 启用图标映射
                 rules = {},
                 colors = true,    -- 使用mini.icons颜色
@@ -139,8 +138,8 @@ return {
                 },
             },
             --[[ 界面配置 ]] --
-            show_help = true, -- 底部显示帮助提示
-            show_keys = true, -- 显示已按的键序列
+            show_help = false, -- 底部显示帮助提示
+            show_keys = false, -- 显示已按的键序列
 
             --[[ 禁用配置 ]] --
             disable = {
@@ -159,6 +158,7 @@ return {
                 -- { "<leader>fb", function() print("hello") end, desc = "Foobar" },
                 -- { "<leader>fn", desc = "New File" },
                 { "<leader>w", group = "窗口", icon = "" },
+                { "<leader><tab>", group = "tab", icon = "" },
                 { "<leader>g", group = "git", icon = "" },
                 { "<leader>b", group = "buffer", icon = "" },
                 -- { "<leader>\\", desc = "块注释", icon = "󰆈" },
@@ -168,8 +168,9 @@ return {
                 { "<leader>o", group = "杂项", icon = "" },
                 { "<leader>m", group = "Markdown", icon = "" },
                 { "<leader>t", group = "终端", icon = "" },
-                { "<leader>h", group = "搜索与替换", icon = "" },
+                { "<leader>h", group = "搜索与替换", icon = "" },
                 { "<leader>x", group = "Trouble", icon = "" },
+                { "<leader>u", group = "文件设置", icon = "" },
                 --
             },
             {
@@ -181,13 +182,3 @@ return {
         })
     end
 }
-
-
-
-
-
-
-
-
-
-

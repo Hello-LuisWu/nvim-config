@@ -8,7 +8,7 @@
 -- 🧠 插入签名块
 local function insert_signature()
     -- 获取注释前缀
-    local ft = require("Comment.ft")
+   local ft = require("Comment.ft")
     local cmt = ft.get(vim.bo.filetype)
     local comment_prefix = ""
 

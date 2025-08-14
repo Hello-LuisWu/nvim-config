@@ -1,0 +1,85 @@
+{
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color":"rgba(250, 240, 170, 0.5)",
+    "vim.highlightedyank.duration": 300,
+    "vim.hlsearch": false,
+    "vim.insertModeKeyBindings": [
+        { "before": ["j", "j"], "after": ["<Esc>"] },
+        {"before": ["<C-k>"], "after": ["<Esc>", "O"]},
+        {"before": ["<C-j>"], "after": ["<Esc>", "o"]},
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+            // 基础键位
+        {"before": ["<Tab>"], "after": [":"]},
+        {"before": ["<S-Tab>"], "after": ["/"]}, {"before": ["<BS>"], "commands": [":nohl"]},
+        { "before": [":"], "commands": [ "workbench.action.showCommands" ] },
+        {"before": ["u"], "commands": ["undo"]},
+        {"before": ["U"], "commands": ["redo"]},
+
+        // 导航增强
+        {"before": ["W"], "after": ["5", "w"]},
+        {"before": ["B"], "after": ["5", "b"]},
+        {"before": ["L"], "after": ["$"]},
+        {"before": ["H"], "after": ["0"]},
+        {"before": ["J"], "after": ["5", "j"]},
+        {"before": ["K"], "after": ["5", "k"]},
+
+        // {"before": ["C-b>"], "commands": ["editor.action.commentLine"]},
+        {"before": ["<leader>", "\\"], "commands": [ "editor.action.commentLine" ]},
+        {"before": ["<leader>", "e"], "commands": ["workbench.view.explorer"], "when": "viewContainer.workbench.view.explorer.enabled" },
+        
+        {"before": ["<C-f>"], "after": ["<C-f>", "z", "z"]},
+        {"before": ["<C-b>"], "after": ["<C-b>", "z", "z"]},
+        {"before": ["n"], "after": ["n", "z", "z", "z", "v"]},
+        {"before": ["N"], "after": ["N", "z", "z", "z", "v"]},
+        { "before": ["s"], "commands": ["leap.findForward"] },
+        { "before": ["S"], "commands": ["leap.findBackward"] },
+        
+        // 窗口管理
+        {"before": ["<C-h>"], "commands": ["workbench.action.navigateLeft"]},
+        {"before": ["<C-j>"], "commands": ["workbench.action.navigateDown"]},
+        {"before": ["<C-k>"], "commands": ["workbench.action.navigateUp"]},
+        {"before": ["<C-l>"], "commands": ["workbench.action.navigateRight"]},
+        {"before": ["<leader>", "w", "c"], "commands": ["workbench.action.closeActiveEditor"]},
+        {"before": ["<leader>", "w", "o"], "commands": ["workbench.action.closeOtherEditors"]},
+        {"before": ["<leader>", "w", "s"], "commands": ["workbench.action.splitEditorRight"]},
+        {"before": ["<leader>", "w", "S"], "commands": ["workbench.action.splitEditorDown"]},
+        
+        // 缓冲区操作
+        {"before": ["<C-Tab>"], "commands": ["workbench.action.nextEditor"]},
+        {"before": ["<leader>", "b", "h"], "commands": ["workbench.action.previousEditor"]},
+        {"before": ["<leader>", "b", "q"], "commands": ["workbench.action.closeActiveEditor"]},
+        
+        // 文本操作
+        {"before": ["<leader>", "j"], "after": ["J"]},
+        {"before": ["<C-d>"], "commands": ["editor.action.copyLinesDownAction"]},
+        
+        // 搜索替换
+        {"before": ["<leader>", "h", "a"], "commands": [":%s/\\\\<<C-r><C-w>\\\\>//gc<Left><Left><Left>"]},
+        {"before": ["<leader>", "h", "j"], "commands": [":%s/<C-r><C-w>/"]},
+        {"before": ["<leader>", "h", "w"], "commands": [":let @/ = '\\\\<'.expand('<cword>').'\\\\>'<bar>set hlsearch<CR>"]}
+    ],
+    "vim.visualModeKeyBindings": [
+        { "before": [ ">" ], "commands": [ "editor.action.indentLines" ] },
+        { "before": [ "<" ], "commands": [ "editor.action.outdentLines" ] },
+        { "before": [ "<Tab>" ], "commands": [ "editor.action.indentLines" ] },
+        { "before": [ "<S-Tab>" ], "commands": [ "editor.action.outdentLines" ] },
+        { "before": ["<leader>", "\\"], "commands": ["editor.action.commentLine"]},
+        // { "before": ["<C-\\>"], "commands": ["editor.action.commentLine"]},
+        
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        // "<C-f>": false,
+        // "<C-b>":false
+    },
+    // To improve performance
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+}

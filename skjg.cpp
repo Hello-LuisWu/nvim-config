@@ -6,7 +6,8 @@
 // System   : Darwin 24.3.0
 // ------------------------------------------------------------------------------
 #include<stdio.h>
-int main (int argc, char *argv[]) {
-    
-    return 0;
+int main(void){
+    int i = 0;
+    int o = 44;
+    printf("%d", i);
 }

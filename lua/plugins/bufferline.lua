@@ -1,6 +1,7 @@
 -- NOTE: buffer 标签页
 return {
     'akinsho/bufferline.nvim',
+    enabled = false,
     event = {
         "BufRead",   -- buffer读取之后,
         "BufNewFile" -- 新建文件时
@@ -48,7 +49,7 @@ return {
                 -- ...
 
                 -- 模式设置，可选 "buffers" 或 "tabs"（显示标签页）
-                mode = "buffers",
+                mode = "tabs",
 
                 -- 样式预设，可选 default/minimal 或自定义组合
                 style_preset = bufferline.style_preset.default,
@@ -118,8 +119,9 @@ return {
                 -- 侧边栏偏移配置（如 nvimtree）
                 offsets = {
                     {
-                        filetype = "snacks_picker_list",
-                        text = " File Explorer", -- 自定义显示的文本
+                        filetype = "neo-tree",
+                        -- text = "", -- 自定义显示的文本
+                        text = "=== 文件浏览器 ===", -- 自定义显示的文本
                         text_align = "left",     -- 文本对齐方式
                         separator = true,        -- 显示分隔线
                     }
@@ -153,7 +155,7 @@ return {
                 },
 
                 -- 分隔符样式（支持预设或自定义字符）
-                separator_style = {"",""}, -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
+                separator_style = {"thin"}, -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
 
                 -- 强制等宽标签（禁用去重）
                 enforce_regular_tabs = true,

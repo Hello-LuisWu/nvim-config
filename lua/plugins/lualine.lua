@@ -2,19 +2,24 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-    },               -- 图标依赖
+    },                -- 图标依赖
     event = {
-        "BufRead",   -- buffer读取之后,
-        "BufNewFile" -- 新建文件时
+        "BufRead",    -- buffer读取之后,
+        "BufNewFile", -- 新建文件时
     },
     config = function()
+        local hl = vim.api.nvim_set_hl
+        hl(0, "lualine_tab_inactive", { bg = "#333333", fg = "#72b580" })
+        hl(0, "lualine_tab_active", { bg = "#72b580", fg = "#111111", bold = true })
+
         require("lualine").setup({
             options = {
-                theme = "seoul256", -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                theme = "everforest",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
                 -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
-                section_separators = { left = "", right = "" }, -- 区块分隔符 
-                -- section_separators = { left = "", right = "" }, -- 区块分隔符 
+                -- section_separators = { left = "", right = "" }, -- 区块分隔符 
+                always_show_tabline = true,
+                section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
                     -- "alpha", -- 启动界面
                     "neo-tree", -- 文件树
@@ -25,24 +30,36 @@ return {
                     statusline = 1000, -- 主状态栏刷新间隔 (ms)
                     tabline = 1000, -- 标签栏刷新间隔
                     winbar = 1000, -- 窗口栏刷新间隔
-                }
+                },
             },
-            --[[ 活动窗口状态栏 ]] --
+            --[[ 活动窗口状态栏 ]]
+            --
             sections = {
                 -- 左侧区块 (从右到左)
                 lualine_a = { -- 模式显示区块
                     {
                         "mode",
-                        -- fmt = function(str) return " " .. str end, -- 添加图标前缀
-                        color = { gui = "bold" }, -- 文字加粗
-                        icon = " ",
+                        fmt = function(str) return " " .. str end, -- 添加图标前缀
+                        -- color = { gui = "bold" }, -- 文字加粗
+                        -- icon = " ",
                         --           separator = { right = "" }, -- 右侧分隔符
-                    }
+                        color = {
+                            bg = "#72b580",
+                            -- fg = "#111111",
+                            gui = "bold",
+                        },
+                        separator = { right = "" }, -- 右侧分隔符
+                    },
                 },
                 lualine_b = {
                     {
                         "branch",
                         icon = "",
+                        -- color = {
+                        --     bg = "#72b580",
+                        --     fg = "#111111",
+                        --     gui = "bold",
+                        -- }
                     },
                 },
                 lualine_c = {
@@ -52,47 +69,47 @@ return {
                         -- icon = '', -- 文件图标
                         color = function()
                             if vim.bo.readonly then
-                                return { fg = '#ff0000', bg = '#222222', gui = 'bold' } -- 只读文件时，变红色加粗
+                                return { fg = "#ff0000", bg = "#222222", gui = "bold" } -- 只读文件时，变红色加粗
                             end
                         end,
                         -- icon = "",
                         symbols = {
-                            modified = '📝', -- 文件未保存时显示
+                            modified = "📝", -- 文件未保存时显示
                             -- modified = '●', -- 文件未保存时显示
-                            readonly = '🔏', -- 只读文件标识
+                            readonly = "🔏", -- 只读文件标识
                             -- readonly = ',' -- 只读文件标识
 
-                            alternate_file = '#', -- Text to show to identify the alternate file
-                            directory = '', -- Text to show when the buffer is a directory
-                        }
+                            alternate_file = "#", -- Text to show to identify the alternate file
+                            directory = "", -- Text to show when the buffer is a directory
+                        },
                     },
                     {
                         "diagnostics", -- LSP 诊断信息
-                        sources = { "nvim_lsp" }, -- 诊断源
-                        -- sources = { "nvim_diagnostic" }, -- 诊断源
-                        sections = { "error", "warn", "info", "hint" }, -- 显示类型
-                        symbols = {
-                            error = "✘ ", -- 错误 (Nerd Font 图标)
-                            warn = "⚠ ", -- 警告
-                            info = "» ", -- 信息
-                            hint = "⚑ ", -- 提示
-                        },
-                        colors = { -- 诊断颜色
-                            error = "#FF6C6B", -- 红色
-                            warn = "#ECBE7B", -- 黄色
-                            info = "#7EB3C9", -- 蓝色
-                            hint = "#98be65", -- 绿色
-                        },
-                        colored = true, -- 启用颜色编码
-                        -- update_in_insert = false,     -- 插入模式不更新
-                        color = function()
-                            local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-                            if errors > 0 then
-                                return { fg = '#ff0000', bg = '#222222' } -- 有错误时，使用红色
-                            else
-                                return { fg = '#00ff00', bg = '#222222' } -- 无错误时，使用绿色
-                            end
-                        end,
+                        -- sources = { "nvim_lsp" }, -- 诊断源
+                        -- -- sources = { "nvim_diagnostic" }, -- 诊断源
+                        -- sections = { "error", "warn", "info", "hint" }, -- 显示类型
+                        -- symbols = {
+                        --     error = "✘ ", -- 错误 (Nerd Font 图标)
+                        --     warn = "⚠", -- 警告
+                        --     info = "» ", -- 信息
+                        --     hint = "⚑ ", -- 提示
+                        -- },
+                        -- colors = { -- 诊断颜色
+                        --     error = "#FF6C6B", -- 红色
+                        --     warn = "#ECBE7B", -- 黄色
+                        --     info = "#7EB3C9", -- 蓝色
+                        --     hint = "#98be65", -- 绿色
+                        -- },
+                        -- colored = true, -- 启用颜色编码
+                        -- -- update_in_insert = false,     -- 插入模式不更新
+                        -- color = function()
+                        --     local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+                        --     if errors > 0 then
+                        --         return { fg = "#ff0000", bg = "#3f3935" } -- 有错误时，使用红色
+                        --     else
+                        --         return { fg = "#00ff00", bg = "#3f3935" } -- 无错误时，使用绿色
+                        --     end
+                        -- end,
                     },
                     -- { "neo-tree", color = { fg = "#61afef" } },
                 },
@@ -122,9 +139,8 @@ return {
                     {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
-                        colored = false,   -- 颜色显示
+                        colored = true,   -- 颜色显示
                         -- separator = { left = "" }, -- 左侧分隔符
-
                     },
                     {
                         "fileformat", -- 文件格式
@@ -176,7 +192,6 @@ return {
                             local shichen_index = math.floor((hour + 1) % 24 / 2) + 1
                             local shichen = shichen_map[shichen_index]
 
-
                             -- 判断整点 or 半点
                             local is_half = min >= 30 and 1 or 0
                             -- 计算 emoji 索引：0点开始，整点在前（0~11），半点加上12
@@ -195,21 +210,48 @@ return {
                         end,
                         -- separator = { left = "" }, -- 左侧分隔符
                         -- color = { gui = "italic" }, -- 颜色配置
+                        color = {
+                            bg = "#72b580",
+                            fg = "#111111",
+                            gui = "bold",
+                        }
+                    },
+                },
+            },
+
+            --[[ 非活动窗口状态栏 ]]
+            --
+            inactive_sections = {
+                lualine_c = { { "filename", path = 1, color = { fg = "#7F7F7F" } } }, -- 灰色文件名
+                lualine_x = { "location" },                                           -- 仅显示位置
+            },
+
+            tabline = {
+                lualine_a = {
+
+
+
+
+                    {
+                        "tabs",
+                        mode = 2,                             -- 0: 仅显示当前标签页，1: 显示所有标签页，2: 显示所有标签页并高亮当前
+                        max_length = vim.o.columns,           -- 最大宽度
+                        tabs_color = {
+                            active = 'lualine_tab_active',    -- 当前活动标签页颜色
+                            inactive = 'lualine_tab_inactive' -- 非活动标签页颜色
+                        },
+                        -- separator = { right = "" },           -- 右侧分隔符
+                    }
+                },
+                lualine_z = {
+                    {
+                        "filesize"
                     }
                 }
             },
-
-            --[[ 非活动窗口状态栏 ]] --
-            inactive_sections = {
-                lualine_c = { { "filename", path = 1, color = { fg = "#7F7F7F" } } }, -- 灰色文件名
-                lualine_x = { "location" }, -- 仅显示位置
-            },
-
-            --[[ 扩展配置 ]] --
-            extensions = { "neo-tree", "toggleterm", "lazy" } -- 支持插件集成
-
+            --[[ 扩展配置 ]]
+            --
+            extensions = { "neo-tree", "toggleterm", "lazy" }, -- 支持插件集成
         })
-        local hl = vim.api.nvim_set_hl
-        hl(0, "lualine_b_normal", {bg = "none", fg = "#56b6c2" })
-    end
+    end,
 }

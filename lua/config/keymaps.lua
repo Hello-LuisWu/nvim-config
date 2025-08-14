@@ -4,8 +4,8 @@ local map = vim.keymap.set
 local opt = { noremap = true, silent = true }
 local optsf = { noremap = true, silent = false }
 
-map("n", "<leader>uf",":set fileformat=unix<CR>")
-map("n", "<leader>uF",":set fileencoding=utf-8<CR>")
+map("n", "<leader>uf",":set fileformat=unix<CR>",{desc="格式转为 unix", noremap = true, silent = true})
+map("n", "<leader>uF",":set fileencoding=utf-8<CR>", {desc="编码转为 UTF-8", noremap = true, silent = true})
 
 -- 基础键位
 map("i", "jj", "<C-[>", opt)
@@ -13,9 +13,8 @@ map("i", "<C-k>", "<C-[>O")
 map("i", "<C-j>", "<C-[>o")
 map("n", "<Tab>", ":", optsf)
 map("n", "<S-Tab>", "/", optsf)
-
 map("n", "<BS>", ":set hlsearch!<CR>", opt)
--- map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", opt)
+map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", opt)
 map("n", "<leader><CR>", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
 
 map({ "n", "x" }, "<leader>j", "J", { desc = "向下融合", noremap = true, silent = true })
@@ -39,8 +38,15 @@ map({ "n", "o", "v" }, "H", "0", opt)
 map({ "n", "o", "v" }, "J", "5j", opt)
 map({ "n", "o", "v" }, "K", "5k", opt)
 
+-- tab 
+
+map("n", "<Tab>", "<Cmd>tabnext<CR>", { desc = "下一个标签页" })
+map("n", "<S-Tab>", "<Cmd>tabprevious<CR>", { desc = "上一个标签页" })
+map("n", "<leader>tn", "<Cmd>tabnew<CR>", { desc = "新建标签页" })
+map("n", "<leader>tc", "<Cmd>tabclose<CR>", { desc = "关闭标签页" })
+
 -- Buffer 管理
-map("n", "<leader>bl>", ":bnext<CR>", { desc = "下一个 Buffer", noremap = true, silent = true }) -- 下一个 Buffer
+map("n", "<C-Tab>", ":bnext<CR>", { desc = "下一个 Buffer", noremap = true, silent = true }) -- 下一个 Buffer
 map("n", "<leader>bh", ":bprevious<CR>", { desc = "上一个 Buffer", noremap = true, silent = true }) --
 map("n", "<leader>bq", ":bd<CR>", { desc = "关闭 Buffer", noremap = true, silent = true }) -- 关闭当前 Buffer
 

@@ -29,7 +29,7 @@ return {
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "缓冲区" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "查找 Git 文件" },
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "最近打开" },
-        { "<leader>e", function() Snacks.explorer() end, desc = "文件浏览器" },
+        -- { "<leader>e", function() Snacks.explorer() end, desc = "文件浏览器" },
         { "<leader>ft", function() Snacks.terminal() end, desc = "终端" },
         { "<leader>fz", function() Snacks.zen() end, desc = "专注模式" },
         { "<leader>fc", function() Snacks.picker.colorschemes() end, desc = "主题切换" },
@@ -205,7 +205,7 @@ return {
                 -- { section = "startup" },
             },
         },
-        explorer = { enabled = true },
+        explorer = { enabled = false },
         ---@class snacks.indent.Config
         ---@field enabled? boolean
         indent = {

@@ -6,6 +6,7 @@ local opt = vim.opt
 opt.number = true         -- 显示行号
 opt.relativenumber = true -- 显示相对行号
 -- opt.mouse = "r"           -- 禁用鼠标, nvim 默认值为 a
+opt.mousemodel = "extend"
 opt.mouse = "a"           -- 启用鼠标, nvim 默认值为开启
 opt.modifiable = true     -- 确保缓冲区可修改
 
@@ -65,9 +66,47 @@ opt.fillchars = {
     diff = "⣿", -- `diff` 模式下的填充字符
     stlnc = " ", -- 非当前窗口状态栏填充
 }
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.laststatus = 0  -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
-opt.showtabline = 0 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
+opt.laststatus = 0 -- 显示状态行，值为 0 不显示，值为 1 当有多个窗口才显示，值为2 永久显示
+-- 创建全局函数供 tabline 调用
+_G.my_tabline = function()
+    local s = ''
+    local tabs = vim.fn.tabpagenr('$')
+    local current = vim.fn.tabpagenr()
+
+    for tab = 1, tabs do
+        local winnr = vim.fn.tabpagewinnr(tab)
+        local buflist = vim.fn.tabpagebuflist(tab)
+        local bufnr = buflist[winnr]
+        local bufname = vim.fn.bufname(bufnr)
+
+        -- 精简文件名
+        bufname = bufname:match("([^/]+)$") or "[No Name]"
+
+        -- 高亮当前标签页
+        if tab == current then
+            s = s .. '%#TabLineSel#'
+        else
+            s = s .. '%#TabLine#'
+        end
+
+        -- 添加标签页序号和文件名
+        s = s .. ' ' .. tab .. ':' .. bufname .. ' '
+
+        -- 添加修改标记
+        if vim.fn.getbufvar(bufnr, '&modified') == 1 then
+            s = s .. '%#WarningMsg#[+] '
+        end
+    end
+
+    -- 右侧填充空白
+    s = s .. '%#TabLineFill#%='
+
+    return s
+end
+
+-- 应用配置
+vim.o.tabline = "%!v:lua.my_tabline()"
+opt.showtabline = 2 -- 2 总是显示标签页，0 不显示，1 出现多个标签页才显示
 -- opt.tabpagemax = 9   -- 最多可以打开 9 个标签页，默认10个
 
 -- ----------------------------
@@ -137,8 +176,8 @@ opt.splitbelow = true    -- 新的水平分屏窗口在下方打开
 opt.splitright = true    -- 新的垂直分屏窗口在右侧打开
 opt.splitkeep = "screen" -- 保持屏幕不动
 -- 设置浮动窗口混合效果 (增强透明感)
-opt.winblend = 88        -- 窗口透明度, 0-100值越高越透明
-opt.pumblend = 55        -- 补全菜单混合度
+opt.winblend = 15        -- 窗口透明度, 0-100值越高越透明
+opt.pumblend = 15        -- 补全菜单混合度
 opt.equalalways = false  -- 不自动调整窗口大小相等（若需启用设为 true）
 
 -- ----------------------------
