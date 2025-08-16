@@ -1,25 +1,23 @@
 -- NOTE: buffer 标签页
 return {
     'akinsho/bufferline.nvim',
-    enabled = false,
+    -- enabled = false,
     event = {
         "BufRead",   -- buffer读取之后,
         "BufNewFile" -- 新建文件时
     },
     keys = {
-        -- 关闭当前 buffer（文件）
-        { "<leader><tab>c", function() vim.cmd("bdelete") end, desc = "关闭当前 buffer", },
-        -- 强制关闭（避免提示未保存）
-        { "<leader><tab>C", function() vim.cmd("bdelete!") end, desc = "强制关闭当前 buffer", },
         -- 关闭当前 Tab 页面（Neovim Tab）
-        { "<leader>tc", function() vim.cmd("tabclose") end, desc = "关闭当前 Tab 页", },
-        { "<leader>tn", function() require("bufferline").sort_by(function(a, b) return a.name:lower() < b.name:lower() end) end, desc = "按文件名排序 buffer（A-Z）", },
-        { "<leader>te", "<cmd>BufferLineSortByExtension<CR>", desc = "按文件扩展名排序", },
-        { "<leader>td", "<cmd>BufferLineSortByDirectory<CR>", desc = "按目录排序", },
-        { "<leader>to", function() require("bufferline").sort_by(function(a, b) return a.id < b.id end) end, desc = "按打开顺序排序", },
-        { "<leader>to", "<cmd>BufferLineSortByTabs<CR>", desc = "按打开顺序排序", },
-        { "<leader><tab>y", "<cmd>BufferLineCloseRight<CR>", desc = "关闭右侧所有 buffer", },
-        { "<leader><tab>z", "<cmd>BufferLineCloseLeft<CR>", desc = "关闭左侧所有 buffer", },
+        -- { "<leader>tc", function() vim.cmd("tabclose") end, desc = "关闭当前 Tab 页", },
+        -- { "<leader>tn", function() require("bufferline").sort_by(function(a, b) return a.name:lower() < b.name:lower() end) end, desc = "按文件名排序 buffer（A-Z）", },
+        -- { "<leader>te", "<cmd>BufferLineSortByExtension<CR>", desc = "按文件扩展名排序", },
+        -- { "<leader>td", "<cmd>BufferLineSortByDirectory<CR>", desc = "按目录排序", },
+        -- { "<leader>to", function() require("bufferline").sort_by(function(a, b) return a.id < b.id end) end, desc = "按打开顺序排序", },
+        --  "to", "<cmd>BufferLineSortByTabs<CR>", desc = "按打开顺序排序", },
+        { "<leader><tab>c", function() vim.cmd("bdelete") end, desc = "关闭当前 buffer", },
+        { "<leader><tab>C", function() vim.cmd("bdelete!") end, desc = "强制关闭当前 buffer", },
+        { "<leader><tab>r", "<cmd>BufferLineCloseRight<CR>", desc = "关闭右侧所有 buffer", },
+        { "<leader><tab>l", "<cmd>BufferLineCloseLeft<CR>", desc = "关闭左侧所有 buffer", },
         { "<leader><tab>o", "<cmd>BufferLineCloseOthers<CR>", desc = "关闭除当前以外的所有 buffer", },
         { "<leader><tab>p", "<cmd>BufferLineTogglePin<cr>", desc = "固定/取消固定缓冲区" },
         { "<leader><tab>B", "<cmd>BufferLinePickClose<cr>", desc = "显示 buffer 快速关闭标签" },
@@ -27,7 +25,7 @@ return {
         { "<leader><tab>h", "<cmd>BufferLineCyclePrev<cr>", desc = "切换到上一个缓冲区" },
         { "<leader><tab>l", "<cmd>BufferLineCycleNext<cr>", desc = "切换到下一个缓冲区" },
         { "<leader><tab>L", "<cmd>BufferLineMoveNext<cr>", desc = "向右移动" },
-        { "<leader><tab>H", "<cmd>BufferLineMovePrev<cr>", desc = "向左移动" },
+        { "<leader><Tab>H", "<cmd>BufferLineMovePrev<cr>", desc = "向左移动" },
         { "<leader><tab>1", "<cmd>BufferLineGoToBuffer 1<cr>", desc = "切换到第一个缓冲区" },
         { "<leader><tab>2", "<cmd>BufferLineGoToBuffer 2<cr>", desc = "切换到第二个缓冲区" },
         { "<leader><tab>3", "<cmd>BufferLineGoToBuffer 3<cr>", desc = "切换到第三个缓冲区" },
@@ -43,13 +41,20 @@ return {
     -- enable = false,
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
+        local TabColor = {
+            selColor_bg = "#72b560",
+            selColor_fg = "#222222",
+            visColor_bg = "#080808",
+            visColor_fg = "#e2e2e2",
+            sepColor_fg = "#555555"
+        }
         local bufferline = require("bufferline") -- ✅ 正确方式
         bufferline.setup({
             options = {
                 -- ...
 
                 -- 模式设置，可选 "buffers" 或 "tabs"（显示标签页）
-                mode = "tabs",
+                mode = "buffers",
 
                 -- 样式预设，可选 default/minimal 或自定义组合
                 style_preset = bufferline.style_preset.default,
@@ -63,7 +68,7 @@ return {
                 -- "buffer_id"  显示 buffer id
                 -- "both"    显示 编号和buffer id
                 -- 自定义函数
-                numbers = "none",
+                numbers = "ordinal",
                 -- numbers = function(opts)
                 --     return string.format('%s·%s', opts.ordinal, opts.id)
                 -- end,
@@ -122,8 +127,8 @@ return {
                         filetype = "neo-tree",
                         -- text = "", -- 自定义显示的文本
                         text = "=== 文件浏览器 ===", -- 自定义显示的文本
-                        text_align = "left",     -- 文本对齐方式
-                        separator = true,        -- 显示分隔线
+                        text_align = "left", -- 文本对齐方式
+                        separator = true, -- 显示分隔线
                     }
                 },
 
@@ -155,7 +160,7 @@ return {
                 },
 
                 -- 分隔符样式（支持预设或自定义字符）
-                separator_style = {"thin"}, -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
+                separator_style = {"▎","▎"}, -- 可选 "slope" | "thick" | "thin" 或 {"|", "|"}
 
                 -- 强制等宽标签（禁用去重）
                 enforce_regular_tabs = true,
@@ -208,6 +213,72 @@ return {
                 -- },
 
             },
+            highlights = {
+                -- fill                  = {
+                --     bg = TabColor.visColor_bg
+                -- },
+                -- background            = {
+                --     bg = TabColor.visColor_bg,
+                --     fg = TabColor.visColor_fg
+                -- },
+                -- tab                   = {
+                --     bg = "#72b560",
+                --     fg = "#333333"
+                -- },
+                buffer_selected       = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                buffer_visible        = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                close_button_selected = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                -- numbers               = {
+                --     bg = TabColor.visColor_bg,
+                --     fg = TabColor.visColor_fg
+                -- },
+                numbers_selected      = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                numbers_visible       = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                modified_selected     = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                modified_visible      = {
+                    bg = TabColor.selColor_bg,
+                    fg = TabColor.selColor_fg
+                },
+                -- modified              = {
+                --     bg = TabColor.visColor_bg,
+                --     fg = TabColor.visColor_fg
+                -- },
+                -- 分隔符通用样式
+                separator             = {
+                    fg = TabColor.sepColor_fg, -- 分隔符颜色
+                    -- bg = TabColor.visColor_bg, -- 背景色
+                },
+
+                -- 可见分隔符
+                separator_visible     = {
+                    fg = TabColor.sepColor_fg, -- 分隔符颜色
+                    -- bg = TabColor.visColor_bg, -- 背景色
+                },
+
+                -- 选中分隔符
+                separator_selected    = {
+                    fg = TabColor.sepColor_fg, -- 分隔符颜色
+                    -- bg = TabColor.visColor_bg, -- 背景色
+                },
+            }
         })
     end,
 

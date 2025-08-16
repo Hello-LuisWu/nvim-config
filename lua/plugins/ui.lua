@@ -26,7 +26,7 @@ return {
                 dim_inactive = false,
                 transparent_mode = false,
             })
-            -- vim.cmd.colorscheme('gruvbox')
+            vim.cmd.colorscheme('gruvbox')
 
             -- local hl = vim.api.nvim_set_hl
             -- hl(0, "Normal", {bg = "none"})
@@ -41,7 +41,7 @@ return {
             -- Optionally configure and load the colorscheme
             -- directly inside the plugin declaration.
             vim.g.everforest_enable_italic = true
-            vim.cmd.colorscheme('everforest')
+            -- vim.cmd.colorscheme('everforest')
             -- local hl = vim.api.nvim_set_hl
             -- hl(0, "Normal", {bg = "none"})
         end

@@ -9,8 +9,8 @@ return {
     },
     config = function()
         local hl = vim.api.nvim_set_hl
-        hl(0, "lualine_tab_inactive", { bg = "#333333", fg = "#72b580" })
-        hl(0, "lualine_tab_active", { bg = "#72b580", fg = "#111111", bold = true })
+        hl(0, "lualine_tab_inactive", { bg = "#333333", fg = "#72b550" })
+        hl(0, "lualine_tab_active", { bg = "#72b550", fg = "#111111", bold = true })
 
         require("lualine").setup({
             options = {
@@ -18,10 +18,10 @@ return {
                 -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
                 -- section_separators = { left = "", right = "" }, -- 区块分隔符 
-                always_show_tabline = true,
+                -- always_show_tabline = true,
                 section_separators = { left = "", right = "" }, -- 区块分隔符 
                 disabled_filetypes = { -- 禁用状态栏的文件类型
-                    -- "alpha", -- 启动界面
+                    "alpha", -- 启动界面
                     "neo-tree", -- 文件树
                     "toggleterm", -- 终端
                 },
@@ -44,7 +44,7 @@ return {
                         -- icon = " ",
                         --           separator = { right = "" }, -- 右侧分隔符
                         color = {
-                            bg = "#72b580",
+                            bg = "#72b560",
                             -- fg = "#111111",
                             gui = "bold",
                         },
@@ -159,6 +159,7 @@ return {
                 lualine_y = { -- 光标信息区块
                     {
                         "%l/%L %p%%",
+                        icon = ""
                     },
                 },
                 lualine_z = { -- 时间区块
@@ -199,7 +200,7 @@ return {
                             local emoji = clock_emoji[emoji_index]
 
                             return string.format(
-                                "%d/%d %s %s时 周%s",
+                                "%d/%d %s%s时 周%s",
                                 -- time.year,
                                 time.month,
                                 time.day,
@@ -211,7 +212,7 @@ return {
                         -- separator = { left = "" }, -- 左侧分隔符
                         -- color = { gui = "italic" }, -- 颜色配置
                         color = {
-                            bg = "#72b580",
+                            bg = "#72b560",
                             fg = "#111111",
                             gui = "bold",
                         }
@@ -220,38 +221,57 @@ return {
             },
 
             --[[ 非活动窗口状态栏 ]]
-            --
             inactive_sections = {
-                lualine_c = { { "filename", path = 1, color = { fg = "#7F7F7F" } } }, -- 灰色文件名
-                lualine_x = { "location" },                                           -- 仅显示位置
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { 'filename' },
+                lualine_x = { 'location' },
+                lualine_y = {},
+                lualine_z = {}
             },
 
-            tabline = {
-                lualine_a = {
+            -- winbar = {
+            --     lualine_a = {
+            --         {
+            --             "tabs",
+            --             mode = 2,                             -- 0: 仅显示当前标签页，1: 显示所有标签页，2: 显示所有标签页并高亮当前
+            --             max_length = vim.o.columns,           -- 最大宽度
+            --             tabs_color = {
+            --                 active = 'lualine_tab_active',    -- 当前活动标签页颜色
+            --                 inactive = 'lualine_tab_inactive' -- 非活动标签页颜色
+            --             },
+            --             -- separator = { right = "" },           -- 右侧分隔符
+            --         },
+            --     },
+            --     lualine_z = {
+            --         {
+            --             "filesize",
+            --             fmt = function(str)
+            --                 if str ~= '' then
+            --                     return "Size: " .. str
+            --                 end
+            --                 return str
+            --             end,
+            --             icon = "",
+            --             color = {
+            --                 bg = "#72b580",
+            --                 gui = "bold"
+            --             }
+            --         },
+            --     }
+            -- },
+            --  winbar = {
+            --     lualine_a = {
+            --         {
+            --             "branch"
+            --         }
+            --     },
+            -- },
 
-
-
-
-                    {
-                        "tabs",
-                        mode = 2,                             -- 0: 仅显示当前标签页，1: 显示所有标签页，2: 显示所有标签页并高亮当前
-                        max_length = vim.o.columns,           -- 最大宽度
-                        tabs_color = {
-                            active = 'lualine_tab_active',    -- 当前活动标签页颜色
-                            inactive = 'lualine_tab_inactive' -- 非活动标签页颜色
-                        },
-                        -- separator = { right = "" },           -- 右侧分隔符
-                    }
-                },
-                lualine_z = {
-                    {
-                        "filesize"
-                    }
-                }
-            },
             --[[ 扩展配置 ]]
             --
             extensions = { "neo-tree", "toggleterm", "lazy" }, -- 支持插件集成
+
         })
     end,
 }

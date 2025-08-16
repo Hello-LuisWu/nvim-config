@@ -1,6 +1,6 @@
 return {
     "nvimdev/lspsaga.nvim",
-    -- enabled = false,
+    enabled = false,
     event = {
         "BufNewFile",
         "BufRead",

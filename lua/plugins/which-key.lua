@@ -138,8 +138,8 @@ return {
                 },
             },
             --[[ 界面配置 ]] --
-            show_help = false, -- 底部显示帮助提示
-            show_keys = false, -- 显示已按的键序列
+            show_help = true, -- 底部显示帮助提示
+            show_keys = true, -- 显示已按的键序列
 
             --[[ 禁用配置 ]] --
             disable = {

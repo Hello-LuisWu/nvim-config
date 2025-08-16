@@ -30,7 +30,8 @@
 
         // {"before": ["C-b>"], "commands": ["editor.action.commentLine"]},
         {"before": ["<leader>", "\\"], "commands": [ "editor.action.commentLine" ]},
-        {"before": ["<leader>", "e"], "commands": ["workbench.view.explorer"], "when": "viewContainer.workbench.view.explorer.enabled" },
+        {"before": ["<C-e>"], "commands": ["workbench.view.explorer"] },
+        {"before": ["<leader>", "e"], "commands": ["workbench.action.toggleSidebarVisibility"] },
         
         {"before": ["<C-f>"], "after": ["<C-f>", "z", "z"]},
         {"before": ["<C-b>"], "after": ["<C-b>", "z", "z"]},

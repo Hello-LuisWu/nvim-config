@@ -40,7 +40,7 @@ map({ "n", "o", "v" }, "K", "5k", opt)
 
 -- tab 
 
-map("n", "<Tab>", "<Cmd>tabnext<CR>", { desc = "下一个标签页" })
+map("n", "<leader><Tab>", "<Cmd>tabnext<CR>", { desc = "下一个标签页" })
 map("n", "<S-Tab>", "<Cmd>tabprevious<CR>", { desc = "上一个标签页" })
 map("n", "<leader>tn", "<Cmd>tabnew<CR>", { desc = "新建标签页" })
 map("n", "<leader>tc", "<Cmd>tabclose<CR>", { desc = "关闭标签页" })

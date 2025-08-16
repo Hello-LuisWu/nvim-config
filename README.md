@@ -1,3 +1,4 @@
+
 # 🧠 nvim-config User Guide
 
 ## Interface
@@ -24,13 +25,14 @@ The following software must be installed in your system before using this config
 
 ### 🧪 Recommended Optional Dependencies:
 
-| Tool Name                  | Purpose                                                           |
-| -------------------------- | ----------------------------------------------------------------- |
-| 🐍 **Python 3** + `pynvim` | Supports Python plugins (e.g., some LSP tools)                    |
-| 🧵 **Node.js** + `npm`     | Install LSP/formatters (e.g., tsserver, prettier)                 |
-| 🛠 **make**                | Required for building some plugins (e.g., `telescope-fzf-native`) |
-| 🌀 **Nerd Font**|[Nerd Font](https://www.nerdfonts.com/#home) is a programming font with built-in icons, used to enhance terminal and editor UI.|
-
+| Tool Name                  | Purpose                                                                                                                         |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| 🐍 **Python 3** + `pynvim` | Supports Python plugins (e.g., some LSP tools)                                                                                  |
+| 🧵 **Node.js** + `npm`     | Install LSP/formatters (e.g., tsserver, prettier)                                                                               |
+| 🛠 **make**                | Required for building some plugins (e.g., `telescope-fzf-native`)                                                               |
+| 🌀 **Nerd Font**           | [Nerd Font](https://www.nerdfonts.com/#home) is a programming font with built-in icons, used to enhance terminal and editor UI. |
+| 🔯**cmatrix**              | Home page digital rain effect tool
+                                                                                                              |
 
 ## 🧹 Clean Old Config (Reinstallation Recommendation)
 

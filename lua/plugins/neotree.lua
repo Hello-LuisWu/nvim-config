@@ -1,16 +1,90 @@
+--[[
+-- 导航操作
+< → 切换到上一个数据源
+> → 切换到下一个数据源
+<BS> → 返回上级目录
+. → 设当前文件夹为根目录
+<Space> → 展开/折叠节点
+<CR> / <2-左键> → 打开文件/文件夹
+C → 关闭当前节点
+z → 折叠所有节点
+[g → 跳转上一个 Git 修改文件
+]g → 跳转下一个 Git 修改文件
+
+-- 窗口控制
+P → 切换预览模式
+l → 聚焦预览窗口
+<C-f> → 预览窗口向下滚动
+<C-b> → 预览窗口向上滚动
+<Esc> → 取消操作/退出
+q → 关闭窗口
+e → 切换自动宽度调整
+
+-- 文件操作
+a → 新建文件/文件夹
+A → 新建文件夹
+d → 删除
+r → 重命名
+b → 重命名（不含扩展名）
+y → 复制到剪贴板
+x → 剪切到剪贴板
+p → 从剪贴板粘贴
+c → 复制文件
+m → 移动文件
+i → 打印文件路径
+
+
+-- 视图调整
+H → 显示/隐藏文件
+R → 刷新目录
+o → 显示排序帮助
+　　oc → 按创建时间排序
+　　od → 按诊断等级排序
+　　og → 按 Git 状态排序
+　　om → 按修改时间排序
+　　on → 按名称排序
+　　os → 按文件大小排序
+　　ot → 按文件类型排序
+
+-- 打开方式
+S → 水平分屏打开
+s → 垂直分屏打开
+t → 新标签页打开
+w → 选择窗口打开
+
+-- 搜索过滤
+# → 智能排序（fzy算法）
+/ → 实时模糊搜索
+D → 仅搜索文件夹
+f → 提交后过滤
+<C-x> → 清除过滤条件
+
+git tab
+
+gU	git_undo_last_commit	撤销最后一次提交	    git reset HEAD~
+ga	git_add_file	        添加文件到暂存区	    git add <file>
+gc	git_commit	            提交更改	            git commit
+gg	git_commit_and_push 	提交并推送到远程仓库	git commit && git push
+gp	git_push	`           推送本地提交到远程仓库	git push
+gr	git_revert_file	        撤销文件修改	        git restore <file>
+gu	git_unstage_file	    从暂存区移除文件	    git restore --staged <file>
+
+
+]]
+
 return {
     "nvim-neo-tree/neo-tree.nvim",
     -- enabled = true,
-    dependencies = { -- 依赖插件
+    dependencies = { -- ä¾èµæä»¶
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
-    keys = { -- 快捷键触发加载
-        -- { "<leader>e", "<cmd>Neotree toggle<cr>", mode = { "n", "v" }, desc = "Neotree: 打开文件树" },
-        { "<leader>e", "<cmd>Neotree toggle reveal source=filesystem<cr>", mode = { "n", "v" }, desc = "NeoTree: 定位当前文件" },
-        { "<C-e>", "<cmd>Neotree toggle reveal float buffers<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前 Buffer" },
-        { "<C-r>", "<cmd>Neotree toggle reveal float git_status<cr>", mode = { "n", "i", "v" }, desc = "NeoTree: 定位当前文件 git status" },
+    keys = { -- å¿«æ·é®è§¦åå è½½
+        -- { "<leader>e", "<cmd>Neotree toggle<cr>", mode = { "n", "v" }, desc = "Neotree: æå¼æä»¶æ " },
+        { "<leader>e", "<cmd>Neotree toggle reveal source=filesystem<cr>", mode = { "n", "v" },      desc = "NeoTree: å®ä½å½åæä»¶" },
+        { "<C-e>",     "<cmd>Neotree toggle reveal float buffers<cr>",     mode = { "n", "i", "v" }, desc = "NeoTree: å®ä½å½å Buffer" },
+        { "<C-r>",     "<cmd>Neotree toggle reveal float git_status<cr>",  mode = { "n", "i", "v" }, desc = "NeoTree: å®ä½å½åæä»¶ git status" },
     },
     config = function()
         require("neo-tree").setup({
@@ -39,6 +113,8 @@ return {
                     current = "window",                   -- 当前窗口模式使用窗口级目录
                 },
                 find_by_full_path_words = true,           -- 支持多单词路径模糊匹配，如 `src utils` 匹配 `src/utils/xxx.lua`
+
+                -- 仅在Files tab下生效，Buffer Git 不起作用
                 window                  = {
                     mappings = {
                         -- disable fuzzy finder
@@ -74,34 +150,42 @@ return {
                         --".null-ls_*",
                     },
                 },
-
             },
-
             window                    = {
-                width = 25,                                                       -- 自定义宽度
+                width = 25, -- 自定义宽度
+
+                -- 全局快捷键配置
                 mappings = {
-                    ["e"]       = "expand_all",                                   -- 按 e 展开所有目录bg
-                    ["<space>"] = "noop",                                         -- 禁用
-                    ["<cr>"]    = "open",                                         -- 回车打开文件或展开目录
-                    ["S"]       = "open_split",                                   -- 水平分屏打开
-                    ["s"]       = "open_vsplit",                                  -- 垂直分屏打开
-                    ["t"]       = "open_tabnew",                                  -- 新 tab 打开
-                    ["a"]       = { "add", config = { show_path = "relative" } }, -- 创建新文件或目录
-                    ["A"]       = "add_directory",                                -- 创建新目录
-                    ["d"]       = "delete",                                       -- 删除文件或目录
-                    ["r"]       = "rename",                                       -- 重命名
-                    ["x"]       = "cut_to_clipboard",                             -- 剪切
-                    ["y"]       = "copy_to_clipboard",                            -- 复制
-                    ["p"]       = "paste_from_clipboard",                         -- 粘贴
-                    ["R"]       = "refresh",                                      -- 刷新
-                    ["H"]       = "toggle_hidden",                                -- 显示/隐藏 dotfiles
-                    ["<bs>"]    = "noop",                                         -- 返回上级目录
-                    ["."]       = "set_root",                                     -- 设置为新根目录
-                    ["q"]       = "close_window",                                 -- 关闭 Neo-tree 面板
+                    -- noop: 禁用
+                    ["/"] = "noop",
+                    -- ["P"] = "noop",
+                    ["P"] = { -- 预览当前文件
+                        "toggle_preview",
+                        config = {
+                            use_float = false,
+                            use_snacks_image = true,
+                            use_image_nvim = true
+                        }
+                    },
+                    ["l"] = "focus_preview", -- 打开预览
+
+                    -- 上下滚动
+                    ["<C-b>"] = { "scroll_preview", config = { direction = 10 } },
+                    ["<C-f>"] = { "scroll_preview", config = { direction = -10 } },
+                    -- ["A"] = "command_a",
+                    ["i"] = {
+                        function(state)
+                            local node = state.tree:get_node()
+                            print(node.path)
+                        end,
+                        desc = "print path",
+                    },
                 },
             },
+
             default_component_configs = {
                 git_status = {
+                    -- symbols = false,
                     symbols = {
                         -- Change type
                         added     = "✚",
@@ -184,7 +268,7 @@ return {
             },
             buffers                   = {
                 show_unloaded = true, -- 是否显示未加载的缓冲区（默认 false）
-            },
+            }
         })
     end
 }

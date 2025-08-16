@@ -1,17 +1,17 @@
 return {
     "neovim/nvim-lspconfig",
     event = {
-        "BufRead",       -- buffer读取之后,
-        "BufNewFile"     -- 新建文件时
+        "BufRead",   -- buffer读取之后,
+        "BufNewFile" -- 新建文件时
     },
     dependencies = {
         {
 
-            "williamboman/mason.nvim",     -- LSP 安装工具
+            "williamboman/mason.nvim", -- LSP 安装工具
             version = "^1.0.0"
         },
         {
-            "williamboman/mason-lspconfig.nvim",     -- 自动安装 LSP
+            "williamboman/mason-lspconfig.nvim", -- 自动安装 LSP
             version = "^1.0.0"
         }
     },
@@ -47,8 +47,8 @@ return {
                 "pyright",
                 "rust_analyzer",
                 "lua_ls"
-            },                                 -- 示例: 自动安装的 LSP
-            automatic_installation = true,     -- 自动安装缺失的 LSP
+            },                             -- 示例: 自动安装的 LSP
+            automatic_installation = true, -- 自动安装缺失的 LSP
             automatic_enable = {
                 -- 仅启用特定服务器
                 -- "lua_ls",
@@ -92,7 +92,7 @@ return {
                             'opts',
                             'group',
                             'Snacks'
-                        }     -- 声明 vim 为已知全局变量
+                        } -- 声明 vim 为已知全局变量
                     },
                     workspace = {
                         -- 添加 Neovim 运行时路径
@@ -113,31 +113,47 @@ return {
         vim.api.nvim_create_autocmd('LspAttach', {
             desc = 'LSP actions',
             callback = function(event)
-                vim.keymap.set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = "悬停信息", buffer = event.buf })
-                vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>',
+
+                local map = vim.keymap.set
+
+                map('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<cr>',
+                    { desc = "悬停信息", buffer = event.buf })
+
+                map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>',
                     { desc = "跳转定义", buffer = event.buf })
-                vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>',
+
+                map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>',
                     { desc = "跳转到声明", buffer = event.buf })
-                vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
+
+                map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
                     { desc = "跳转到实现", buffer = event.buf })
-                vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+
+                map('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
                     { desc = "跳转到类型定义", buffer = event.buf })
-                vim.keymap.set('n', 'gy', '<cmd>lua vim.lsp.buf.references()<cr>',
+
+                map('n', 'gy', '<cmd>lua vim.lsp.buf.references()<cr>',
                     { desc = "查看引用", buffer = event.buf })
-                vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+
+                map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
                     { desc = "显示函数签名帮助", buffer = event.buf })
-                vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "重命名符号", buffer = event.buf })
-                vim.keymap.set({ 'n', 'x' }, 'gf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
+
+                map('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<cr>',
+                    { desc = "重命名符号", buffer = event.buf })
+
+                map({ 'n', 'x' }, 'gf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
                     { desc = "代码格式化", buffer = event.buf })
-                vim.keymap.set('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<cr>',
+
+                map('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<cr>',
                     { desc = "代码操作", buffer = event.buf })
-                vim.keymap.set('n', 'gwa', vim.lsp.buf.add_workspace_folder,
+
+                map('n', 'gwa', vim.lsp.buf.add_workspace_folder,
                     { desc = "添加工作空间", buffer = event.buf })
-                vim.keymap.set('n', 'gwr', vim.lsp.buf.remove_workspace_folder,
+
+                map('n', 'gwr', vim.lsp.buf.remove_workspace_folder,
                     { desc = "移除工作空间", buffer = event.buf })
-                vim.keymap.set('n', 'gwl', function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end, { desc = "列出工作空间", buffer = event.buf })
+
+                map('n', 'gwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+                    { desc = "列出工作空间", buffer = event.buf })
             end,
         })
     end,
