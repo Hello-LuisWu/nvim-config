@@ -119,6 +119,7 @@ return {
                     mappings = {
                         -- disable fuzzy finder
                         ["/"] = "noop",
+                        ["v"] = "toggle_hidden",  -- 必须放在filesystem作用域
                     }
                 },
                 filtered_items          = {
@@ -152,13 +153,15 @@ return {
                 },
             },
             window                    = {
-                width = 25, -- 自定义宽度
+                width = 28, -- 自定义宽度
 
                 -- 全局快捷键配置
                 mappings = {
+                    ["H"] = "prev_source",      -- 全局生效
+                    ["L"] = "next_source",      -- 所有数据源可用
                     -- noop: 禁用
-                    ["/"] = "noop",
-                    -- ["P"] = "noop",
+                    -- ["/"] = "noop",
+                    -- -- ["P"] = "noop",
                     ["P"] = { -- 预览当前文件
                         "toggle_preview",
                         config = {
@@ -169,10 +172,10 @@ return {
                     },
                     ["l"] = "focus_preview", -- 打开预览
 
-                    -- 上下滚动
+                    -- -- 上下滚动
                     ["<C-b>"] = { "scroll_preview", config = { direction = 10 } },
                     ["<C-f>"] = { "scroll_preview", config = { direction = -10 } },
-                    -- ["A"] = "command_a",
+                    -- -- ["A"] = "command_a",
                     ["i"] = {
                         function(state)
                             local node = state.tree:get_node()
@@ -233,15 +236,15 @@ return {
                 sources                       = {        -- table
                     {
                         source = "filesystem",           -- string
-                        display_name = "Files"           -- string | nil
+                        display_name = " Files"           -- string | nil
                     },
                     {
                         source = "buffers",     -- string
-                        display_name = "Buffer" -- string | nil
+                        display_name = " Buffer" -- string | nil
                     },
                     {
                         source = "git_status", -- string
-                        display_name = "Git"   -- string | nil
+                        display_name = " Git"   -- string | nil
                     },
                 },
                 highlight_tab                 = "NeoTreeTabInactive", -- string
