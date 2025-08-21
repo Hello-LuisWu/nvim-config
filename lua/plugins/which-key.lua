@@ -163,7 +163,7 @@ return {
                 { "<leader>b", group = "buffer", icon = "" },
                 -- { "<leader>\\", desc = "块注释", icon = "󰆈" },
                 -- { "<leader>-", desc = "yazi 文件浏览器", icon = "󰇥" },
-                { "<leader>0", icon = "󰖶" },
+                { "<leader><CR>", icon = "󰖶" },
                 { "<leader>a", icon = "󰚡" },
                 { "<leader>o", group = "杂项", icon = "" },
                 { "<leader>m", group = "Markdown", icon = "" },

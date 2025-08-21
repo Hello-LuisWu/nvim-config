@@ -59,19 +59,23 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 nvim home directory file tree
 
 ```sh
-.
+
+├── img
+│   ├── edit.png
+│   └── star.gif
 ├── init.lua
 ├── lazy-lock.json
 ├── lua
 │   ├── cmp.lua
 │   ├── config
 │   │   ├── autocmds.lua
-│   │   ├── folding.lua
-│   │   ├── hi.luaa
+│   │   ├── hl.luaaaa
 │   │   ├── keymaps.lua
 │   │   ├── lazy.lua
-│   │   └── options.lua
+│   │   ├── options.lua
+│   │   └── s.lua
 │   └── plugins
+│       ├── aerial.lua
 │       ├── alpha.lua
 │       ├── autopairs.lua
 │       ├── blink.lua
@@ -82,6 +86,7 @@ nvim home directory file tree
 │       ├── flash.lua
 │       ├── gemini.lua
 │       ├── lsp.lua
+│       ├── lspsaga.lua
 │       ├── lualine.lua
 │       ├── md.lua
 │       ├── mini.indentscope.lua
@@ -99,7 +104,9 @@ nvim home directory file tree
 ├── maps.md
 ├── README-CN.md
 ├── README.md
-└── stylua.toml
+├── stylua.toml
+└── vscodeVim
+    └── settings.json
 ```
 
 ## 🚀 Launch and Initial Setup

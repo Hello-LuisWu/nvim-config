@@ -12,7 +12,11 @@ map("i", "jj", "<C-[>", opt)
 map("i", "<C-k>", "<C-[>O")
 map("i", "<C-j>", "<C-[>o")
 map("n", "<Tab>", ":", optsf)
-map("n", "<S-Tab>", "/", optsf)
+map("v", "p", "P", optsf)
+map("n", "-", "<C-x>", optsf)
+map("n", "v[", "vi[", optsf)
+map("n", "+", "<C-a>", optsf)
+map("n", "<S-Tab>", "/", opts)
 map("n", "<BS>", ":set hlsearch!<CR>", opt)
 map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", opt)
 map("n", "<leader><CR>", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
@@ -29,6 +33,8 @@ map({ "n", "v" }, "gF", "gg=G", { desc = "自动缩进", noremap = true, silent 
 -- map({ "n", "v" }, "<leader>su", "zu", { desc = "撤销 zg/zw", noremap = true, silent = true })
 -- map({ "n", "v" }, "<leader>su", "<cmd>spellr<CR>", { desc = "替换错误单词（自动使用第一个建议）", noremap = true, silent = true })
 
+
+
 map("n", "W", "5w", opt)
 map("n", "B", "5b", opt)
 
@@ -40,8 +46,8 @@ map({ "n", "o", "v" }, "K", "5k", opt)
 
 -- tab 
 
-map("n", "<leader><Tab>", "<Cmd>tabnext<CR>", { desc = "下一个标签页" })
-map("n", "<S-Tab>", "<Cmd>tabprevious<CR>", { desc = "上一个标签页" })
+-- map("n", "<leader><Tab>", "<Cmd>tabnext<CR>", { desc = "下一个标签页" })
+-- map("n", "<S-Tab>", "<Cmd>tabprevious<CR>", { desc = "上一个标签页" })
 map("n", "<leader>tn", "<Cmd>tabnew<CR>", { desc = "新建标签页" })
 map("n", "<leader>tc", "<Cmd>tabclose<CR>", { desc = "关闭标签页" })
 
