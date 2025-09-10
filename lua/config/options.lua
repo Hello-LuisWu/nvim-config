@@ -17,7 +17,7 @@ opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 -- opt.clipboard = "unnamedplus"
 
 -- 编码设置
--- opt.encoding = "utf-8"                 -- 设置 Neovim 内部编码, Neovim 0.9+ 已废弃。
+opt.encoding = "utf-8"                 -- 设置 Neovim 内部编码, Neovim 0.9+ 已废弃。
 opt.fileencoding = "utf-8"             -- 自动检测文件编码的顺序
 opt.fileencodings = "utf-8,gbk,latin1" -- 自动检测文件编码的顺序
 opt.fileformats = "unix,dos,mac"       -- 文件格式支持，优先次序从左到右

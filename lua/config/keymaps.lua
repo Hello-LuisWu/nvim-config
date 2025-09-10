@@ -1,24 +1,24 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 local map = vim.keymap.set
-local opt = { noremap = true, silent = true }
-local optsf = { noremap = true, silent = false }
+local ns = { noremap = true, silent = true }
+local nsf = { noremap = true, silent = false }
 
 map("n", "<leader>uf",":set fileformat=unix<CR>",{desc="格式转为 unix", noremap = true, silent = true})
 map("n", "<leader>uF",":set fileencoding=utf-8<CR>", {desc="编码转为 UTF-8", noremap = true, silent = true})
 
 -- 基础键位
-map("i", "jj", "<C-[>", opt)
+map("i", "jj", "<C-[>", ns)
 map("i", "<C-k>", "<C-[>O")
 map("i", "<C-j>", "<C-[>o")
-map("n", "<Tab>", ":", optsf)
-map("v", "p", "P", optsf)
-map("n", "-", "<C-x>", optsf)
-map("n", "v[", "vi[", optsf)
-map("n", "+", "<C-a>", optsf)
+map("n", "<Tab>", ":", nsf)
+map("v", "p", "P", nsf)
+map("n", "-", "<C-x>", nsf)
+map("n", "v[", "vi[", nsf)
+map("n", "+", "<C-a>", nsf)
 map("n", "<S-Tab>", "/", opts)
-map("n", "<BS>", ":set hlsearch!<CR>", opt)
-map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", opt)
+map("n", "<BS>", ":set hlsearch!<CR>", ns)
+map("i", "\\\\", "<C-[>/<++><CR>:nohlsearch<CR>c4l", ns)
 map("n", "<leader><CR>", ":set wrap!<CR>", { desc = "换行按钮", noremap = true, silent = true })
 
 map({ "n", "x" }, "<leader>j", "J", { desc = "向下融合", noremap = true, silent = true })
@@ -35,14 +35,14 @@ map({ "n", "v" }, "gF", "gg=G", { desc = "自动缩进", noremap = true, silent 
 
 
 
-map("n", "W", "5w", opt)
-map("n", "B", "5b", opt)
+map("n", "W", "5w", ns)
+map("n", "B", "5b", ns)
 
 -- 普通模式,可视模式和等待操作模式下,行的首尾 & 页面的首尾跳转
-map({ "n", "o", "v" }, "L", "$", opt)
-map({ "n", "o", "v" }, "H", "0", opt)
-map({ "n", "o", "v" }, "J", "5j", opt)
-map({ "n", "o", "v" }, "K", "5k", opt)
+map({ "n", "o", "v" }, "L", "$", ns)
+map({ "n", "o", "v" }, "H", "0", ns)
+map({ "n", "o", "v" }, "J", "5j", ns)
+map({ "n", "o", "v" }, "K", "5k", ns)
 
 -- tab 
 
@@ -57,22 +57,22 @@ map("n", "<leader>bh", ":bprevious<CR>", { desc = "上一个 Buffer", noremap = 
 map("n", "<leader>bq", ":bd<CR>", { desc = "关闭 Buffer", noremap = true, silent = true }) -- 关闭当前 Buffer
 
 -- 5. 快速跳转
-map("n", "<C-f>", "<C-f>zz", opt) -- 向下翻页并居中
-map("n", "<C-b>", "<C-b>zz", opt) -- 向上翻页并居中
-map("n", "n", "nzzzv", opt)       -- 搜索结果时光标居中
-map("n", "N", "Nzzzv", opt)
+map("n", "<C-f>", "<C-f>zz", ns) -- 向下翻页并居中
+map("n", "<C-b>", "<C-b>zz", ns) -- 向上翻页并居中
+map("n", "n", "nzzzv", ns)       -- 搜索结果时光标居中
+map("n", "N", "Nzzzv", ns)
 map("n", "g,", "g,zz", { desc = "跳转变更位置并居中" })
 
-map({ "v", "x" }, "<C-j>", ":m '>+1<CR>gv=gv", opt)
-map({ "v", "x" }, "<C-k>", ":m '<-2<CR>gv=gv", opt)
+map({ "v", "x" }, "<C-j>", ":m '>+1<CR>gv=gv", ns)
+map({ "v", "x" }, "<C-k>", ":m '<-2<CR>gv=gv", ns)
 -- map({ "v", "x" }, "<leader><leader>", "<C-[>", opt)
 
-map("v", "<", "<gv", opt)
-map("v", ">", ">gv", opt)
-map("v", "<S-tab>", "<gv", opt)
-map("v", "<tab>", ">gv", opt)
-map("v", "<C-h>", "<gv", opt)
-map("v", "<C-l>", ">gv", opt)
+map("v", "<", "<gv", ns)
+map("v", ">", ">gv", ns)
+map("v", "<S-tab>", "<gv", ns)
+map("v", "<tab>", ">gv", ns)
+map("v", "<C-h>", "<gv", ns)
+map("v", "<C-l>", ">gv", ns)
 
 -- map({ "i", "n", "v" }, "<Left>", "<Nop>", opt)
 -- map({ "i", "n", "v" }, "<Right>", "<Nop>", opt)
@@ -81,12 +81,12 @@ map("v", "<C-l>", ">gv", opt)
 -- map("i", "<Esc>", "<Nop>", opt)
 -- map({ "n", "v" }, "q:", "<Nop>", opt)
 
-map("n", "j", "gj", opt)
-map("n", "k", "gk", opt)
+map("n", "j", "gj", ns)
+map("n", "k", "gk", ns)
 
-map("i", "HH", "<C-[>I", opt)
-map("i", "LL", "<C-[>A", opt)
-map({ "i" }, "<C-d>", "<C-[>yypA", opt)
+map("i", "HH", "<C-[>I", ns)
+map("i", "LL", "<C-[>A", ns)
+map({ "i" }, "<C-d>", "<C-[>yypA", ns)
 map({ "n" }, "<C-d>", "<C-[>yyp", { desc = "再制", noremap = true, silent = true })
 
 -- 在 normal 模式配置快捷键
@@ -108,7 +108,7 @@ map('v', '<Leader>hH', '"hy:%s/<C-r>h//gc<left><left><left>',
 map('n', '<Leader>hw', [[:let @/ = '\<'.expand('<cword>').'\>'<bar>set hlsearch<CR>]], { desc = "查找高亮当前单词", noremap = true, silent = true })
 
 -- 13. 透明背景切换（适配你的高亮配置）
-map("n", "<leader>tt", ":lua ToggleTransparency()<CR>", opt)
+map("n", "<leader>tt", ":lua ToggleTransparency()<CR>", ns)
 function ToggleTransparency()
     local hl = vim.api.nvim_set_hl
     hl(0, "Normal", { fg = "#ffffff", bg = "NONE" })
@@ -116,10 +116,10 @@ function ToggleTransparency()
 end
 
 -- 窗口间的跳转
-map("n", "<C-h>", "<C-w>h", opt)
-map("n", "<C-j>", "<C-w>j", opt)
-map("n", "<C-k>", "<C-w>k", opt)
-map("n", "<C-l>", "<C-w>l", opt)
+map("n", "<C-h>", "<C-w>h", ns)
+map("n", "<C-j>", "<C-w>j", ns)
+map("n", "<C-k>", "<C-w>k", ns)
+map("n", "<C-l>", "<C-w>l", ns)
 map("n", "<leader>wc", "<cmd>close<CR>", { desc = "关闭窗口", noremap = true, silent = true })
 map("n", "<leader>wo", "<cmd>only<CR>", { desc = "关闭其他窗口", noremap = true, silent = true })
 map("n", "<leader>ws", "<cmd>vsplit<CR>", { desc = "垂直分屏", noremap = true, silent = true })
@@ -161,10 +161,10 @@ map("n", "<S-Right>", ":vertical resize +5<CR>", { desc = "向右调整窗口宽
 map("n", "<S-Up>", ":resize -5<CR>", { desc = "向上调整窗口高度", noremap = true, silent = true })
 map("n", "<S-Down>", ":resize +5<CR>", { desc = "向下调整窗口高度", noremap = true, silent = true })
 
-map("i", "<C-j>", "<C-[>o", opt)
-map("i", "<C-f>", "<C-[>O", opt)
+map("i", "<C-j>", "<C-[>o", ns)
+map("i", "<C-f>", "<C-[>O", ns)
 
-map("n", "U", "<C-r>", opt)
+map("n", "U", "<C-r>", ns)
 
 -- markdown 相关映射
 vim.api.nvim_create_autocmd("FileType", {
