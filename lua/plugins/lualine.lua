@@ -116,15 +116,15 @@ return {
 
                 -- 右侧区块 (从左到右)
                 lualine_x = { -- 文件信息区块
-                    -- {
-                    -- "diff", -- Git 变更状态
-                    -- symbols = {
-                    --     added = " ", -- 新增文件
-                    --     modified = " ", -- 修改文件
-                    --     removed = " ", -- 删除文件
-                    -- },
-                    -- colored = false, -- 启用颜色显示
-                    -- },
+                    {
+                        "diff", -- Git 变更状态
+                        symbols = {
+                            added = " ", -- 新增文件
+                            modified = " ", -- 修改文件
+                            removed = " ", -- 删除文件
+                        },
+                        -- colored = false, -- 启用颜色显示
+                    },
                     -- {
                     --     function()
                     --         local current_line = vim.fn.line(".")
@@ -229,47 +229,6 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
-
-            -- winbar = {
-            --     lualine_a = {
-            --         {
-            --             "tabs",
-            --             mode = 2,                             -- 0: 仅显示当前标签页，1: 显示所有标签页，2: 显示所有标签页并高亮当前
-            --             max_length = vim.o.columns,           -- 最大宽度
-            --             tabs_color = {
-            --                 active = 'lualine_tab_active',    -- 当前活动标签页颜色
-            --                 inactive = 'lualine_tab_inactive' -- 非活动标签页颜色
-            --             },
-            --             -- separator = { right = "" },           -- 右侧分隔符
-            --         },
-            --     },
-            --     lualine_z = {
-            --         {
-            --             "filesize",
-            --             fmt = function(str)
-            --                 if str ~= '' then
-            --                     return "Size: " .. str
-            --                 end
-            --                 return str
-            --             end,
-            --             icon = "",
-            --             color = {
-            --                 bg = "#72b580",
-            --                 gui = "bold"
-            --             }
-            --         },
-            --     }
-            -- },
-            --  winbar = {
-            --     lualine_a = {
-            --         {
-            --             "branch"
-            --         }
-            --     },
-            -- },
-
-            --[[ 扩展配置 ]]
-            --
             extensions = { "neo-tree", "toggleterm", "lazy" }, -- 支持插件集成
 
         })

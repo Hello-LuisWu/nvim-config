@@ -1,6 +1,6 @@
--- NOTE: 括号自动完成
+-- note: 括号自动完成
 return {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    event = "insertenter",
     config = true
 }
