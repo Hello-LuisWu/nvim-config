@@ -1,12 +1,26 @@
+
 {
-    "vim.easymotion": true,
-    "vim.incsearch": true,
+    "vim.leader": "<space>",
     "vim.useSystemClipboard": true,
+    "editor.lineNumbers": "relative", // 强烈建议：开启相对行号，配合 Vim 纵向跳转神速
     "vim.useCtrlKeys": true,
+    // "editor.renderLineHighlight": "all",
+     "workbench.colorCustomizations": {
+        // 当前行背景颜色（设置一个淡淡的灰色或蓝色，末尾两位是透明度）
+        "editor.lineHighlightBackground": "#ffffff10", 
+        
+        // 当前行边框颜色（如果你不想要背景色，只想在上下加两条线，可以用这个）
+        "editor.lineHighlightBorder": "#88888833"
+    },
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.color":"rgba(250, 240, 170, 0.5)",
+    "vim.whichwrap": "b,s,h,l,<,>,[,]",
     "vim.highlightedyank.duration": 300,
+    "vim.foldfix": true, // 修复 Vim 移动时折叠代码自动打开的问题
     "vim.hlsearch": false,
+    "vim.incsearch": true,
+    "vim.smartcase": true, // 智能大小写：搜索内容全小写时忽略大小写，包含大写字母时区分大小写
+    "vim.mouseSelectionByCursorPosition": true, // 允许通过点击鼠标改变光标位置
     "vim.insertModeKeyBindings": [
         { "before": ["j", "j"], "after": ["<Esc>"] },
         {"before": ["<C-k>"], "after": ["<Esc>", "O"]},
@@ -37,8 +51,8 @@
         {"before": ["<C-b>"], "after": ["<C-b>", "z", "z"]},
         {"before": ["n"], "after": ["n", "z", "z", "z", "v"]},
         {"before": ["N"], "after": ["N", "z", "z", "z", "v"]},
-        { "before": ["s"], "commands": ["leap.findForward"] },
-        { "before": ["S"], "commands": ["leap.findBackward"] },
+        {"before": ["s"], "commands": ["leap.findForward"] },
+        {"before": ["S"], "commands": ["leap.findBackward"] },
         
         // 窗口管理
         {"before": ["<C-h>"], "commands": ["workbench.action.navigateLeft"]},
@@ -69,16 +83,36 @@
         { "before": [ "<" ], "commands": [ "editor.action.outdentLines" ] },
         { "before": [ "<Tab>" ], "commands": [ "editor.action.indentLines" ] },
         { "before": [ "<S-Tab>" ], "commands": [ "editor.action.outdentLines" ] },
-        { "before": ["<leader>", "\\"], "commands": ["editor.action.commentLine"]},
+        { "before": ["<leader>", "\\"], "commands": ["editor.action.commentLine"] },
+        {"before": ["L"], "after": ["$"]},
+        {"before": ["H"], "after": ["0"]},
+
+        // 在可视模式下按 J/K 可以移动选中的代码块 (类似 Alt+Up/Down)
+        { "before": ["<c-j>"], "commands": ["editor.action.moveLinesDownAction"] },
+        { "before": ["<c-k>"], "commands": ["editor.action.moveLinesUpAction"] },
+
         // { "before": ["<C-\\>"], "commands": ["editor.action.commentLine"]},
-        
+
+            // 在可视模式下粘贴时，不覆盖剪贴板（即粘贴后依然保留原有的剪贴板内容）
+          { "before": ["p"], "after": ["p", "g", "v", "y"] },
     ],
-    "vim.leader": "<space>",
+ // 控制哪些快捷键交给 VS Code 处理，而不是由 Vim 拦截
+    // 如果你发现 Ctrl+C / Ctrl+V 失效，可以在这里配置
     "vim.handleKeys": {
-        "<C-a>": false,
-        // "<C-f>": false,
-        // "<C-b>":false
+        "<C-f>": false, // 交给 VS Code 处理搜索
+        "<C-z>": false, // 交给 VS Code 处理撤销
+        "<C-c>": false, // 交给 VS Code 处理复制
+        "<C-v>": false  // 交给 VS Code 处理粘贴
     },
+
+       // 光标样式设置：让插入模式下是细线，普通模式下是方块
+    "vim.cursorStylePerMode": {
+        "insert": "line",
+        "normal": "block",
+        "visual": "block-outline",
+        "replace": "underline"
+    },
+
     // To improve performance
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
