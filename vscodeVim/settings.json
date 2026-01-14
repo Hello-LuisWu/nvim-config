@@ -99,10 +99,10 @@
  // 控制哪些快捷键交给 VS Code 处理，而不是由 Vim 拦截
     // 如果你发现 Ctrl+C / Ctrl+V 失效，可以在这里配置
     "vim.handleKeys": {
-        "<C-f>": false, // 交给 VS Code 处理搜索
+        "<C-f>": true, // 交给 vim 处理搜索
         "<C-z>": false, // 交给 VS Code 处理撤销
         "<C-c>": false, // 交给 VS Code 处理复制
-        "<C-v>": false  // 交给 VS Code 处理粘贴
+        "<C-v>": true,  // 交给 vim 处理粘贴
     },
 
        // 光标样式设置：让插入模式下是细线，普通模式下是方块
