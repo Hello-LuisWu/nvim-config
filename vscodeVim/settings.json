@@ -20,7 +20,6 @@
     "vim.hlsearch": false,
     "vim.incsearch": true,
     "vim.smartcase": true, // 智能大小写：搜索内容全小写时忽略大小写，包含大写字母时区分大小写
-    "vim.mouseSelectionByCursorPosition": true, // 允许通过点击鼠标改变光标位置
     "vim.insertModeKeyBindings": [
         { "before": ["j", "j"], "after": ["<Esc>"] },
         {"before": ["<C-k>"], "after": ["<Esc>", "O"]},
