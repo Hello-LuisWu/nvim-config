@@ -1,39 +1,34 @@
-
 {
+    // start - vim 配置
     "vim.leader": "<space>",
     "vim.useSystemClipboard": true,
-    "editor.lineNumbers": "relative", // 强烈建议：开启相对行号，配合 Vim 纵向跳转神速
+    "editor.lineNumbers": "relative", 
     "vim.useCtrlKeys": true,
     // "editor.renderLineHighlight": "all",
      "workbench.colorCustomizations": {
-        // 当前行背景颜色（设置一个淡淡的灰色或蓝色，末尾两位是透明度）
-        "editor.lineHighlightBackground": "#ffffff10", 
-        
-        // 当前行边框颜色（如果你不想要背景色，只想在上下加两条线，可以用这个）
-        "editor.lineHighlightBorder": "#88888833"
+        "editor.lineHighlightBackground": "#ffffff1a", 
+        "editor.lineHighlightBorder": "#88888800"
     },
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.color":"rgba(250, 240, 170, 0.5)",
     "vim.whichwrap": "b,s,h,l,<,>,[,]",
     "vim.highlightedyank.duration": 300,
-    "vim.foldfix": true, // 修复 Vim 移动时折叠代码自动打开的问题
+    "vim.foldfix": true, 
     "vim.hlsearch": false,
     "vim.incsearch": true,
-    "vim.smartcase": true, // 智能大小写：搜索内容全小写时忽略大小写，包含大写字母时区分大小写
+    "vim.smartcase": true, 
     "vim.insertModeKeyBindings": [
         { "before": ["j", "j"], "after": ["<Esc>"] },
         {"before": ["<C-k>"], "after": ["<Esc>", "O"]},
         {"before": ["<C-j>"], "after": ["<Esc>", "o"]},
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
-            // 基础键位
         {"before": ["<Tab>"], "after": [":"]},
         {"before": ["<S-Tab>"], "after": ["/"]}, {"before": ["<BS>"], "commands": [":nohl"]},
         { "before": [":"], "commands": [ "workbench.action.showCommands" ] },
         {"before": ["u"], "commands": ["undo"]},
         {"before": ["U"], "commands": ["redo"]},
 
-        // 导航增强
         {"before": ["W"], "after": ["5", "w"]},
         {"before": ["B"], "after": ["5", "b"]},
         {"before": ["L"], "after": ["$"]},
@@ -41,7 +36,7 @@
         {"before": ["J"], "after": ["5", "j"]},
         {"before": ["K"], "after": ["5", "k"]},
 
-        // {"before": ["C-b>"], "commands": ["editor.action.commentLine"]},
+        {"before": ["<C-\\>"], "commands": ["editor.action.commentLine"]},
         {"before": ["<leader>", "\\"], "commands": [ "editor.action.commentLine" ]},
         {"before": ["<C-e>"], "commands": ["workbench.view.explorer"] },
         {"before": ["<leader>", "e"], "commands": ["workbench.action.toggleSidebarVisibility"] },
@@ -53,7 +48,6 @@
         {"before": ["s"], "commands": ["leap.findForward"] },
         {"before": ["S"], "commands": ["leap.findBackward"] },
         
-        // 窗口管理
         {"before": ["<C-h>"], "commands": ["workbench.action.navigateLeft"]},
         {"before": ["<C-j>"], "commands": ["workbench.action.navigateDown"]},
         {"before": ["<C-k>"], "commands": ["workbench.action.navigateUp"]},
@@ -63,16 +57,13 @@
         {"before": ["<leader>", "w", "s"], "commands": ["workbench.action.splitEditorRight"]},
         {"before": ["<leader>", "w", "S"], "commands": ["workbench.action.splitEditorDown"]},
         
-        // 缓冲区操作
         {"before": ["<C-Tab>"], "commands": ["workbench.action.nextEditor"]},
         {"before": ["<leader>", "b", "h"], "commands": ["workbench.action.previousEditor"]},
         {"before": ["<leader>", "b", "q"], "commands": ["workbench.action.closeActiveEditor"]},
         
-        // 文本操作
         {"before": ["<leader>", "j"], "after": ["J"]},
         {"before": ["<C-d>"], "commands": ["editor.action.copyLinesDownAction"]},
         
-        // 搜索替换
         {"before": ["<leader>", "h", "a"], "commands": [":%s/\\\\<<C-r><C-w>\\\\>//gc<Left><Left><Left>"]},
         {"before": ["<leader>", "h", "j"], "commands": [":%s/<C-r><C-w>/"]},
         {"before": ["<leader>", "h", "w"], "commands": [":let @/ = '\\\\<'.expand('<cword>').'\\\\>'<bar>set hlsearch<CR>"]}
@@ -85,26 +76,24 @@
         { "before": ["<leader>", "\\"], "commands": ["editor.action.commentLine"] },
         {"before": ["L"], "after": ["$"]},
         {"before": ["H"], "after": ["0"]},
+        {"before": ["J"], "after": ["G"]},
+        {"before": ["K"], "after": ["g", "g"]},
 
-        // 在可视模式下按 J/K 可以移动选中的代码块 (类似 Alt+Up/Down)
+
         { "before": ["<c-j>"], "commands": ["editor.action.moveLinesDownAction"] },
         { "before": ["<c-k>"], "commands": ["editor.action.moveLinesUpAction"] },
 
         // { "before": ["<C-\\>"], "commands": ["editor.action.commentLine"]},
 
-            // 在可视模式下粘贴时，不覆盖剪贴板（即粘贴后依然保留原有的剪贴板内容）
           { "before": ["p"], "after": ["p", "g", "v", "y"] },
     ],
- // 控制哪些快捷键交给 VS Code 处理，而不是由 Vim 拦截
-    // 如果你发现 Ctrl+C / Ctrl+V 失效，可以在这里配置
     "vim.handleKeys": {
-        "<C-f>": true, // 交给 vim 处理搜索
-        "<C-z>": false, // 交给 VS Code 处理撤销
-        "<C-c>": false, // 交给 VS Code 处理复制
-        "<C-v>": true,  // 交给 vim 处理粘贴
+        "<C-f>": true,
+        "<C-z>": false,
+        "<C-c>": false,
+        "<C-v>": true,
     },
 
-       // 光标样式设置：让插入模式下是细线，普通模式下是方块
     "vim.cursorStylePerMode": {
         "insert": "line",
         "normal": "block",
@@ -112,8 +101,9 @@
         "replace": "underline"
     },
 
-    // To improve performance
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
-    },
+    }, 
+    // end - vim mode 配置
+    "editor.fontSize": 18,
 }
