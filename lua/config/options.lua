@@ -3,8 +3,8 @@ local opt = vim.opt
 -- 基础设置
 -- ----------------------------
 -- 设置相对行号
-opt.number = true         -- 显示行号
-opt.relativenumber = true -- 显示相对行号
+-- opt.number = true         -- 显示行号
+-- opt.relativenumber = true -- 显示相对行号
 -- opt.mouse = "r"           -- 禁用鼠标, nvim 默认值为 a
 opt.mousemodel = "extend"
 opt.mouse = "a"           -- 启用鼠标, nvim 默认值为开启
