@@ -1,5 +1,14 @@
 return {
     {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            require('kanagawa').setup({
+
+            })
+            -- vim.cmd.colorscheme('kanagawa')
+        end
+    },
+    {
         "ellisonleao/gruvbox.nvim",
         -- enabled = false,
         config = function()
@@ -26,8 +35,8 @@ return {
                 dim_inactive = false,
                 transparent_mode = false,
             })
-            vim.cmd.colorscheme('gruvbox')
 
+            vim.cmd.colorscheme('gruvbox')
             -- local hl = vim.api.nvim_set_hl
             -- hl(0, "Normal", {bg = "none"})
         end
@@ -45,5 +54,14 @@ return {
             -- local hl = vim.api.nvim_set_hl
             -- hl(0, "Normal", {bg = "none"})
         end
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function ()
+            -- vim.cmd.colorscheme('catppuccin')
+        end
+        
     }
 }

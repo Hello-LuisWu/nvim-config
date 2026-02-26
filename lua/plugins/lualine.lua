@@ -8,13 +8,14 @@ return {
         "BufNewFile", -- 新建文件时
     },
     config = function()
-        local hl = vim.api.nvim_set_hl
-        hl(0, "lualine_tab_inactive", { bg = "#333333", fg = "#72b550" })
-        hl(0, "lualine_tab_active", { bg = "#72b550", fg = "#111111", bold = true })
+        -- local hl = vim.api.nvim_set_hl
+        -- hl(0, "lualine_tab_inactive", { bg = "#333333", fg = "#72b550" })
+        -- hl(0, "lualine_tab_active", { bg = "#72b550", fg = "#111111", bold = true })
 
         require("lualine").setup({
             options = {
-                theme = "everforest",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                -- theme = "everforest",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                theme = "auto",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
                 -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
                 -- section_separators = { left = "", right = "" }, -- 区块分隔符 
@@ -43,11 +44,11 @@ return {
                         -- color = { gui = "bold" }, -- 文字加粗
                         -- icon = " ",
                         --           separator = { right = "" }, -- 右侧分隔符
-                        color = {
-                            bg = "#72b560",
-                            -- fg = "#111111",
-                            gui = "bold",
-                        },
+                        -- color = {
+                        --     bg = "#72b560",
+                        --     -- fg = "#111111",
+                        --     gui = "bold",
+                        -- },
                         separator = { right = "" }, -- 右侧分隔符
                     },
                 },
@@ -211,11 +212,11 @@ return {
                         end,
                         -- separator = { left = "" }, -- 左侧分隔符
                         -- color = { gui = "italic" }, -- 颜色配置
-                        color = {
-                            bg = "#72b560",
-                            fg = "#111111",
-                            gui = "bold",
-                        }
+                        -- color = {
+                        --     bg = "#72b560",
+                        --     fg = "#111111",
+                        --     gui = "bold",
+                        -- }
                     },
                 },
             },

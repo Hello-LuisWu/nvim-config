@@ -41,13 +41,13 @@ return {
     -- enable = false,
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-        local TabColor = {
-            selColor_bg = "#72b560",
-            selColor_fg = "#222222",
-            visColor_bg = "#080808",
-            visColor_fg = "#e2e2e2",
-            sepColor_fg = "#555555"
-        }
+        -- local TabColor = {
+        --     selColor_bg = "#72b560",
+        --     selColor_fg = "#222222",
+        --     visColor_bg = "#080808",
+        --     visColor_fg = "#e2e2e2",
+        --     sepColor_fg = "#555555"
+        -- }
         local bufferline = require("bufferline") -- ✅ 正确方式
         bufferline.setup({
             options = {
@@ -213,72 +213,6 @@ return {
                 -- },
 
             },
-            highlights = {
-                -- fill                  = {
-                --     bg = TabColor.visColor_bg
-                -- },
-                -- background            = {
-                --     bg = TabColor.visColor_bg,
-                --     fg = TabColor.visColor_fg
-                -- },
-                -- tab                   = {
-                --     bg = "#72b560",
-                --     fg = "#333333"
-                -- },
-                buffer_selected       = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                buffer_visible        = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                close_button_selected = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                -- numbers               = {
-                --     bg = TabColor.visColor_bg,
-                --     fg = TabColor.visColor_fg
-                -- },
-                numbers_selected      = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                numbers_visible       = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                modified_selected     = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                modified_visible      = {
-                    bg = TabColor.selColor_bg,
-                    fg = TabColor.selColor_fg
-                },
-                -- modified              = {
-                --     bg = TabColor.visColor_bg,
-                --     fg = TabColor.visColor_fg
-                -- },
-                -- 分隔符通用样式
-                separator             = {
-                    fg = TabColor.sepColor_fg, -- 分隔符颜色
-                    -- bg = TabColor.visColor_bg, -- 背景色
-                },
-
-                -- 可见分隔符
-                separator_visible     = {
-                    fg = TabColor.sepColor_fg, -- 分隔符颜色
-                    -- bg = TabColor.visColor_bg, -- 背景色
-                },
-
-                -- 选中分隔符
-                separator_selected    = {
-                    fg = TabColor.sepColor_fg, -- 分隔符颜色
-                    -- bg = TabColor.visColor_bg, -- 背景色
-                },
-            }
         })
     end,
 
