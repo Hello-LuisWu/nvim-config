@@ -15,7 +15,7 @@ return {
         require("lualine").setup({
             options = {
                 -- theme = "everforest",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
-                theme = "auto",                             -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
+                theme = "auto",                                   -- 自动匹配当前配色方案 (可指定为 'tokyonight'/'dracula' 等)
                 -- component_separators = { left = "▎", right = "▎" }, -- 组件分隔符 (例: |)
                 component_separators = { left = "", right = "" }, -- 组件分隔符 (例: |)
                 -- section_separators = { left = "", right = "" }, -- 区块分隔符 
@@ -40,7 +40,7 @@ return {
                 lualine_a = { -- 模式显示区块
                     {
                         "mode",
-                        fmt = function(str) return " " .. str end, -- 添加图标前缀
+                        -- fmt = function(str) return " " .. str end, -- 添加图标前缀
                         -- color = { gui = "bold" }, -- 文字加粗
                         -- icon = " ",
                         --           separator = { right = "" }, -- 右侧分隔符
@@ -49,7 +49,7 @@ return {
                         --     -- fg = "#111111",
                         --     gui = "bold",
                         -- },
-                        separator = { right = "" }, -- 右侧分隔符
+                        -- separator = { right = "" }, -- 右侧分隔符
                     },
                 },
                 lualine_b = {
@@ -141,7 +141,7 @@ return {
                         "filetype",       -- 文件类型
                         icon_only = true, -- 仅显示图标
                         colored = true,   -- 颜色显示
-                        -- separator = { left = "" }, -- 左侧分隔符
+                        icon = { align = 'right' },
                     },
                     {
                         "fileformat", -- 文件格式
@@ -158,9 +158,26 @@ return {
                     },
                 },
                 lualine_y = { -- 光标信息区块
+                    -- {
+                    --     "%l/%L %p%%",
+                    --     icon = ""
+                    -- },
                     {
-                        "%l/%L %p%%",
-                        icon = ""
+                        -- separator = { left = "" }, -- 左侧分隔符
+                        'lsp_status',
+                        icon = '', -- f013
+                        symbols = {
+                            -- Standard unicode symbols to cycle through for LSP progress:
+                            spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                            -- Standard unicode symbol for when LSP is done:
+                            done = '✓',
+                            -- Delimiter inserted between LSP names:
+                            separator = ' ',
+                        },
+                        -- List of LSP names to ignore (e.g., `null-ls`):
+                        ignore_lsp = {},
+                        -- Display the LSP name
+                        show_name = true,
                     },
                 },
                 lualine_z = { -- 时间区块
