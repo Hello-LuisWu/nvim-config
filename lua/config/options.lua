@@ -114,6 +114,7 @@ opt.showtabline = 0 -- 2 总是显示标签页，0 不显示，1 出现多个标
 -- 关于缩进
 -- Neovim Lua 配置中正确启用文件类型检测
 -- vim.filetype.add({ extension = { ... } })          -- 启用文件类型检测, Neovim 0.10+ 的 Lua API
+vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()" -- 启用基于语法树的缩进（由 nvim-treesitter 提供）
 opt.tabstop = 4                                    -- 一个 tab 占用 4 个空格
 opt.shiftwidth = 4                                 -- 缩进宽度为 4, 自动缩进时每级缩进的空格数
 opt.softtabstop = 4                                -- 编辑时每个 tab 键等同于 4 个空格, 按退格键时删除的“虚拟空格”数量
