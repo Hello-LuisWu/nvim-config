@@ -9,7 +9,7 @@ local opt = vim.opt
 opt.mousemodel = "extend"
 opt.mouse = "a"           -- 启用鼠标, nvim 默认值为开启
 opt.modifiable = true     -- 确保缓冲区可修改
-vim.env.CC = 'gcc'
+-- vim.env.CC = 'gcc'        -- 使用 gcc 作为默认编译器，treesster 编译时需要
 
 -- 共享系统剪贴板
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
