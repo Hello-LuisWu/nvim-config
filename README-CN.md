@@ -72,7 +72,34 @@ git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 nvim 主目录文件树
 
 ```sh
-......
+.
+├── init.lua
+├── lua
+│   ├── config
+│   │   ├── autocmd.lua
+│   │   ├── keymap.lua
+│   │   ├── lsp.lua
+│   │   ├── option.lua
+│   │   └── pack.lua
+│   ├── plugins
+│   │   ├── align.lua
+│   │   ├── alpha.lua
+│   │   ├── autopairs.lua
+│   │   ├── blink.lua
+│   │   ├── comment.lua
+│   │   ├── flash.lua
+│   │   ├── mason.lua
+│   │   ├── md.lua
+│   │   ├── neotree.lua
+│   │   ├── surround.lua
+│   │   ├── telescope.lua
+│   │   ├── todo-comments.lua
+│   │   ├── ufo.lua
+│   │   └── wk.lua
+│   └── utils
+│       └── loader.lua
+├── m.md
+└── nvim-pack-lock.json
 ```
 
 ## 🚀 启动与首次初始化
