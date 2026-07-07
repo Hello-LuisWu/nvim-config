@@ -32,17 +32,22 @@
 
 如需重新安装配置，先清除旧版本相关目录：
 
+### macOS/Linux
 ```sh
-# 备份旧配置
+# macOS/Linux
+## 备份旧配置
 mv ~/.config/nvim{,.bak}
 mv ~/.local/share/nvim{,.bak}
 mv ~/.local/state/nvim{,.bak}
 mv ~/.cache/nvim{,.bak}
-
-# 或者
-
-# 删除旧配置
+## 或者删除旧配置
 rm -rf ~/.config/nvim/ ~/.local/share/nvim/ ~/.local/state/nvim/ ~/.cache/nvim/
+
+
+# Windows
+## 备份旧配置
+Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
 
 这将删除：
