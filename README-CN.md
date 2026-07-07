@@ -13,7 +13,7 @@
 
 ---
 
-## 🧰 必须软件（外部依赖）
+## 🧰 所需外部依赖软件
 
 以下是使用本配置前需要在系统中安装的软件：
 
@@ -61,13 +61,7 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 # Windows
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 ```
-## 启动
 
-```sh
-nvim
-```
-
-> **注意：** 首次启动 Neovim 时，需要从 [GitHub](https://www/github.com) 下载并克隆插件到本地。请确认当前网络可以正常访问 GitHub；如果无法访问，请先配置代理后再启动 Neovim，否则插件将无法正常安装。
 
 ## 🗃️ Files
 
@@ -84,6 +78,8 @@ nvim 主目录文件树
 ```sh
 nvim
 ```
+
+> **注意：** 首次启动 Neovim 时，需要从 [GitHub](https://www/github.com) 下载并克隆插件到本地。请确认当前网络可以正常访问 GitHub；如果无法访问，请先配置代理后再启动 Neovim，否则插件将无法正常安装。
 
 如果报错，请根据提示排除，检查网络问题，或手动安装缺失依赖。
 
