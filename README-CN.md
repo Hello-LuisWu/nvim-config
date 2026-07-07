@@ -11,29 +11,21 @@
 
 **高性能·模块化·开箱即用**: 适用于开发者的 Neovim 配置，支持 LSP、自动补全、代码格式化、语法高亮、美化 UI 等功能。
 
-
-
 ---
 
 ## 🧰 必须软件（外部依赖）
 
 以下是使用本配置前需要在系统中安装的软件：
 
-| 工具名称            | 作用说明                                    |
-|---------------------|---------------------------------------------|
-| 🧹 **stylua**       | Lua 代码格式化工具，自动格式化 Lua 插件代码 |
-| 🔍 **ripgrep (rg)** | 快速文本搜索工具，Telescope 模糊搜索依赖    |
-| 🗜️ **gcc**          | 编译 C 插件时使用（如 Treesitter）          |
-
-### 🧪 可选推荐依赖：
-
-| 工具名称                   | 用途                                                                                          |
-|----------------------------|-----------------------------------------------------------------------------------------------|
-| 🐍 **Python 3** + `pynvim` | 支持 Python 插件（如一些 LSP 工具）                                                           |
-| 🧵 **Node.js** + `npm`     | 安装 LSP/格式化工具（如 tsserver、prettier）                                                  |
-| 🛠 **make**                | 某些插件需要构建步骤（如 `telescope-fzf-native`）                                             |
-| 🌀 **Nerd Font**           | [Nerd Font](https://www.nerdfonts.com/#home) 是内置图标的编程字体，用于美化终端和编辑器界面。 |
-| 🔯**cmatrix**              | 主页数字雨特效工具                                                                            |
+-. [Git](https://git-scm.com/install/): 版本 >= 2.19.0（支持部分克隆）
+-. 🔍 [**ripgrep (rg)**](https://github.com/BurntSushi/ripgrep):  快速文本搜索工具，Telescope 模糊搜索依赖
+-. [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md):  treesitter 所需依赖
+    - 🗜️ **gcc**：编译 C 插件时使用（如 Treesitter）
+-. 🧵 **Node.js** + `npm`: 安装 LSP/格式化工具（如 tsserver、prettier、markdown-preview）
+-. 🌀 [Nerd Font](https://www.nerdfonts.com/#home):（可选）v3.0 或更高版本, **Nerd Font**  是内置图标的编程字体，用于美化终端和编辑器界面。
+-. 🛠 **make**: 某些插件需要构建步骤（如 `telescope-fzf-native`）
+-. [lazygit](https://github.com/jesseduffield/lazygit) （可选）: git 管理工具
+-. [curl](https://curl.se/download.html): 用于blink.cmp （补全引擎）
 
 ## 🧹 清除旧配置（重装建议）
 
@@ -61,54 +53,7 @@ git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nv
 nvim 主目录文件树
 
 ```sh
-
-├── img
-│   ├── edit.png
-│   └── star.gif
-├── init.lua
-├── lazy-lock.json
-├── lua
-│   ├── cmp.lua
-│   ├── config
-│   │   ├── autocmds.lua
-│   │   ├── hl.luaaaa
-│   │   ├── keymaps.lua
-│   │   ├── lazy.lua
-│   │   ├── options.lua
-│   │   └── s.lua
-│   └── plugins
-│       ├── aerial.lua
-│       ├── alpha.lua
-│       ├── autopairs.lua
-│       ├── blink.lua
-│       ├── bufferline.lua
-│       ├── colorizer.lua
-│       ├── comment.lua
-│       ├── conform.lua
-│       ├── flash.lua
-│       ├── gemini.lua
-│       ├── lsp.lua
-│       ├── lspsaga.lua
-│       ├── lualine.lua
-│       ├── md.lua
-│       ├── mini.indentscope.lua
-│       ├── neotree.lua
-│       ├── rainbow-delimiters.lua
-│       ├── snacks.lua
-│       ├── surround.lua
-│       ├── todo-comments.lua
-│       ├── toggleterm.lua
-│       ├── treesitter.lua
-│       ├── trouble.lua
-│       ├── ufo.lua
-│       ├── ui.lua
-│       └── which-key.lua
-├── maps.md
-├── README-CN.md
-├── README.md
-├── stylua.toml
-└── vscodeVim
-    └── settings.json
+......
 ```
 
 ## 🚀 启动与首次初始化
