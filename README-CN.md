@@ -22,6 +22,9 @@
 - 🔍 [**ripgrep (rg)**](https://github.com/BurntSushi/ripgrep):  快速文本搜索工具，Telescope 模糊搜索依赖
 - 🌳 [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md):  treesitter 所需依赖
     - 🗜️ **gcc**：编译 C 插件时使用（如 Treesitter）
+- [pyright](https://github.com/microsoft/pyright): python 的语言服务器. 安装: `npm i -g pyright`
+- clangd: c/c++ 语言服务器
+    - clang: c/c++ 编译器, clangd所需依赖. arch安装: `sudo pacman -S clang`
 - 🧵 [Node.js](https://nodejs.org/zh-cn/download): 安装 LSP/格式化工具（如 tsserver、prettier、markdown-preview）
 - 🌀 [Nerd Font](https://www.nerdfonts.com/#home):（可选）v3.0 或更高版本, **Nerd Font**  是内置图标的编程字体，用于美化终端和编辑器界面。
 - 🛠 **make**: 某些插件需要构建步骤（如 `telescope-fzf-native`）
@@ -49,7 +52,7 @@ Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
 
-这将删除：
+将删除以下目录(macOS/Linux)：
 
 - `~/.config/nvim/`：主配置目录
 - `~/.local/share/nvim/`：插件安装目录
@@ -110,7 +113,7 @@ nvim 主目录文件树
 nvim
 ```
 
-> **注意：** 首次启动 Neovim 时，需要从 [GitHub](https://www/github.com) 下载并克隆插件到本地。请确认当前网络可以正常访问 GitHub；如果无法访问，请先配置代理后再启动 Neovim，否则插件将无法正常安装。
+> **注意：** 首次启动 Neovim 时，需要从 [GitHub](https://www/github.com) 下载并克隆插件到本地; treesitter 也要从 GitHub 下载语法解析器。请确认当前网络可以正常访问 GitHub；如果无法访问，请先配置代理后再启动 Neovim，否则插件将无法正常安装和运行。
 
 如果报错，请根据提示排除，检查网络问题，或手动安装缺失依赖。
 
