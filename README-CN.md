@@ -33,21 +33,41 @@
 如需重新安装配置，先清除旧版本相关目录：
 
 ```sh
+# 备份旧配置
+mv ~/.config/nvim{,.bak}
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+
+# 或者
+
+# 删除旧配置
 rm -rf ~/.config/nvim/ ~/.local/share/nvim/ ~/.local/state/nvim/ ~/.cache/nvim/
 ```
 
 这将删除：
 
-- `~/.config/nvim/`：主配置文件夹
+- `~/.config/nvim/`：主配置目录
 - `~/.local/share/nvim/`：插件安装目录
-- `~/.local/state/nvim/`：状态信息
+- `~/.local/state/nvim/`：状态信息目录
 - `~/.cache/nvim/`：缓存目录
 
 ## ⛓️‍💥 克隆配置文件
 
 ```sh
+# macOS/Linux
 git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nvim
+
+# Windows
+git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 ```
+## 启动
+
+```sh
+nvim
+```
+
+> **注意：** 首次启动 Neovim 时，需要从 [GitHub](https://www/github.com) 下载并克隆插件到本地。请确认当前网络可以正常访问 GitHub；如果无法访问，请先配置代理后再启动 Neovim，否则插件将无法正常安装。
 
 ## 🗃️ Files
 
@@ -64,12 +84,8 @@ nvim 主目录文件树
 ```sh
 nvim
 ```
-初始化过程中，[Lazy.nvim](https://github.com/folke/lazy.nvim) 会自动：
-- 同步并安装所有插件
-- 设置基础配置
-- 构建所需模块（如 [Treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter) 、高性能搜索器等）
 
-如果报错，请根据提示手动安装缺失依赖。
+如果报错，请根据提示排除，检查网络问题，或手动安装缺失依赖。
 
 > 你可以在这里查看所有的快捷键映射：👉 [keymaps](https://github.com/Hello-LuisWu/nvim-config/blob/main/maps.md) 
 
