@@ -63,12 +63,11 @@ Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 
 ```sh
 # macOS/Linux
-git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config.git ~/.config/nvim
+git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config ~/.config/nvim
 
 # Windows
-git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
+git clone --depth 1 https://github.com/Hello-LuisWu/nvim-config $env:LOCALAPPDATA\nvim
 ```
-
 
 ## 🗃️ Files
 
